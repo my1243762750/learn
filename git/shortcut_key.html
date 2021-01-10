@@ -20,5 +20,44 @@
             <li></li>
         </ul>
     </div>
+    <section>
+        <h4>常用命令</h4>
+        <ul>
+            <li>git config http.postBuffer 524288000 (增加缓存空间到500M)</li>
+            <li>git config --system --unset credential.helper (重置用户名，密码)</li>
+            <li>git config --global http.sslVerify false (去掉ssl的验证)</li>
+            <li>git config user.name (查看用户名)</li>
+            <li>git config user.email (查看邮箱)</li>
+            <li>git remote -v (查看项目地址)</li>
+            <li>git branch -a (查看所有分支)</li>
+            <li>git branch -r (查看远程分支)</li>
+            <li>git branch (查看本地分支)</li>
+            <li>git branch 分支名 (创建本地分支)</li>
+            <li>git checkout 分支名 (切换分支)</li>
+            <li>git checkout -b 分支名 (创建+切换分支)</li>
+            <li>git remote show origin (可以看到删除分支情况)</li>
+            <li>git remote prune origin (清除已删除的分支缓存)</li>
+            <li>git push origin 分支名 (将分支推送到github)</li>
+            <li>git branch -d (删除本地分支)</li>
+            <li>git push origin :(分支名) (删除github远程分支)</li>
+            <li>git log (查看日志)</li>
+            <li>英文状态下 按q (退出查看日志)</li>
+            <li>合并分支</li>
+            <li>还原文件</li>
+            <li>查看历史记录</li>
+            <li>git commit</li>
+            <li>git push</li>
+            <li>git pull</li>
+        </ul>
+    </section>
+    <section>
+        <h4>添加ssh过程</h4>
+        <ul>
+            <li>找到.ssh 删除它，github上找到“SSH and GPG keys”，删除SSH keys（自行百度）</li>
+            <li>用git bash执行ssh-keygen -t rsa -C "xxxxx@xxxxx.com" 生成.ssh目录(有id_rsa和id_rsa.pub文件)</li>
+            <li>把id_rsa.pub里面的内容拷贝到github上（自行百度）</li>
+            <li>按照以上步骤，不会出现远程无法连接</li>
+        </ul>
+    </section>
 </body>
 </html>
