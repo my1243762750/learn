@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .parent{
+            position: relative;
+            width: 800px;
+            height: 800px;
+            background-color: paleturquoise;
+        }
+        
+        .item1{
+            position: relative;
+            left: 100px;
+            background-color: indigo;
+        }
+        
+        .item2{
+            background-color: orange;
+        }
+        
+        .item1,.item2{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+    <div class="item1">item1</div>
+    <!--<div class="item2">item2</div> -->
+</div>
+<dl>
+    <dt>结论</dt>
+    <dd>margin-top,margin-left与position:relative无关</dd>
+    <dd>position:relative虽然浮起来了，但是元素原来的位置会保留</dd>
+    <dd>position:relative和float属性一起使用时，元素的原来位置不会保留 BFC</dd>
+    <dd>子元素定义position:relative，使用left或top调整位置时，与父元素的position无关</dd>
+</dl>
+</body>
+</html>

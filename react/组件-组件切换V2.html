@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>子组件获取父组件的信息，通过props</li>
+        <li>父组件获取子组件的信息，通过？</li>
+        <li>兄弟组件获取兄弟组件的信息，通过？</li>
+    </ul>
+</section>
+<div id="example"></div>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script type="text/babel">
+    let Parent = React.createClass({
+        getInitialState: function () {
+            return {
+                values: [
+                    'this is Component1',
+                    'this is Component2',
+                    'this is Component3',
+                    'this is Component4'
+                ]
+            }
+        },
+        deleteComponent: function(index){
+            let values = this.state.values;
+            values.splice(index,1);
+            this.setState({
+                values: values
+            });
+        },
+        addComponent: function(value){
+            let values = this.state.values;
+            values.push(value);
+            this.setState({
+                values: values
+            });
+        },
+        getComponent: function () {
+            return this.state.values.map((value, index) => {
+                return (
+                    <Child value={value} index={index} delete={this.deleteComponent}/>
+                )
+            });
+        },
+        render: function () {
+            return (
+                <div>
+                    <button onClick={this.addComponent.bind(null,'default Value')}>添加</button>
+                    <div>{this.getComponent()}</div>
+                </div>
+            );
+        }
+    });
+
+    let Child = React.createClass({
+        getInitialState: function () {
+            return {
+                isEdit: false
+            }
+        },
+        edit: function () {
+            this.setState({
+                isEdit: !this.state.isEdit
+            });
+        },
+        save: function () {
+            this.setState({
+                isEdit: !this.state.isEdit
+            });
+            this.props.value = this.refs.saveText.value;
+        },
+        delete: function () {
+            this.props.delete(this.props.index);
+        },
+        editComponent: function () {
+            return (
+                <div>
+                    <div>{this.props.value}</div>
+                    <button onClick={this.edit}>编辑</button>
+                    <button onClick={this.delete} data-index={this.props.index}>删除
+                    </button>
+                </div>
+            );
+        },
+        saveComponent: function () {
+            return (
+                <div>
+                    <textarea cols="30" rows="10" ref="saveText">{this.props.value}</textarea>
+                    <button onClick={this.save}>保存</button>
+                    <button onClick={this.delete} data-index={this.props.index}>删除
+                    </button>
+                </div>
+            );
+        },
+        getComponent: function () {
+            if (this.state.isEdit) {
+                return this.saveComponent();
+            } else {
+                return this.editComponent();
+            }
+        },
+        render: function () {
+            return (
+                <div>
+                    {this.getComponent()}
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <Parent/>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

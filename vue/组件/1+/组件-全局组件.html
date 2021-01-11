@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <section>
+        <h3>组件三要素</h3>
+        <ul>
+            <li>Vue.extend({}) 创建的是组件构造器</li>
+            <li>Vue.component('','构造器') 根据构造器创建实例</li>
+            <li>把组件挂载某个Vue容器下</li>
+        </ul>
+    </section>
+    <section>
+        <h3>例子</h3>
+        <child1></child1>
+        <child2></child2>
+    </section>
+</div>
+<script src="../../lib/vue.min-1.0.2.js"></script>
+<script>
+    // 注册组件方式1
+    var child1 = Vue.extend({
+        template: 'this is child1'
+    });
+    Vue.component('child1',child1);
+    // 注册组件方式2
+    Vue.component('child2',{
+        template: 'this is child2'
+    });
+    new Vue({
+        el: "#app"
+    });
+</script>
+</body>
+</html>

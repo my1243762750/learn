@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<section>
+    <h4>图片</h4>
+    <div>
+        <img src="" alt="" id="img">
+    </div>
+</section>
+<script>
+    window.onload = function () {
+        var file = document.getElementById('file');
+        var img = document.getElementById('img');
+        file.addEventListener('change', function () {
+            var file = this.files[0];
+            var reader = new FileReader();
+            var fileType = file.type;
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var src = e.target.result;
+                if (fileType.indexOf('image') > -1) {
+                    img.setAttribute('src', src);
+                } else {
+                    img.setAttribute('src', '');
+                }
+                var formData = new FormData();
+                console.log(formData);
+                formData.append('file',file);
+                fileInput(formData);
+            };
+        });
+    };
+
+    function fileInput(file) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('post','http://localhost:8084/file', true);
+        // xhr.setRequestHeader('Content-type','multipart/form-data');浏览器自己会识别，不要乱加
+        xhr.onload = function (result) {
+            console.log(result);
+        };
+        xhr.send(file);
+    }
+</script>
+</body>
+</html>

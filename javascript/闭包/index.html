@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>闭包形成条件</h4>
+    <ul>
+        <li>函数内部函数(可以是自己的，也可以是外部传入的)</li>
+        <li>内部的函数访问变量(可以是自己的，也可以是外部传入的)</li>
+    </ul>
+</section>
+<section>
+    <h4>闭包的形式</h4>
+    <ul>
+        <li>函数内部返回函数，供外部调用</li>
+        <li>函数内部调用外部传入的函数</li>
+    </ul>
+</section>
+<section>
+    <h4>闭包特性</h4>
+    <ul>
+        <li>闭包函数可以访问上一层的变量</li>
+        <li>闭包函数访问的变量会一直保持在内存当中</li>
+    </ul>
+</section>
+<script>
+    // var z = 10;
+    // function foo(){
+    //     console.log(z);
+    // }
+    // (function (funArg){
+    //   var z = 20;
+    //   funArg();
+    // })(foo);
+
+    // var z = 10;
+    // function foo(){
+    //     console.log(z);
+    // }
+    // function temp(funArg) {
+    //     var z = 20;
+    //     funArg();
+    // }
+    // temp(foo)
+
+
+    // var x = 2;
+    // function A(){
+    //     var x = 1;
+    //     return function B(){
+    //         console.log(x);
+    //     }
+    // }
+    //
+    // A()();
+
+    // var x = 2;
+    // var B = function () {
+    //     x++;
+    //     console.log(x);
+    // };
+    //
+    // function A(B) {
+    //     var x = 1;
+    //     B();
+    // }
+    //
+    // A(B);
+
+    // var data = [];
+    // for (var k = 0; k < 3; k++) {
+    //     data[k] = function(){
+    //         console.log(k);
+    //     }
+    // }
+    // console.log(data[0]());
+    // console.log(data[1]());
+    // console.log(data[2]());
+
+    // function outerFun() {
+    //     //没有var
+    //     a = 0;
+    //     alert(a);
+    // }
+    //
+    // var a = 4;
+    // outerFun();
+    // alert(a);
+</script>
+</body>
+</html>

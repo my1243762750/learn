@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>在created方法中获取数据性能略微高一点</li>
+    </ul>
+</section>
+<section id="app">
+    {{name}}<br>
+    {{distanceTime}}
+</section>
+<script src="lib/vue.min-2.4.0.js"></script>
+<script>
+    let vue = new Vue({
+        el: '#app',
+        created() {
+            console.log('=====created=====')
+            this.startTime = new Date().getTime();
+            setTimeout(() => {
+                this.name = 'zhangsan'
+                this.endTime = new Date().getTime();
+                this.distanceTime = this.endTime - this.startTime;
+                console.log(this.distanceTime);
+            }, 2000)
+        },
+        mounted() {
+            console.log('=====mounted=====')
+        },
+        data() {
+            return {
+                name: '',
+                startTime: null,
+                endTime: null,
+                distanceTime: null
+            }
+        },
+        methods: {
+            say() {
+                console.log('hello world')
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+
+        .menu {
+            display: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #fff;
+            box-shadow: 1px 1px 5px;
+        }
+
+        .menu li {
+            padding: 10px 0 10px 20px;
+            list-style-type: none;
+        }
+
+        .menu li:hover {
+            cursor: pointer;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+<ul class="menu" id="menu">
+    <li>查看(V)</li>
+    <li>排序方式(O)</li>
+    <li>刷新(E)</li>
+</ul>
+</body>
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    /*window.onload = function () {
+     var dMenu = document.getElementById("menu");
+     // 控制菜单位置
+     addEvent(document,"contextmenu", function (e) {
+     e.preventDefault();
+     dMenu.style.display = "block";
+     dMenu.style.marginLeft = e.clientX + 'px';
+     dMenu.style.marginTop = e.clientY + 'px';
+     });
+     // 控制菜单消失
+     addEvent(document,"click",function(){
+     dMenu.style.display = "none";
+     });
+     };*/
+
+    /**
+     * js添加事件
+     * @param elem 事件触发对象
+     * @param event 事件
+     * @param fn 处理函数
+     */
+    /*function addEvent(elem, event, fn) {
+     if (event.addEventListener) {
+     elem.addEventListener(event, fn);
+     } else if (event.attachEvent) {
+     elem.attachEvent('on' + event, fn);
+     } else {
+     elem['on' + event] = fn;
+     }
+     }*/
+
+    $(function () {
+        var dMenu = $("#menu");
+        // 控制菜单位置
+        $(document).on("contextmenu", function (e) {
+            e.preventDefault();
+            dMenu.css({
+                display: "block",
+                marginLeft: e.clientX + 'px',
+                marginTop: e.clientY + 'px'
+            });
+        });
+        // 控制菜单消失
+        $(document).on("click", function () {
+            dMenu.css("display", "none");
+        });
+    });
+</script>
+</html>

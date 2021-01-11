@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+    <style>
+        .parent {
+            width: 500px;
+            height: 500px;
+            border: solid 1px red;
+        }
+
+        .son {
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            border: solid 1px blue;
+        }
+    </style>
+</head>
+<body>
+<section id="app">
+    <parent></parent>
+</section>
+<section class="sr-only">
+    <template id="template1">
+        <div class="parent">
+            <div>获取到子组件的信息:{{msg}}</div>
+            <son1 @receive="getMsg"></son1>
+        </div>
+    </template>
+    <template id="template2">
+        <div class="son">
+            <input type="text" v-model="msg">
+            <button @click="send()">发送</button>
+        </div>
+    </template>
+</section>
+<script src="../../lib/vue.min-2.4.0.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        components: {
+            parent: {
+                data: function () {
+                    return {
+                        msg: ''
+                    }
+                },
+                methods: {
+                  getMsg(msg){
+                      console.log('获取');
+                      this.msg = msg;
+                  }
+                },
+                template: '#template1',
+                components: {
+                    son1: {
+                        data() {
+                            return {
+                                msg: 'hello world'
+                            }
+                        },
+                        methods: {
+                            send() {
+                                this.$emit('receive', this.msg);
+                            }
+                        },
+                        template: '#template2'
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

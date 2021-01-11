@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+this is cookies
+<script>
+    // set cookies
+    document.cookie = 'username = meiyang';
+    document.cookie = 'username = yangmei';
+    document.cookie = 'age = 19';
+    // get cookies
+    console.log(document.cookie);
+    // delete cookies
+    document.cookie = 'username=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'age=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    console.log(document.cookie);
+</script>
+</body>
+</html>

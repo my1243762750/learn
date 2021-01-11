@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click me!</button>
+<button id="btn2">click me2!</button>
+<script>
+    var btn = document.getElementById('btn');
+    var btn2 = document.getElementById('btn2');
+
+
+    addEvent(btn, 300, function () {
+        ajax({
+            url: 'http://localhost:8082/user',
+            method: 'post',
+            data: {
+                name: 'zhangsan'
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    addEvent(btn2, 300, function () {
+        ajax({
+            url: 'http://localhost:8082/user',
+            method: 'post',
+            data: {
+                name: 'lisi'
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    function addEvent(el, time, callback) {
+        var startTime = '';
+        var standardIntervalTime = time || 300;
+        el.addEventListener('click', function () {
+            var currentTime = new Date().getTime();
+            if (startTime) {
+                if (currentTime - startTime >= standardIntervalTime) {
+                    callback && callback();
+                }
+            } else {
+                callback && callback();
+            }
+            startTime = currentTime;
+        });
+    }
+
+    function ajax(params) {
+        params = params || {};
+        params.method = params.method || 'GET';
+        params.async = params.async || 'true';
+        params.data = params.data || '';
+        var xhr = null;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        xhr.open(params.method, params.url, params.async);
+        if (params.method.toLocaleUpperCase() === 'POST') {
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            params.data = JSON.stringify(params.data);
+        }
+        xhr.onload = function () {
+            params.success && params.success(JSON.parse(this.responseText));
+        };
+        xhr.send(params.data);
+        return xhr;
+    }
+</script>
+</body>
+</html>

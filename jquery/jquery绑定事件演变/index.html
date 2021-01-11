@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item-container{
+            width: 500px;
+            height: 500px;
+            border: solid 1px;
+        }
+
+        .item{
+            width: 50px;
+            height: 50px;
+            border: solid 1px;
+        }
+        .item:hover{
+            background-color: indianred;
+        }
+    </style>
+</head>
+<body>
+<dl>
+    <dd>bind 最初的绑定方式，直接绑定在元素身上，但是对于未来添加的内容，不会绑定</dd>
+    <dd>live 它绑定在document上，解决了未来添加内容，不能绑定；但是，dom结过深的话，就会产生效率的问题。</dd>
+    <dd>delegate 它不绑定在document上，而是用户传入的节点上，对于live方式而言，就缩小的范围。</dd>
+    <dd>on 前三者，底层都是调用的on</dd>
+</dl>
+<div id="item-container" class="item-container">
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<button id="add">添加元素</button>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    $(function(){
+        $('#item-container').on('click',function () {
+            console.log('parent');
+        });
+    });
+</script>
+</body>
+</html>

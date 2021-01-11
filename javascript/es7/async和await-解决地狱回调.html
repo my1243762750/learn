@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    async function getData() {
+        const promiseA = await fetch('http://localhost:8082/A');
+        const resultA = await promiseA.json();
+        const promiseB = await fetch('http://localhost:8082/B?name=' + resultA.name);
+        const resultB = await promiseB.json();
+        const promiseC = await fetch('http://localhost:8082/C?name=' +resultB.name);
+        const resultC = await promiseC.json();
+        return resultC;
+    }
+    getData()
+        .then((res) => console.log(res))
+        .catch((err) => consoel.log(err));
+</script>
+</body>
+</html>

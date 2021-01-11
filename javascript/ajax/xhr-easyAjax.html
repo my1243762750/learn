@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>ajax介绍</h4>
+    <ul>
+        <li>ajax: Asynchronous JavaScript & XML</li>
+        <li>ajax: javascript 请求xml的一种技术</li>
+    </ul>
+</section>
+<section>
+    <h4>readyState几种状态</h4>
+    <ul>
+        <li>0 open方法还未调用</li>
+        <li>1 open方法已调用，send方法还未调用</li>
+        <li>2 send方法已调用，还未接受到服务器响应</li>
+        <li>3 接受到服务器响应，但还未接受完成</li>
+        <li>4 响应接受完成</li>
+    </ul>
+</section>
+<script>
+    // post请求只支持json传递
+    class EasyAjax {
+        ajax(params) {
+            params = params || {};
+            params.method = params.method || 'GET';
+            params.async = params.async || 'true';
+            params.data = params.data || '';
+            let xhr = null;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            xhr.open(params.method, params.url, params.async);
+            if (params.method.toLocaleUpperCase() === 'POST') {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                params.data = JSON.stringify(params.data);
+            }
+            xhr.onload = function () {
+                params.success && params.success(this.responseText);
+            };
+            xhr.send(params.data);
+        }
+    }
+
+    // 请求数据
+    let easyAjax = new EasyAjax();
+    easyAjax.ajax({
+        method: 'get',
+        url: 'http://localhost:8082/A', // 智能建议
+        success: function (result) {
+            console.log(result);
+        }
+    });
+</script>
+</body>
+</html>

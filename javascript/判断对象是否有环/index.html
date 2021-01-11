@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4></h4>
+    <ul>
+        <li><a href="https://www.jianshu.com/p/a2bb29aa4fce">环</a></li>
+        <li><a href="https://www.jianshu.com/p/655be2921b80">环</a></li>
+        <li><a href="https://segmentfault.com/q/1010000010856332/a-1020000010856862">环</a></li>
+    </ul>
+</section>
+<script>
+    let test = {
+        name: 'zhangsan',
+        age: 19,
+        sex: 'man',
+        hobby: {
+            sport: 'lanqiu',
+            fruit: 'baicai',
+            other: ''
+        }
+    }
+    test.hobby.other = test
+
+    console.log(Object.keys(test))
+    console.log(Object.keys(test.hobby.other))
+    test.name = 'lisi'
+    // console.log(test.name === test.hobby.other.name)
+    console.log(test === test.hobby.other)
+
+    const obj = {
+        foo: {
+            name: 'foo',
+            bar: {
+                name: 'bar',
+                baz: {
+                    name: 'baz',
+                    aChild: null  //待会让它指向obj.foo
+                }
+            }
+        }
+    }
+    obj.foo.bar.baz.aChild = obj.foo // foo->bar->baz->aChild->foo 形成环
+    console.log(cycleDetector(obj))
+    function cycleDetector(obj) {
+
+        var hasCircle = false,            //  定义一个变量，标志是否有环
+            cache = [];                   //  定义一个数组，来保存对象类型的属性值
+
+        (function(obj) {
+            var keys = Object.keys(obj);              //获取当前对象的属性数组
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                var value = obj[key];
+                if (typeof value == 'object' && value !== null) {
+                    var index = cache.indexOf(value)
+                    if (index !== -1) {
+                        hasCircle = true
+                        break
+                    } else {
+                        cache.push(value)
+                        arguments.callee(value)
+                        // cache.pop()      //  注意：这里要推出数据，因为递归返回，后面遍历的属性不是这个数据的子属性
+                    }
+                }
+            }
+        })(obj)
+
+        return hasCircle
+    }
+
+</script>
+</body>
+</html>

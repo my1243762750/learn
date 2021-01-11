@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>匿名函数无法被移除</li>
+    </ul>
+</section>
+<button id="btn">click me!</button>
+<script>
+    let btn = document.getElementById('btn');
+    // 例子1：实名函数
+    function getMsg(){
+        console.log('hello world');
+    }
+    btn.addEventListener('click',getMsg);
+    btn.removeEventListener('click',getMsg);
+    // 例子2：匿名函数
+    // btn.addEventListener('click',function(){
+    //     console.log('add');
+    //     btn.removeEventListener('click',function(){
+    //         console.log('remove');
+    //     });
+    // });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 人
+    function People(name, age) {
+        this.name = name;
+        this.age = age;
+        this.talk = function () {
+            console.log('hello world');
+        }
+    }
+
+    People.prototype.sing = function () {
+        console.log('sing');
+    };
+
+
+    // 男人
+    function Man(name, age, sex) {
+        People.call(this, name, age);
+        this.sex = sex;
+    }
+
+    //    Man.prototype = {}.__proto__ = People.prototype;
+    //    Man.prototype = new Function().prototype = People.prototype;
+    Man.prototype = Object.create(Person.prototype);
+    Man.prototype.constructor = Man;
+    var man = new Man('张三', 19, '男');
+    console.log(man);
+    //    console.log(People.prototype.constructor);
+    console.log(Man.prototype);
+    man.sing();
+
+</script>
+</body>
+</html>

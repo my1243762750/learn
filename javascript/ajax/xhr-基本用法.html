@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>ajax介绍</h4>
+    <ul>
+        <li>ajax: Asynchronous JavaScript & XML</li>
+        <li>ajax: javascript 请求xml的一种技术</li>
+    </ul>
+</section>
+<section>
+    <h4>readyState几种状态</h4>
+    <ul>
+        <li>0 open方法还未调用</li>
+        <li>1 open方法已调用，send方法还未调用</li>
+        <li>2 send方法已调用，还未接受到服务器响应</li>
+        <li>3 接受到服务器响应，但还未接受完成</li>
+        <li>4 响应接受完成</li>
+    </ul>
+</section>
+<script>
+    // 原始ajax请求
+    (function(){
+        // get请求
+        var xhr = new XMLHttpRequest();
+        console.log(xhr.status,xhr.readyState,xhr.reponseText);
+        xhr.open('GET','http://localhost:8082/A',true);
+        console.log(xhr.status,xhr.readyState,xhr.reponseText);
+        // onload方式
+        // xhr.onload = function(){
+        //     console.log(this.status,this.readyState,this.responseText);
+        // };
+        // onreadystatecchange方式
+        xhr.onreadystatechange = function(){
+            console.log(this.status,this.readyState,this.responseText);
+        };
+        xhr.send();
+    })();
+</script>
+</body>
+</html>

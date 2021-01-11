@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // =====对于对象的深度复制的方法=====
+    // 方法1：针对对象只有一层(只有第一层是深度复制)，使用展开运算符...
+    const obj = {
+        name: 'zhangsan',
+        hobby: {
+            sport: '运动',
+            play: '游戏',
+            other: {
+                other: 1,
+                other2: 2,
+                other3() {
+                    console.log('other3')
+                }
+            }
+        },
+        say() {
+            console.log('hello world')
+        }
+    }
+    const {...copyObj} = obj
+    copyObj.name = 'lisi'
+    copyObj.hobby.other.other1 = '改变1'
+    console.log(obj)
+    console.log(copyObj)
+    copyObj.say()
+    copyObj.hobby.other.other3()
+
+    // 方法2: JSON.parse(JSON.stringify()) 缺点: 不能复制function
+    const obj2 = {
+        name: 'zhangsan',
+        hobby: {
+            sport: '运动',
+            play: '游戏'
+        },
+        say() {
+            console.log('hello world')
+        }
+    }
+    // const copyObj2 = JSON.parse(JSON.stringify(obj2))
+    // console.log(copyObj2.name)
+    // copyObj2.say()
+
+    // 方法3： 递归复制(后续补充)
+    //
+</script>
+</body>
+</html>

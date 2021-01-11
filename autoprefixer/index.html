@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>Trident内核：主要代表为IE浏览器</li>
+    <li>Gecko内核：主要代表为Firefox</li>
+    <li>Presto内核：主要代表为Opera</li>
+    <li>Webkit内核：产要代表为Chrome和Safari</li>
+</ul>
+<ul>
+    <li>Trident内核：前缀为-ms</li>
+    <li>Gecko内核：前缀为-moz</li>
+    <li>Presto内核：前缀为-o</li>
+    <li>Webkit内核：前缀为-webkit</li>
+</ul>
+<ul>
+    <li>安装步骤</li>
+    <li>假设安装好了nodejs</li>
+    <li>1安装autoprefixer npm install autoprefixer -g</li>
+    <li>2安装postcss-cli npm install postcss-cli -g</li>
+    <li>
+        <h4>3webstorm配置External tools</h4>
+        <span>Program：C:\Users\gaojun-pd\AppData\Roaming\npm\postcss.cmd</span><br>
+        <span>Parameters：-u autoprefixer -o $FileDir$\$FileName$ $FileDir$\$FileName$</span><br>
+        <span>Working directory ：$ProjectFileDir$</span>
+    </li>
+    <li>设置快捷键</li>
+    <li>
+        <span>详情请见</span>
+        <a href="http://www.w3cplus.com/css3/autoprefixer-css-vender-prefixes.html">autoprefixer</a>
+    </li>
+</ul>
+</body>
+</html>

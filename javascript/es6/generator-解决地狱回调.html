@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    function getGen(){
+        let temp = '';
+
+        function getData(url) {
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    console.log(res);
+                    temp = res;
+                    gen.next(res);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function* test() {
+            yield getData('http://localhost:8082/A');
+            yield getData('http://localhost:8082/B?name=' + temp.name);
+            yield getData('http://localhost:8082/C?name=' + temp.name);
+        }
+
+        let gen = test();
+        return gen;
+    }
+
+    getGen().next();
+</script>
+</body>
+</html>

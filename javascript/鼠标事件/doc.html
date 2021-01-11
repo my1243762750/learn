@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            display: flex;
+            width: 500px;
+            height: 500px;
+            border: solid 1px red;
+        }
+
+        .item{
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            border: solid 1px blue;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>mousedown:鼠标按下</li>
+    <li>mouseup:鼠标抬起</li>
+    <li>mouseenter:鼠标进入(如果再进入子元素，不会再触发)</li>
+    <li>mouseleave:鼠标离开(如果再离开子元素，不会再触发)</li>
+    <li>mouseover:鼠标进入(如果再进入子元素，会再触发)</li>
+    <li>mouseout:鼠标离开(如果再离开子元素，会再触发)</li>
+    <li>mousemove:鼠标移动</li>
+</ul>
+<div class="container" id="container">
+    <div class="item">
+
+    </div>
+</div>
+</body>
+<script>
+    let container = document.getElementById('container');
+    container.addEventListener('mousedown', function () {
+        console.log('mousedown:鼠标按下');
+    });
+    container.addEventListener('mouseup', function () {
+        console.log('mouseup:鼠标抬起');
+    });
+    container.addEventListener('mouseenter', function () {
+        console.log('mouseenter:鼠标进入');
+    });
+    container.addEventListener('mouseleave', function () {
+        console.log('mouseleave:鼠标离开');
+    });
+    container.addEventListener('mouseover', function () {
+        console.log('mouseover:鼠标悬浮');
+    });
+    container.addEventListener('mouseout', function () {
+        console.log('mouseout:鼠标离开');
+    });
+    container.addEventListener('mousemove', function () {
+        console.log('mousemove:鼠标移动');
+    });
+</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // forEach
+    let arr = [1, 2, 3];
+    let forEachResult = arr.forEach((value, index, array) => {
+        console.log(value,index,array);
+    });
+    console.log(forEachResult);
+    console.log('forEachResult **********');
+
+    // map
+    let mapResult = arr.map((value, index, array) => {
+        console.log(value,index,array);
+        return value * 2;
+    });
+    console.log(mapResult);
+    console.log('mapResult **********');
+
+    // filter
+    let filterResult = arr.filter((value, index, array) => {
+        console.log(value,index,array);
+        return value > 2;
+    });
+    console.log(filterResult);
+    console.log('filterResult **********');
+
+    // some
+    let someResult = arr.some((value, index, array) => {
+        console.log(value,index,array);
+        return value > 2;
+    });
+    console.log(someResult);
+    console.log('someResult **********');
+
+    // every
+    let everyResult = arr.every((value, index, array) => {
+        console.log(value,index,array);
+        return value > 2;
+    });
+    console.log(everyResult);
+    console.log('everyResult **********');
+
+
+    // find
+    var arr2 = [{
+        id: 1,
+        name: 'zhangsan'
+    }, {
+        id: 2,
+        name: 'lisi'
+    }, {
+        id: 3,
+        name: 'wangwu'
+    }]
+    let findResult = arr2.find((item, index, array) => {
+        console.log(item,index,array);
+        return item.id === 1;
+    });
+    console.log(findResult);
+    console.log('findResult **********');
+</script>
+</body>
+</html>

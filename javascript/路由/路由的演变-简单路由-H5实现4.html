@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>例子(点击下面的连接)</h4>
+    <ul>
+        <li><a href="A">A</a></li>
+        <li><a href="B">B</a></li>
+        <li><a href="C">C</a></li>
+    </ul>
+    <div id="testContainer"></div>
+</section>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    function Router() {
+        this.routes = {};
+        //注册路由
+        this.route = function (url, callback) {
+            this.routes[url] = callback || function () {
+            };
+        };
+        //url变化，调用相应的方法
+        this.refresh = function () {
+            let path = window.location.pathname;
+            console.log('path', path)
+            console.log('location', window.location)
+            for (let key in this.routes) {
+                let reg = new RegExp(key, 'g');
+                reg.test(path) && this.routes[key]();
+            }
+            console.log(path);
+        };
+        //监听url变化(前进/后退)
+        this.init = function () {
+            let _this = this;
+            window.addEventListener('load', function () {
+                // 比较window.location.href
+                console.log('页面重载', window.location)
+                console.log('页面重载', _this.originHref)
+            });
+            window.addEventListener('popstate', function () {
+                if (window.history.state) {
+                    const state = JSON.parse(window.history.state)
+                    const url = '/' + state.url
+                    this.routes[url]()
+                }
+            }.bind(this));
+            this.originHref = this.originHref || window.location.href
+            $('a').on('click', function (event) {
+                event.preventDefault();
+                let path = $(this).attr('href');
+                //改变当前的url
+                window.history.pushState(JSON.stringify({url: path}), '', _this.originHref + '/' + path);
+                //调用相应的方法
+                _this.refresh();
+            });
+        };
+    }
+
+    let router = new Router();
+    let testContainer = document.getElementById('testContainer');
+
+    router.init();
+    router.route('/', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/A', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/B', function () {
+        testContainer.innerHTML = 'B'
+    });
+    router.route('/C', function () {
+        testContainer.innerHTML = 'C'
+    });
+
+    // 方法未完成
+</script>
+</body>
+</html>

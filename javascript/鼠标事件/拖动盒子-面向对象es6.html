@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container">
+
+</div>
+<script>
+    class Drag {
+        constructor(el) {
+            this.el = el;
+            this.offsetX = '';
+            this.offsetY = '';
+        }
+
+        mouseDown() {
+            this.el.onmousedown = (event) => {
+                this.offsetX = event.offsetX;
+                this.offsetY = event.offsetY;
+                this.el.onmousemove = this.mouseMove.bind(this);
+            }
+        }
+
+        mouseUp() {
+            this.el.onmouseup = () => {
+                this.el.onmousemove = null;
+            }
+        }
+
+        mouseMove(event) {
+            event = event || window.event;
+            let x = event.clientX - this.offsetX;
+            let y = event.clientY - this.offsetY;
+            this.el.style.left = x + 'px';
+            this.el.style.top = y + 'px';
+        }
+
+        init() {
+            this.mouseDown();
+            this.mouseUp();
+        }
+    }
+
+    let drag = new Drag(document.getElementById('container'));
+    drag.init();
+    console.log(drag);
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li><a href="http://www.cnblogs.com/rt0d/archive/2011/04/17/2018646.html">图片预加载</a></li>
+    </ul>
+</section>
+<script>
+    // 图片预加载
+    window.onload = function () {
+        // preLoadImg('./img/test.png', function () {
+        //     console.log(this.width, this.height);
+        // })
+
+        preLoadImgArr([{
+            url: './img/test.png',
+            callback: function(){
+                console.log(this.width,this.height);
+            }
+        },{
+            url: './img/test2.png',
+            callback: function(){
+                console.log(this.width,this.height);
+            }
+        }]);
+    };
+
+    function preLoadImg(url, callback) {
+        var img = new Image();
+        img.src = url;
+        if (img.complete) {
+            callback.call(img);
+            return;
+        }
+        img.onload = function () {
+            img.onload = null
+            callback.call(img);
+        }
+    }
+
+    function preLoadImgArr(imgArr) {
+        for (var i = 0,item = {}; i < imgArr.length; i++) {
+            item = imgArr[i];
+            var img = new Image();
+            var callback = item.callback;
+            img.src = item.url;
+            if(img.complete){
+                callback.call(img);
+            }else{
+                img.onload = function(){
+                    img.onload = null
+                    callback.call(this);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

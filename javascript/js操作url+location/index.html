@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>js编码和解码的方式</h4>
+</section>
+<section>
+    <h4>window.location的所有获取值(假如url地址为: http://www.test.com:8081/project/index.html?name='zhangsan'&pwd='123')</h4>
+    <ul>
+        <li>window.location.href (http://www.test.com:8081/project/index.html?name='zhangsan'&pwd='123')</li>
+        <li>window.location.hostname (www.test.com)</li>
+        <li>window.location.pathname (project/index.html)</li>
+        <li>window.location.port (8081)</li>
+        <li>window.location.protocol (http:)</li>
+        <li>window.location.hash (上面看不出来，再假如url地址为:
+            http://www.test.com:8081/project/index.html#projectUrgent，window.location.hash就是#projectUrgent )
+        </li>
+        <li>window.location.search (?name='zhangsan'&pwd='123')</li>
+    </ul>
+</section>
+<script>
+    //js获取url参数
+    function getUrlParam(paramName) {
+        var obj = {};
+        var search = window.location.search;
+        var paramArr = null;
+        if (!search) {
+            return paramArr;
+        }
+        paramArr = decodeURI(search).substring(1).split('&');
+        for (var i = 0, max = paramArr.length, item = []; i < max; i++) {
+            item = paramArr[i].split('=');
+            obj[item[0]] = item[1];
+        }
+        return obj[paramName];
+    }
+
+    function getUrlParamByReg(paramName) {
+        var paramStr = window.location.search.substring(1);
+        var reg = new RegExp('(^|&)' + paramName + '=([^&]*)(&|$)','ig');
+        var result = paramStr.match(reg);
+        console.log(result);
+        if(result){
+            return decodeURI(result[2]);
+        }
+        return null;
+    }
+</script>
+</body>
+</html>

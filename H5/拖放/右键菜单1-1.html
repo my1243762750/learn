@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul class="menu" id="menu">
+    <li>查看(V)</li>
+    <li>排序方式(O)</li>
+    <li>刷新(E)</li>
+</ul>
+</body>
+<script>
+    window.onload = function () {
+        var dMenu = document.getElementById("menu");
+        addEvent(document,"contextmenu", function (e) {
+            e.preventDefault();
+            dMenu.style.display = "block";
+            console.log("hello world");
+        })
+    };
+
+    /**
+     * js添加事件
+     * @param elem 事件触发对象
+     * @param event 事件
+     * @param fn 处理函数
+     */
+    function addEvent(elem, event, fn) {
+        if (event.addEventListener) {
+            elem.addEventListener(event, fn);
+        } else if (event.attachEvent) {
+            elem.attachEvent('on' + event, fn);
+        } else {
+            elem['on' + event] = fn;
+        }
+    }
+
+</script>
+</html>

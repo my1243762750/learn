@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认行为</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min-3.3.7.css">
+    <style>
+        ul{
+            padding: 10px;
+            border: solid 1px red;
+        }
+        li{
+            border: solid 1px blue;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h3>例子</h3>
+    <ul class="list-group" id="ul">
+        <li class="list-group-item" id="li">
+            <button class="btn btn-default" id="btn">click me!</button>
+        </li>
+        <li class="list-group-item">
+            当我只点击btn，li和ul绑定的事件也被触发
+        </li>
+    </ul>
+</section>
+<script>
+    addEvent('btn','click', function (e) {
+        stopBubble(e);
+        console.log('hello btn');
+    });
+    addEvent('li','click', function () {
+        console.log('hello li');
+    });
+    addEvent('ul','click', function () {
+        console.log('hello ul');
+    });
+
+    // 绑定事件
+    function addEvent(element, eType, handle, bol) {
+        element = document.getElementById(element);
+        if(element.addEventListener){           //如果支持addEventListener
+            element.addEventListener(eType, handle, bol);
+        }else if(element.attachEvent){          //如果支持attachEvent
+            element.attachEvent("on"+eType, handle);
+        }else{                                  //否则使用兼容的onclick绑定
+            element["on"+eType] = handle;
+        }
+    }
+
+    // 阻止冒泡
+    function stopBubble(e){
+        e = e || window.event;
+        if(e.stopPropagation){
+            e.stopPropagation();
+        }else{
+            window.event.cancelBubble = false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习js须知</title>
+</head>
+<body>
+<section>
+    <h2>理解javascript</h2>
+    <dl>
+        <dd>javascript是由dom、bom、ECMAScript组成</dd>
+        <dd>由于浏览器的差异性，他们各自的javascript实现也是不同的，在实现相同的效果，往往采用的是不同的语法，为了防止这种差异性，因此需要一套标准</dd>
+        <dd>如果要问javascript和ECMAScript是什么关系，其实可以这样说ECMAScript是一个接口标准，javascript实现了ECMAScript这个标准，更准确的应该说dom实现了ECMAScript这个标准。</dd>
+        <dd>当然实现ECMAScript标准的不只是javascript，还有Jscript和ActionScript等</dd>
+        <dd>其中bom很尴尬，没有统一标准，各自用各自的</dd>
+        <dd></dd>
+    </dl>
+</section>
+<section>
+    <h2>bom与dom区别</h2>
+    <dl>
+        <dd><a href="http://blog.csdn.net/anythings/article/details/51240133">bom与dom区别详情</a></dd>
+    </dl>
+</section>
+<section>
+    <h2>js相关文档</h2>
+    <ul>
+        <li><a href="http://mp.weixin.qq.com/s/Khr9u1cacbBgWHvveL7DPA">高性能JS-DOM</a></li>
+        <li><a href="http://blog.csdn.net/aitangyong/article/details/46800615">重新认识setTimeout</a></li>
+        <li><a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html">js设计模式</a></li>
+        <li><a href="http://lib.csdn.net/article/javascript/32642">js链式调用</a></li>
+        <li><a href="http://www.haorooms.com/post/qianduan_mianshi">总结前端面试过程中最容易出现的问题</a></li>
+        <li><a href="http://www.qdfuns.com/notes/17942/974daed97b3721f22eea659cabd11cbf.html">笔试</a></li>
+        <li><a href="https://www.zhihu.com/question/20545685">如何快速搭建一个网站？</a></li>
+        <li><a href="http://blog.csdn.net/l454822901/article/details/51775841"> 一步步带你，如何网站架构</a></li>
+        <li><a href="http://www.cnblogs.com/zhangzt/archive/2011/04/01/2002213.html">对数组的常用操作</a></li>
+    </ul>
+</section>
+<section>
+    <h2>slice,substr和substring的区别</h2>
+    <ul>
+        <li>三者都接收两个参数</li>
+        <li>slice和substring的两个参数，第一个是开始位置，第二个是结束位置</li>
+        <li>slice和substring如果只有一个参数（这就是开始位置），那么结束位置就是字符串的length</li>
+        <li>substr第一个参数是开始位置，第二个参数是长度</li>
+        <li>substring接收的两个参数，不管传递如何，都是把小的当作开始位置，大的当作结束位置</li>
+        <li>substring会把负参数当作0</li>
+        <li>slice会把负参数换成（负参数+数组长度），而且两个参数都会</li>
+        <li>substr会把负参数换成（负参数+数组长度），而且只有第一个参数会</li>
+        <li>结论：尽量使用substring和slice</li>
+    </ul>
+</section>
+<section>
+    <h2>常用函数总结</h2>
+    <ul>
+        <li><a href="http://www.cnblogs.com/subtract/p/4224297.html">常用函数总结</a></li>
+    </ul>
+</section>
+<section>
+    <h2>nodejs和js的异同</h2>
+    <ul>
+        <li>他们的实现标准都是ECMAScript</li>
+        <li>js拓展了bom和dom</li>
+        <li>nodejs拓展了os,file,net,database</li>
+    </ul>
+</section>
+<section>
+    <h2>js常用操作</h2>
+    <ul>
+        <li>js判断对象是否相等</li>
+        <li>js判断对象是否有环</li>
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="300px" height="300px" style="border: solid 1px;">
+    你的浏览器不支持html5 canvas标签
+</canvas>
+<script>
+    window.onload = function () {
+        var myCanvas = document.getElementById('myCanvas');
+
+        var progress = new ProgressBar(myCanvas);
+        progress.fnLoad();
+        progress.fnLoad();
+    };
+    function ProgressBar(canvas) {
+        var _color = 'rgb(203,193,155)',//图形颜色
+                _fontSize = 36,//字体大小
+                _innerCircle = {//内圈
+                    lineWidth: 3
+                },
+                _outerCircle = {//外圈
+                    lineWidth: 6
+                },
+                _part = 1000,
+                _unitAngle = (2 * Math.PI) / _part,//每一份角度
+                _delay = 10,//延迟时间 单位ms
+
+                _fnInit = function (ctx, unit, n) {
+                    ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+
+                    /*内圈*/
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 100, -.5 * Math.PI, 1.5 * Math.PI, false);
+                    ctx.lineWidth = _innerCircle.lineWidth;
+                    ctx.strokeStyle = _color;
+                    ctx.stroke();
+
+                    /*外圈*/
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 100, -.5 * Math.PI, (-.5 * Math.PI + unit * n), false);
+                    ctx.lineWidth = _outerCircle.lineWidth;
+                    ctx.strokeStyle = _color;
+                    ctx.stroke();
+
+                    /*文字*/
+                    var fontSize = _fontSize,
+                            text = parseInt(n / 10) + '',
+                            textWidth = ctx.measureText(text).width;
+                    ctx.beginPath();
+                    ctx.font = fontSize + 'px Arial';
+                    ctx.fillStyle = _color;
+                    ctx.fillText(text != 100 ? text + '%' : '完成', -textWidth / 2, fontSize / 3);
+                },
+                _fnClear = function (timer) {
+                    _color = null;
+                    _fontSize = null;
+                    _innerCircle = null;
+                    _outerCircle = null;
+                    _part = null;
+                    _unitAngle = null;
+                    _delay = null;
+//                    _fnClear = null;
+                    clearInterval(timer);
+                };
+
+        this.fnLoad = function () {
+            var loadTimer = null,
+                    end = 1,
+                    ctx = canvas.getContext('2d');
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            loadTimer = setInterval(function () {
+                end <= _part ? _fnInit(ctx, _unitAngle, end++) : _fnClear(loadTimer);
+            }, _delay);
+        };
+    }
+    ProgressBar.prototype = {
+        /*fnLoad: function () {
+            var loadTimer = null,
+                    end = 1,
+                    ctx = canvas.getContext('2d');
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            loadTimer = setInterval(function () {
+                end <= 1000 ? _fnLoad(ctx, _unitAngle, end++) : _fnClear(loadTimer);
+            }, _delay);
+        }*/
+    }
+</script>
+</body>
+</html>

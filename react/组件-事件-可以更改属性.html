@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="example"></div>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script type="text/babel">
+    let Son = React.createClass({
+        getInitialState: function () {
+            return {
+                value: ''
+            }
+        },
+        handleChange: function (event) {
+            // console.log(event,event.target);
+            // this.setState({
+            //     value: event.target.value
+            // });
+            this.setState({
+                value: this.refs.myInput.value
+            });
+        },
+        render: function () {
+            return <div>
+                <input type="text" value={this.props.value} ref="myInput" onChange={this.handleChange}/>
+                <div>{this.state.value}</div>
+            </div>;
+        }
+    });
+    ReactDOM.render(
+        <Son/>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

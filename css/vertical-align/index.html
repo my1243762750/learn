@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+<div style="border: solid 1px;">
+    <span>默认字体</span>
+    <span style="font-size: 14px;">14px字体</span>
+    <span style="font-size: 24px;">24px字体</span>
+    <span style="font-size: 48px;">28px字体</span>
+    <span>默认字体<sub>下标</sub></span>
+    <span id="test" style="color: red;">测试字体</span>
+    <span>默认字体<sup>上标</sup></span>
+    vertical-align:<select name="" id="select">
+        <option value="">请选择</option>
+        <option value="baseline">baseline</option>
+        <option value="sub">sub</option>
+        <option value="super">super</option>
+        <option value="top">top</option>
+        <option value="text-top">text-top</option>
+        <option value="middle">middle</option>
+        <option value="bottom">bottom</option>
+        <option value="text-bottom">text-bottom</option>
+    </select>
+</div>
+<script>
+    (function () {
+        var select = document.getElementById('select');
+        var test = document.getElementById('test');
+        select.addEventListener('change', function () {
+            // test.style.cssText = 'vertical-align:' + this.value;
+            test.style['vertical-align'] = this.value;
+        })
+    }());
+</script>
+</body>
+</html>

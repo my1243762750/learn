@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<section id="app">
+    <h3>路由</h3>
+    <ul>
+        <li><router-link to="/book">book</router-link></li>
+        <li><router-link to="/movie">movie</router-link></li>
+        <li><router-link to="/cate">cate</router-link></li>
+    </ul>
+    <router-view></router-view>
+</section>
+<!--模板-->
+<section class="sr-only">
+    <template id="book">
+        <ul>
+            <li><router-link to="/book/literature">文学类</router-link></li>
+            <li><router-link to="/book/fiction">小说类</router-link></li>
+            <li><router-link to="/book/history">历史类</router-link></li>
+            <li><router-link to="/book/prose">散文类</router-link></li>
+            <router-view></router-view>
+        </ul>
+    </template>
+    <template id="movie">
+        <ul>
+            <li>动作</li>
+            <li>冒险</li>
+            <li>喜剧</li>
+            <li>爱情</li>
+        </ul>
+    </template>
+    <template id="cate">
+        <ul>
+            <li>北京菜</li>
+            <li>鲁菜</li>
+            <li>川菜</li>
+            <li>湘菜</li>
+        </ul>
+    </template>
+
+    <template id="literature">
+        <span>literature</span>
+    </template>
+    <template id="fiction">
+        <span>fiction</span>
+    </template>
+    <template id="history">
+        <span>history</span>
+    </template>
+    <template id="prose">
+        <span>prose</span>
+    </template>
+</section>
+<script src="../../lib/vue.min-2.4.0.js"></script>
+<script src="../../lib/vue-router-v2.0.0.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        router: new VueRouter({
+            routes: [{
+                path: '/book',
+                component: {
+                    template: '#book'
+                },
+                children:[{
+                    path: '/book/literature',
+                    component:{
+                        template: '#literature'
+                    }
+                },{
+                    path: '/book/fiction',
+                    component:{
+                        template: '#fiction'
+                    }
+                },{
+                    path: '/book/history',
+                    component:{
+                        template: '#history'
+                    }
+                },{
+                    path: '/book/prose',
+                    component:{
+                        template: '#prose'
+                    }
+                }]
+            },{
+                path: '/movie',
+                component: {
+                    template: '#movie'
+                }
+            },{
+                path: '/cate',
+                component: {
+                    template: '#cate'
+                }
+            },{
+                path: '/',
+                component: {
+                    template: '#book'
+                }
+            }]
+        })
+    });
+</script>
+</body>
+</html>

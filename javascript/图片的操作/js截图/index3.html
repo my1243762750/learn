@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="mapContainer">
+    <div id="map" style="border: solid 1px red; width: 500px;height: 300px;"></div>
+</div>
+<div id="map2" style="border: solid 1px red; width: 500px;height: 300px;background-color: paleturquoise;">
+    <div style="border: solid 1px; width: 100px;height: 100px;background-color: palegoldenrod;"></div>
+</div>
+<canvas id="canvas" style="border:2px solid black;" width="500" height="300">
+</canvas>
+<script src="//webapi.amap.com/maps?v=1.4.9&key=0adfdab1e3e92564dc3bd90d54919199&plugin=AMap.TruckDriving"></script>
+<script>
+    var map = new AMap.Map('map', {
+        center:[117.000923,36.675807],
+        zoom:11
+    });
+
+    map.on('complete', function() {
+        console.log('加载完成')
+        var mapEle = document.getElementById('map');
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d')
+        console.log(mapEle)
+        console.log(mapEle.innerHTML)
+        var data = '<svg xmlns="http://www.w3.org/2000/svg">' +
+            '<foreignObject width="100%" height="100%">' +
+            '<div xmlns="http://www.w3.org/1999/xhtml">' +
+            document.querySelector('#mapContainer').innerHTML +
+            '</div>' +
+            '</foreignObject>' +
+            '</svg>';
+        var DOMURL = window.URL || window.webkitURL || window;
+        var img = new Image();
+        var svg = new Blob([data], {type: 'image/svg+xml'});
+        var url = DOMURL.createObjectURL(svg);
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0);
+            DOMURL.revokeObjectURL(url);
+        }
+        img.src = url;
+        console.log('url', url)
+    })
+</script>
+</body>
+</html>

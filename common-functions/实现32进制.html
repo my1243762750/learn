@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let changeCode32Arr = [
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        'A', 'B', 'C', 'D', 'E', 'F',
+        'G', 'H', 'J', 'K', 'L', 'M',
+        'N', 'P', 'Q', 'R', 'T', 'U',
+        'V', 'W', 'X', 'Y'
+    ];
+
+    let changeCode16Arr = [
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        'A', 'B', 'C', 'D', 'E'
+    ];
+
+    let changeCode8Arr = [
+        '0', '1', '2', '3', '4', '5', '6', '7'
+    ];
+
+    // 10进制转32进制
+    function getScale32(num) {
+        let changeCodeArr = [
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F',
+            'G', 'H', 'J', 'K', 'L', 'M',
+            'N', 'P', 'Q', 'R', 'T', 'U',
+            'V', 'W', 'X', 'Y'
+        ]
+        let res = '';
+        let remainderNum = num % 32
+        let divisorNum = (num - remainderNum) / 32
+        res = changeCodeArr[remainderNum]
+        if (divisorNum > 0) {
+            res = getScale32(divisorNum) + res
+        }
+        return res
+    }
+
+    console.log(getScale32(310))
+
+</script>
+</body>
+</html>

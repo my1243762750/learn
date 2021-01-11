@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>onchange 需要失去焦点 触发</li>
+        <li>oninput</li>
+        <li>onpropertychange ie11以下的专属</li>
+    </ul>
+</section>
+<input type="text"
+       oninput="this.value = test(this.value)"
+       onafterpaste="this.value = test(this.value)"/>
+<input type="text"
+       oninput="this.value = test(this.value)"
+       onpaste="return false;"/>
+</body>
+<script>
+    function test(value) {
+        value = value.replace(/\D/g, '');
+        console.log(value);
+        return value;
+    }
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var p1 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'one');
+        // resolve('one');
+    });
+    var p2 = new Promise((resolve, reject) => {
+        console.log('123');
+        setTimeout(resolve, 1000, 'two');
+        // resolve('two');
+    });
+    var p3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'three');
+        // resolve('three');
+    });
+    var p4 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'four');
+        // resolve('four');
+    });
+    var p5 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'five');
+        // resolve('five');
+    });
+
+    p1.then((res) => {
+        console.log(res);
+    });
+    p2.then((res) => {
+        console.log(res);
+        new Promise((resolve, reject) => {
+            console.log('hello');
+        });
+        p1.then((res) => {
+            console.log('p1');
+        });
+    });
+    p3.then((res) => {
+        console.log(res);
+    });
+
+</script>
+</body>
+</html>

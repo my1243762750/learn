@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认行为</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<section>
+    <h3>例子</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <button class="btn btn-default" id="test">click me!</button>
+        </li>
+    </ul>
+</section>
+<script>
+    addEvent('test','click', function () {
+        console.log('hello world');
+    });
+
+    // 绑定事件
+    function addEvent(element, eType, handle, bol) {
+        element = document.getElementById(element);
+        if(element.addEventListener){           //如果支持addEventListener
+            element.addEventListener(eType, handle, bol);
+        }else if(element.attachEvent){          //如果支持attachEvent
+            element.attachEvent("on"+eType, handle);
+        }else{                                  //否则使用兼容的onclick绑定
+            element["on"+eType] = handle;
+        }
+    }
+
+    // 移出事件
+    function removeEvent(element, eType, handle, bol){
+        element = document.getElementById(element);
+        if(element.removeEventListener){
+            element.removeEventListener(eType,handle,bol);
+        }else if(element.detachEvent){
+            element.detachEvent('on'+eType,handle);
+        }else{
+            element['on'+eType] = null;
+        }
+    }
+</script>
+</body>
+</html>

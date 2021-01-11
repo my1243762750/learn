@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>假如fnTest(name,pwd)是一个函数</li>
+        <li>bind函数 改变原函数this的指向，但不会执行原函数;执行bind函数后，返回的依然是原函数，只不过this的指向变了</li>
+        <li>bind函数 第一个参数改变原函数this的指向，后面参数，可以认为是原函数的参数（例: fnTest.bind(this,'张三','123')）</li>
+        <li>call和apply函数 改变原函数this的指向，但是会立即执行原函数，不返回任何内容；</li>
+        <li>call 接受参数和bind一样 fnTest.call(this,'张三','123')</li>
+        <li>apply 接受参数除了后面的参数是数组,其他一样 fnTest.apply(this,['张三','123'])</li>
+        <li>bind函数 如果调用bind函数时就已经传满了参数，那么执行bind返回的原函数，就不会接受任何参数了</li>
+    </ul>
+</section>
+<seciton>
+    <ul>
+        <li>call 和 apply 可以改变ie添加事件指向window</li>
+        <li>call 和 apply 可以求最值</li>
+        <li>call 和 apply 可以实现继承</li>
+        <li>call 和 apply 可以判断数组</li>
+    </ul>
+</seciton>
+<a href="http://www.jb51.net/article/64397.htm">浅谈javascript中call()、apply()、bind()的用法</a>
+<script>
+    //call或apply判断对象类型
+    console.log(Object.prototype.toString.call({}));
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call(1));
+    console.log(Object.prototype.toString.call(null));
+    console.log(Object.prototype.toString.call(undefined));
+    console.log(Object.prototype.toString.call(''));
+    console.log(Object.prototype.toString.call(false));
+    //call或apply让arguments拥有数组功能
+    test(1,2);
+    function test(){
+        console.log(arguments,Object.prototype.toString.call(arguments));
+        Array.prototype.push.call(arguments,3);
+        Array.prototype.splice.call(arguments,0,1);
+        console.log(Array.prototype.concat.call(arguments,[4,5]));
+        // arguments.push(3);
+        console.log(arguments);
+    }
+    //apply让数组拥有求最值功能
+    console.log(Math.max.apply(null,[1,2,5]));
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<dl>
+    <dt></dt>
+    <dd>对面里面的方法是私有的，prototype里面的方法是公共的</dd>
+</dl>
+<script>
+    // 列子
+    function Test2() {
+        this.sum = 1;
+        this.say = function () {
+            console.log('hello');
+        }
+    }
+
+    Test2.prototype = {
+        init: function () {
+            console.log(this.sum++);
+        },
+        say: function () {
+            console.log('wolrd');
+        },
+    };
+    var test2 = new Test2();
+    // var test22 = new Test2();
+    // console.log(test2.say == test22.say);
+    // console.log(test2.init == test22.init);
+    console.log(test2);
+    test2.say();
+</script>
+</body>
+</html>

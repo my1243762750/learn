@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+        }
+
+        .item1,.item3 {
+            background-color: palevioletred;
+        }
+
+        .item2,.item4 {
+            background-color: palegreen;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h4>总结</h4>
+    <ul>
+        <li>IE7支持行类元素定义inline-block，不支持块级元素定义inline-block</li>
+        <li>设置inline-block出现的间距是换行或回车所产生的空白符导致的(所以设置字体的大小，会影响到这个间距)</li>
+    </ul>
+</section>
+<div class="div-container">
+    <div class="item item1">div</div>
+    <div class="item item2">div</div>
+    <span class="item item3">span</span>
+    <span class="item item4">span</span>
+</div>
+</body>
+</html>

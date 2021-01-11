@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>js获取body</h4>
+    <ul>
+        <li>document.body</li>
+        <li>document.getElementByTagName('body')[0]</li>
+    </ul>
+</section>
+<script>
+    var div = document.createElement('div');
+    var span = document.createElement('span');
+    div.setAttribute('id','container');
+    span.setAttribute('class','item');
+    span.innerHTML = 'hello world';
+    div.appendChild(span);
+    document.body.appendChild(div);
+</script>
+</body>
+</html>

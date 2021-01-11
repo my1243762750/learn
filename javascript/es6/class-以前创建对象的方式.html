@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 以前面向对象的方式
+    function People(name, age) {
+        this.name = name;
+        this.age = age;
+        this.talk = function () {
+            console.log('hello world');
+        }
+    }
+    People.prototype = {
+        sing: function(){
+            console.log('sing');
+        }
+    };
+
+    // 产生对象
+    var people = new People();
+    console.log(people);
+</script>
+</body>
+</html>

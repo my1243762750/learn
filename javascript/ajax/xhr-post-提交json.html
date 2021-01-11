@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>ajax介绍</h4>
+    <ul>
+        <li>ajax: Asynchronous JavaScript & XML</li>
+        <li>ajax: javascript 请求xml的一种技术</li>
+    </ul>
+</section>
+<section>
+    <h4>readyState几种状态</h4>
+    <ul>
+        <li>0 open方法还未调用</li>
+        <li>1 open方法已调用，send方法还未调用</li>
+        <li>2 send方法已调用，还未接受到服务器响应</li>
+        <li>3 接受到服务器响应，但还未接受完成</li>
+        <li>4 响应接受完成</li>
+    </ul>
+</section>
+<script>
+    // 原始ajax请求 以提交json数据为例
+    (function () {
+        var xhr = new XMLHttpRequest();
+        var params = {name: '张三'};
+        xhr.open('POST', 'http://localhost:8082/user', true);
+        xhr.setRequestHeader('Content-Type','application/json');
+        xhr.setRequestHeader('Accept','application/json');
+        xhr.send(JSON.stringify(params));
+        xhr.onload = function () {
+            // 以获取json数据为例
+            var result = JSON.parse(this.responseText);
+            console.log(result.name);
+        };
+    })();
+</script>
+</body>
+</html>

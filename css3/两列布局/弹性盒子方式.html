@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左侧固定，右侧自适应</title>
+    <!--<link href="//cdn.bootcss.com/bootstrap/3.3.7/component/bootstrap.min.component" rel="stylesheet">-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+
+        }
+
+        header nav {
+            height: 100px;
+            background-color: #b2dba1;
+        }
+
+        main {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        main aside {
+            /*width: 300px;*/
+            flex-basis: 300px;
+            height: 900px;
+            background-color: orange;
+        }
+
+        main section {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            /*height: 900px;*/
+            background-color: yellow;
+        }
+
+        footer {
+            height: 100px;
+            background-color: #b2dba1;
+        }
+    </style>
+</head>
+<body>
+<!--头部-->
+<header>
+    <nav></nav>
+</header>
+<!--主体内容-->
+<main>
+    <aside></aside>
+    <section>
+        <!--<article>
+            <header></header>
+            <p></p>
+            <footer></footer>
+        </article>-->
+    </section>
+</main>
+<!--底部-->
+<footer>
+
+</footer>
+</body>
+</html>

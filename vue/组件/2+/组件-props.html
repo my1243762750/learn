@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<div id="app">
+    <h3>全局组件</h3>
+    <my message="hello" value="world"></my>
+</div>
+<section class="sr-only">
+    <template id="template1">
+        <div>
+            <strong>{{message}}</strong>
+            <button @click="getMsg()">click me!</button>
+        </div>
+    </template>
+</section>
+<script src="../../lib/vue.min-2.4.0.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        components: {
+            my: {
+                // props: ['message','value'],//方式1 所有类型都是字符串
+                props: {
+                    message: String,
+                    value: Number
+                },//方式2 可以指定属性的类型
+                data() {
+                    return {
+                        message: 'new Hello',
+                        world: 'new World'
+                    }
+                },
+                template: '#template1',
+                methods: {
+                    getMsg() {
+                        // props里面的属性会覆盖data里面的属性
+                        console.log(this, this.message, this.value,this.world);
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

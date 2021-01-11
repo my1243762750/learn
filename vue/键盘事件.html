@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section id="vueContainer">
+    <label for="">键盘按下所有键立即触发:</label><input type="text" @keyup="getMsg1"><br>
+    <label for="">键盘按下键后，回车键触发:</label><input type="text" @keyup.enter="getMsg2">
+</section>
+<script src="lib/vue.min-2.4.0.js"></script>
+<script>
+    let vue = new Vue({
+        el: '#vueContainer',
+        data: function(){
+        },
+        methods: {
+            getMsg1(){
+                console.log('hello world');
+            },
+            getMsg2(){
+                console.log('hello world2');
+            }
+        }
+    });
+</script>
+</body>
+</html>

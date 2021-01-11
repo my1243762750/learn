@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>路由对象应该具备的功能</h4>
+    <ul>
+        <li>注册路由</li>
+        <li>监听路由</li>
+    </ul>
+</section>
+<section>
+    <h4>监听路由的几种方式</h4>
+    <ul>
+        <li>url完全不动</li>
+        <li>url不动,hash动</li>
+        <li>url动,hash不动</li>
+    </ul>
+</section>
+<section>
+    <h4>问题</h4>
+    <ul>
+        <li>angular 如何读取文件的</li>
+    </ul>
+</section>
+<section>
+    <h4>例子(点击下面的连接)</h4>
+    <ul>
+        <li><a href="#/A">A</a></li>
+        <li><a href="#/B">B</a></li>
+        <li><a href="#/C">C</a></li>
+    </ul>
+    <div id="testContainer"></div>
+</section>
+<script>
+    function Router() {
+        this.routes = {};
+        this.route = function (url, callback) {
+            this.routes[url] = callback || function () {
+            };
+        };
+        this.refresh = function(){
+            let url = location.hash.slice(1) || '/';
+            let callback = this.routes[url];
+            callback && callback();
+        };
+        this.init = function () {
+            window.addEventListener('load',this.refresh.bind(this));
+            window.addEventListener('hashchange', this.refresh.bind(this));
+        }
+    }
+
+    let router = new Router();
+    let testContainer = document.getElementById('testContainer');
+
+    router.init();
+    router.route('/', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/A', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/B', function () {
+        testContainer.innerHTML = 'B'
+    });
+    router.route('/C', function () {
+        testContainer.innerHTML = 'C'
+    });
+</script>
+</body>
+</html>

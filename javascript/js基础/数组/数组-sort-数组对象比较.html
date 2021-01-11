@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript</title>
+</head>
+<body>
+<script>
+    var arr = [{
+        id:'1',
+        name: 'zhangsan'
+    },{
+        id:'4',
+        name: 'lisi'
+    },{
+        id:'2',
+        name: 'wangwu'
+    },{
+        id:'3',
+        name: 'zhaoliu'
+    }];
+    // 存在属性
+    function numberSort(item1,item2){
+        return item1.id-item2.id;
+    }
+    // 不存在属性
+    function numberSort2(item1,item2){
+        return item1.index-item2.index;
+    }
+    console.log(arr.sort(numberSort));
+    console.log(arr.sort(numberSort2));
+    // 结论：对不存在的属性比较不会报错，且不会对原数组做任何变化
+</script>
+</body>
+</html>

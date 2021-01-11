@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+<script>
+    // 基本方式
+    var reg = /trustMeasure,trustMeasureContent,trustMeasureInstruct/g;
+    console.log(reg.test('trustMeasure'));
+    console.log('');
+    // 构造函数方式
+    var reg2 = new RegExp('trustMeasure,trustMeasureContent,trustMeasureInstruct','g');
+    console.log(reg2.test('trustMeasure'));
+    console.log('');
+    // 结论：改变思维方式就好理解，test的含义应该是，"需要检测的字符串"是否包含正则表达式的字符
+</script>
+</body>
+</html>

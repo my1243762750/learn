@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>key in obj (key为键,或数组下标)</li>
+        <li>hasOwnProperty(key) (key为键,或数组下标)</li>
+        <li>in 可以替代很长的判断</li>
+        <li>delete 删除某个key 使用in或hasOwnProperty再去找那个key 就为false</li>
+    </ul>
+</section>
+<script>
+    var person = {
+        name: 'zhangsan',
+        age: 19
+    };
+
+    var color = ['red','yellow','blue'];
+
+    console.log('name' in person);
+    console.log(3 in color);
+    console.log(person.hasOwnProperty('name'));
+    console.log(color.hasOwnProperty(3));
+
+    //in的特殊用法
+    var test = 'a';
+    if(test === 'a' || test === 'b' || test === 'c'){
+        console.log(1);
+    }
+    if(test in {a:'',b:'',c:''}){
+        console.log(1);
+    }
+
+    var test2 = [1,2,3];
+    delete test2[0];
+    console.log(0 in test2);
+    console.log(test2.hasOwnProperty(0));
+</script>
+</body>
+</html>

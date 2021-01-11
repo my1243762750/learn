@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../lib/jquery-1.9.1.min.js"></script>
+<script>
+    /*/!* 方式一 set和get方法 *!/
+     function Person(){
+     var __x = "";
+     var __obj = {};
+     __obj.set = function (x) {
+     __x = x;
+     };
+     __obj.get = function () {
+     return __x;
+     };
+     return __obj;
+     }
+     var person = new Person();
+     console.log(person);
+     person.set("hello");
+     console.log("get方法访问私有属性"+person.get());
+     console.log("直接访问私有属性:"+person.__x);
+     console.log(person instanceof Person);// false 致命缺点 */
+
+    /* 方式二 标准的做法*/
+    function Person() {
+        var __x = "";
+        this.set = function (x) {
+            __x = x;
+        };
+        this.get = function () {
+            return __x;
+        }
+    }
+    var person = new Person();
+    console.log(person);
+    person.set("hello");
+    console.log("get方法访问私有属性"+person.get());
+    console.log("直接访问私有属性:"+person.__x);
+    console.log(person instanceof Person);// true
+</script>
+</body>
+</html>

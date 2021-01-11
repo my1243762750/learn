@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item-container{
+            position: relative;
+        }
+
+        .item-left,.item-center,.item-right{
+            position: absolute;
+        }
+
+        .item-left,.item-right{
+            width: 200px;
+            height:30px;
+        }
+
+        .item-left{
+            background-color: red;
+        }
+
+        .item-center{
+            left: 200px;
+            right: 200px;
+            height: 50px;
+            background-color: yellow;
+        }
+
+        .item-right{
+            right: 0;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<main class="item-container">
+    <aside class="item-left">left</aside>
+    <aside class="item-right">right</aside>
+    <section class="item-center">center</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript</title>
+</head>
+<body>
+<script>
+    // sort 第一种用法:不使用参数
+    var arr1 = [1, 2, 5, 3, 4];
+    var arr2 = [10, 5, 40, 25, 1000, 1];
+    var arr3 = ['a', 'e', 'h', 'f', 'A', 'c'];
+    console.log(arr1.sort());
+    console.log(arr2.sort());
+    console.log(arr3.sort());
+    // sort 第二种用法:使用参数，该参数是一个比较函数
+    function numberSort(item1,item2){
+        return item1-item2;
+    }
+    console.log(arr2.sort(numberSort));
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>promise</h4>
+    <ul>
+        <li>resolve</li>
+        <li>reject</li>
+        <li>then</li>
+    </ul>
+</section>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    function getData(url) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    resolve(res);
+                },
+                error: function (err) {
+                    reject(err);
+                }
+            });
+        })
+    }
+
+    getData('http://localhost:8082/A').then(function (resA) {
+        console.log(resA);
+        return getData('http://localhost:8082/B?name=' + resA.name);
+    }).then(function (resB) {
+        console.log(resB);
+        return getData('http://localhost:8082/C?name=' + resB.name);
+    }).then(function (resC) {
+        console.log(resC);
+    }).catch(function (err) {
+        console.log(err);
+    });
+
+</script>
+</body>
+</html>

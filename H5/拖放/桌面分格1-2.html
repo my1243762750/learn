@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #warp {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<section id="warp">
+</section>
+<script>
+    var screenObj = {
+        fnGetVisualLength: function () {
+            var clientWidth = 0,//浏览器可视内容宽度
+                    clientHeight = 0;//浏览器所有内容高度
+
+            if (document.compatMode === "CSS1Compat") {//strict mode
+                clientWidth = document.documentElement.clientWidth;
+                clientHeight = document.documentElement.clientHeight;
+            } else if (document.compatMode === "BackCompat") {//quirks mode
+                clientWidth = document.body.clientWidth;
+                clientHeight = document.body.clientHeight;
+            } else {
+                console.log("无法获取浏览器尺寸");
+            }
+            return {
+                clientWidth: clientWidth,
+                clientHeight: clientHeight
+            }
+        },
+        fnCreateModule: function (dom) {
+            console.log(this.fnGetVisualLength().clientWidth);
+            var list = [],
+                    row = 1,
+                    col = 10,
+                    space = 4,
+                    clientObj = this.fnGetVisualLength(),
+                    width = (clientObj.clientWidth) / col,
+                    height = clientObj.clientHeight / row;
+            for (var i = 0, max = row * col; i < max; i++) {
+                list.push('<div style="' +
+                        'flex: 1;' +
+//                        'display: inline-block;' +
+                        'margin: 0 ' + space + 'px;' +
+//                        'width: ' + width + 'px;' +
+//                        'height:' + height + 'px;' +
+                        'background-color:navajowhite;' +
+                        '"></div>');
+            }
+            dom.innerHTML = list.join('');
+        }
+    };
+    var dWarp = document.getElementById("warp"),
+            clientObj = screenObj.fnGetVisualLength();
+    dWarp.style.width = clientObj.clientWidth + "px";
+    dWarp.style.height = clientObj.clientHeight + "px";
+    screenObj.fnCreateModule(dWarp);
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    (function (window, document, undefined) {
+        'use strict';
+        var a = 1,
+            b = 2,
+            c,
+            d,
+            i,
+            str = '<h1 style="color: red;">hello world</h1>';
+        for (i = 0; i < 10; i++) {
+
+        }
+        d = 100;
+        c = function () {
+            if (d === 100) {
+                console.log(d);
+            }
+        };
+        if (name === undefined) {
+            throw {
+                name: 'System Error',
+                message: 'A name should always be specified!'
+            }
+        }
+
+        function Fruits(name,color,taste) {
+            this.name = name;
+            this.color = color;
+            this.taste = taste;
+        }
+
+        function Apple(name,color,taste,effect) {
+            Fruits.apply(this,[name,color,taste]);
+            this.effect = effect;
+        }
+
+        Apple.prototype = Object.create(Fruits.prototype);
+        Apple.prototype.constructor = Apple;
+    }(window, document));
+</script>
+</body>
+</html>

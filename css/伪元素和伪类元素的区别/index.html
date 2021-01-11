@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h1:first-letter {
+            color: red;
+        }
+
+        h2 span {
+            color: red;
+        }
+
+        .ul1 > li:first-child {
+            color: blue;
+        }
+
+        .first-child{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h1>伪类和伪元素</h1>
+    <span>伪类有：:first-child ，:link:，vistited，:hover，:active，:focus，:lang</span><br>
+    <span>伪元素有：:first-line，:first-letter，:before，:after</span>
+</section>
+<section>
+    <h1>hello world</h1>
+    <!--可以通过添加元素的方式使其达到同样的效果叫 伪元素-->
+    <h2><span>h</span>ello world</h2>
+</section>
+<section>
+    <ul class="ul1">
+        <li>hello world</li>
+        <li>hello world</li>
+    </ul>
+    <!--可以通过class使其达到同样的效果叫 伪类元素-->
+    <ul class="ul2">
+        <li class="first-child">hello world</li>
+        <li>hello world</li>
+    </ul>
+</section>
+</body>
+</html>

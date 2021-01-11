@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<section id="app">
+    <h3>路由</h3>
+    <!--步骤1 路由菜单-->
+    <ul>
+        <li><router-link to="/book">book</router-link></li>
+        <li><router-link to="/movie">movie</router-link></li>
+        <li><router-link to="/cate">cate</router-link></li>
+    </ul>
+    <!--步骤2 路由内容-->
+    <router-view></router-view>
+</section>
+<section class="sr-only">
+    <template id="book">
+        <!--注意：这里的book必须用标签包裹，不能是单独的字符-->
+        <span>book</span>
+    </template>
+    <template id="movie">
+        <span>movie</span>
+    </template>
+    <template id="cate">
+        <span>cate</span>
+    </template>
+</section>
+<script src="../../lib/vue.min-2.4.0.js"></script>
+<script src="../../lib/vue-router-v2.0.0.js"></script>
+<script>
+    // 步骤3
+    new Vue({
+        el: '#app',
+        router: new VueRouter({
+            routes: [{
+                path: '/book',
+                component: {
+                    template: '#book'
+                }
+            },{
+                path: '/movie',
+                component: {
+                    template: '#movie'
+                }
+            },{
+                path: '/cate',
+                component: {
+                    template: '#cate'
+                }
+            }]
+        })
+    });
+</script>
+</body>
+</html>

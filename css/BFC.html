@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>简写</h4>
+    <ul>
+        <li>BFC:Block formatting context(块级格式化上下文) 牵扯知识点: 清除浮动，常见的块级元素</li>
+        <li>IFC</li>
+        <li>GFC</li>
+        <li>FFC</li>
+    </ul>
+</section>
+<section>
+    <h4>BFC的布局规则</h4>
+    <ul>
+        <li>内部的盒子会垂直排列</li>
+        <li>同一个BFC里面相邻的两个盒子会导致外边距重叠 (符号相同，取绝对值大的，符号不同取两者之和)</li>
+        <li>每个盒子的左外边框紧挨着包含块元素的左边框(对于从左往右，否则相反)</li>
+        <li>BFC区域不会和浮动盒子重叠</li>
+        <li>BFC是独立的容器，里面的子元素不会影响外面的元素</li>
+        <li>BFC可以包含浮动或者说计算BFC高度是，浮动也参与计算</li>
+    </ul>
+</section>
+<section>
+    <h4>如何创建BFC</h4>
+    <ul>
+        <li>根元素</li>
+        <li>float属性不为none</li>
+        <li>position为absolute或fixed</li>
+        <li>display为inline-block,table-cell,table-caption,flex,inline-flex</li>
+        <li>overflow不为visible</li>
+    </ul>
+</section>
+<section>
+    <h4>相关资料</h4>
+    <ul>
+        <li><a href="https://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html">BFC</a></li>
+    </ul>
+</section>
+</body>
+</html>

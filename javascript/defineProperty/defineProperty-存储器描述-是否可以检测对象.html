@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let school = {
+        name: '学校',
+        type: ['学前班', '小学', '中学'],
+        equipment: {
+            screen: '屏幕',
+            projector: '投影仪'
+        }
+    };
+    let resultValue = [];
+    Object.defineProperty(school, 'name', {
+        get: () => {
+            console.log('调用get方法');
+            return resultValue;
+        },
+        set: (value) => {
+            console.log(this);
+            console.log(value, '调用set方法');
+            resultValue = value;
+        },
+        enumerable: false,//属性是否可以遍历,默认为false
+        configurable: false//是否可以再次设置以上属性,默认为false
+    });
+    school.name = '大学';
+    console.log(school);
+</script>
+</body>
+</html>

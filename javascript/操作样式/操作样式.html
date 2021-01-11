@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>获取样式的几种方式</h4>
+    <ul>
+        <li>el.style.cssText(获取行内样式)</li>
+        <li>el.style.width(获取行内样式)</li>
+        <li>el.getAttribute('style')(获取行内样式)</li>
+        <li>el.getAttribute('class')(只能获取class名称，看不到具体的样式)</li>
+        <li>window.getComputedStyle(el,null)(获取内联和外联样式，且此方法会引起浏览器重排)</li>
+        <li>el.currentStyle(获取内联和外联样式，ie专属，且此方法会引起浏览器重排)</li>
+    </ul>
+</section>
+<section>
+    <h4>设置样式的几种方式</h4>
+    <ul>
+        <li>el.style.cssText="width: 200px;height: 200px;"</li>
+        <li>el.style.width = '200px'</li>
+        <li>el.setAttribute('style','width: 200px;height: 200px;')</li>
+        <li>el.setAttribute('css','wrap') 这里wrap为具体的某个css样式</li>
+    </ul>
+</section>
+<script>
+    (function (window, document, undefined) {
+        'use strict';
+
+        function MyDom() {
+        }
+
+        MyDom.prototype.setStyle = function (el, styleObj) {
+            var styleArr = [];
+            var oldInlineStyle = el.style.cssText.split(';');
+            var newStyleObj = {};
+            for (var i = 0, item; i < oldInlineStyle.length; i++) {
+                item = oldInlineStyle[i].split(':');
+                newStyleObj[item[0]] = item[1];
+            }
+            for (var oldKey in styleObj) {
+                newStyleObj[oldKey] = value;
+            }
+            for(var newKey in newStyleObj){
+                styleArr.push(newKey + ':' + newStyleObj[newKey]);
+            }
+            el.style.cssText = styleArr.join(';');
+        };
+        MyDom.prototype.getStyle = function (el, styleName) {
+            if (el.currentStyle) {
+                return el.currentStyle[styleName];
+            } else {
+                return document.defaultView.getComputedStyle(el, null)[styleName];
+            }
+        };
+    }(window, document));
+</script>
+</body>
+</html>

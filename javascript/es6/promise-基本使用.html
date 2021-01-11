@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>promise</h4>
+    <ul>
+        <li>resolve</li>
+        <li>reject</li>
+        <li>then</li>
+        <li>promise 的then可以接受两个参数，第一个是成功回调，第二个是失败回调</li>
+        <li>promise 的then可以写多个</li>
+        <li>promise 的then成功回调总是会等到resolve执行后执行</li>
+        <li>promise 的then失败回调总是会等到reject执行后执行</li>
+    </ul>
+</section>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    //没有延迟
+    let promise = new Promise((resolve, reject) => {
+        resolve('成功');
+        // reject('失败');
+    });
+
+    promise.then((res) => {
+        console.log(res);
+    }, (err) => {
+        console.log(err);
+    }).catch((err) => {
+        console.log(err);
+    });
+
+    //有延迟
+    let promise2 = new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve('hello world');
+            // reject('请求失败');
+        },2000);
+    });
+    promise2
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .item{
+            height: 2000px;
+            width: 100px;
+            margin: 0 auto;
+            padding: 50px;
+            border: 10px red solid;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<div class="item" id="item"></div>
+<script>
+    var item = document.getElementById('item');
+    console.log('top',document.documentElement.scrollTop + document.body.scrollTop);
+    console.log('height',item.scrollHeight);//与border无关
+</script>
+</body>
+</html>

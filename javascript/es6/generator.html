@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>generator 可以将函数分段执行</li>
+    </ul>
+</section>
+<script>
+    function* getInfo() {
+        yield 'a';
+        yield 'b';
+        yield 'c';
+        return 'ending';
+    }
+
+    let gen = getInfo();
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h1>高级须知</h1>
+    <ul>
+        <li>new Object(value)</li>
+        <li>new Function()</li>
+        <li>Object.create(proto, [ propertiesObject ])</li>
+        <li>new 自定义函数()</li>
+        <li>ecmascript的数据类型</li>
+        <li>Object和Function的关系</li>
+        <li>Object和Window的关系</li>
+    </ul>
+</section>
+<script>
+    /*如果new Object的参数为object(o小写) function类型*/
+    var a = function (){
+        this.name = "hello";
+    };
+    var b = new Object(a);
+    var c = a;
+    console.log("例子1");
+    console.log(typeof b,typeof c);
+    console.log(b==c);//true
+    console.log(b===c);//true
+
+    /*如果new Object的参数为对象*/
+    var d = 1;
+    var e = new Object(d);
+    var f = d;
+    console.log("例子2");
+    console.log(typeof e,typeof f);
+    console.log(e==f);//true
+    console.log(e===f);//true
+
+    var myFunction = new Function('users', 'salary', 'return users * salary');
+    console.log(myFunction);
+    console.log(Function,Object);
+    (function(win) {
+        console.log(win);
+        // 在全局环境中执行某些操作
+    })(Function('return this')());
+    var foo3 = new Function('var temp = 100; this.temp = 200; return temp + this.temp;');
+    console.log(foo3);
+    console.log(foo3());
+    console.log(" ");
+
+    var foo01 = function()
+    {
+        console.log("this指的是:",this);
+        var temp = 100;
+        this.temp = 200;
+        return temp + this.temp;
+    };
+    console.log(foo01());
+    console.log(" ");
+    console.log(" ");
+    console.log(" ");
+
+    var foo02 = new function()
+    {
+        console.log("this指的是:",this);
+        var temp = 100;
+        this.temp = 200;
+        return temp + this.temp;
+    };
+    console.log(foo02);
+    console.log(foo02.constructor());
+    console.log(" ");
+
+    var foo03 = function()
+    {
+        console.log("this指的是:",this);
+        var temp = 100;
+        this.temp = 200;
+        return 1;
+    };
+    console.log(foo03.prototype);
+    var foo04 = new foo03();
+    console.log(foo04.constructor);
+
+    /* js 的数据类型： 字符串、数字、布尔、数组、json对象、Null、Undefined*/
+    // 实际上来说：数组、json对象、Null为object,除此之后还有一个function类型
+    var h = "";//string
+    var g = 1;//number
+    var n = false;//boolean
+    var m = [1,2];//object
+    var k = {};//object
+    var i = null;//object
+    console.log(null.__proto__);
+    var j = undefined;//undefined
+    var l = function () {//function
+
+    };
+
+    /* Object和Function的关系*/
+    // Object.__proto__ === Function.__proto__ === Function.prototype
+    // Function.prototype.__proto__ === Object.prototype
+    // 任何一个定义的函数 它的__proto__ === Object.prototype
+</script>
+</body>
+</html>

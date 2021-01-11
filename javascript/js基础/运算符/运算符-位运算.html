@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运算符</title>
+</head>
+<body>
+<script>
+    // 二/八/十/十六进制表示法 使用toString
+    var data = 32;
+    console.log('二进制', data.toString(2));
+    console.log('八进制', data.toString(8));
+    console.log('十进制', data.toString(10));
+    console.log('十六进制', data.toString(16));
+    // 转换二/八/十/十六进制 使用parseInt
+    var data2 = '100000';
+    var data8 = '40';
+    var data10 = '32';
+    var data16 = '20';
+    console.log('二进制', parseInt(data2, 2));
+    console.log('八进制', parseInt(data8, 8));
+    console.log('十进制', parseInt(data10, 10));
+    console.log('十六进制', parseInt(data16, 16));
+    // &/|/^
+    var a2 = '0010';//等同于 '10'.toString(2)
+    var b2 = '0100';//等同于 '12'.toString(2)
+    console.log(a2, b2);
+    console.log(bitwise(a2, b2, '&'));
+    console.log(bitwise(a2, b2, '|'));
+    console.log(bitwise(a2, b2, '^'));
+
+    function bitwise(str1, str2, symbol) {
+        var _str1 = (parseInt(str1, 2) + '').toString(2);
+        var _str2 = (parseInt(str2, 2) + '').toString(2);
+        var _addStr = function (str) {
+            var length = str1.length - str.length;
+            if (length > 0) {
+                for (var k = 0; k < length; k++) {
+                    str = '0' + str;
+                }
+            }
+            return str;
+        };
+        switch (symbol) {
+            case '&':
+                return _addStr((_str1 & _str2).toString(2));
+            case '|':
+                return _addStr((_str1 | _str2).toString(2));
+            case '^':
+                return _addStr((_str1 ^ _str2).toString(2));
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let school = {
+        name: '育才中学',
+        age: '20',
+        scale: '2000',
+        test: {
+            test1: 1,
+            test2: 2
+        },
+        testA: [1,2,3,4]
+    };
+
+    listenProperty(school);
+    school.name = '乃開';
+    school.age = '20';
+    // school.test.test1 = 4;
+    // school.test = 'test';
+    // school.testA = 'testa';
+    school.testA.push(5);
+    console.log(school);
+
+    function listenProperty(obj) {
+        Object.keys(obj).forEach(function (key) {
+            if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+                listenProperty(obj[key]);
+            }else{
+                setProperty(obj, key);
+            }
+        })
+    }
+
+    function setProperty(obj, prop, descriptor) {
+        let result = '';
+        let value = obj[prop];
+        Object.defineProperty(obj, prop, {
+            set: function (value) {
+                result = value;
+                console.log(prop + '\t' + '发生改变');
+            },
+            get: function () {
+                return result || value;
+            }
+        });
+    }
+</script>
+</body>
+</html>

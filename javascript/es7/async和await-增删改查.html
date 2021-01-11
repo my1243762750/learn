@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class EasyHttp{
+        // 添加数据
+        async postData(url,data) {
+        }
+        // 修改数据
+        async putData(url,data){
+        }
+        // 删除数据
+        async deleteData(){
+        }
+        // 获取数据
+        async getData(url) {
+            const promise = await fetch(url);
+            return await promise.json();
+        }
+    }
+
+
+    const easyHttp = new EasyHttp();
+    // 调用获取数据
+    easyHttp.getData('http://localhost:8082/D?name=张三')
+        .then((result) => {
+            console.log('获取到数据',result);
+        });
+
+    // 调用获取数据
+    // let data = {
+    //     name: 'meiyang',
+    //     age: 27
+    // };
+    // postData('http://localhost:8082/user',data)
+    //     .then((result) => {
+    //         console.log('获取到数据',result);
+    //     });
+</script>
+</body>
+</html>

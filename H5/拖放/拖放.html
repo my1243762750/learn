@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .warp {
+            margin-right: 10px;
+            float: left;
+            width: 400px;
+            height: 400px;
+            border: solid 1px red;
+        }
+
+        .drag-img {
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <!--<h1>Internet Explorer 9+, Firefox, Opera, Chrome, 和 Safari 支持拖动。
+        注意:Safari 5.1.2不支持拖动.</h1>-->
+    <h3>拖动图片试试</h3>
+    <div class="warp" id="drag1" ondrop="dragObj.drop(event)" ondragover="dragObj.over(event)">
+        <img class="drag-img" id="div1" src="images/lock.png" alt="lock" draggable="true" width="200" height="200"
+             ondragstart="dragObj.start(event)">
+    </div>
+    <div class="warp" id="drag2" ondrop="dragObj.drop(event)" ondragover="dragObj.over(event)"></div>
+    <div class="warp" id="drag3" ondrop="dragObj.drop(event)" ondragover="dragObj.over(event)"></div>
+</section>
+<script>
+    var dragObj = {
+        init: function () {
+        },
+        start: function (e) {
+            console.log(e, e.target);
+            e.dataTransfer.setData("Text", e.target.id);
+        },
+        over: function (e) {
+            console.log(e);
+            e.preventDefault();
+        },
+        drop: function (e) {
+            console.log(e, e.target);
+            e.preventDefault();
+            var data = e.dataTransfer.getData("Text");
+            e.target.appendChild(document.getElementById(data));
+        }
+    }
+</script>
+</body>
+</html>

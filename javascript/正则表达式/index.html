@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+<section>
+    <h1>帮助</h1>
+    <ul>
+        <li><span>更多详情请到慕课网学习javascript</span></li>
+        <li><a href="http://blog.csdn.net/zaifendou/article/details/5746988/">正则表达式</a></li>
+    </ul>
+</section>
+<hr>
+<script>
+    // 去左空格;
+    function lTrim(str) {
+        return str.replace(/^\s*/g, "");
+    }
+    // 去右空格
+    function rTrim(str) {
+        return str.replace(/\s*$/g, "");
+    }
+    // 去空格
+    function trim(str) {
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    var str = "  hello world  ,hello world    ";
+    console.log(lTrim(str));
+    console.log(rTrim(str));
+    console.log(trim(str));
+</script>
+</body>
+</html>

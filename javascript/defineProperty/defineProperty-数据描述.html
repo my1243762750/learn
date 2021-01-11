@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj1 = {
+        name: 'zhangsan'
+    };
+    var obj2 = Object.defineProperty(obj1,'age',{
+        value: 19,//属性值
+        writable: false,//属性是否可以被修改,默认为false
+        enumerable: false,//属性是否可以遍历,默认为false
+        configurable: false//是否可以再次设置以上属性/是否可以用delete删除,默认为false
+    });
+
+    var obj3 = Object.defineProperty(obj1,'age',{
+        value: 100
+    });
+
+    // 修改属性
+    obj1.name = 'lisi';
+    obj1.age = 20;
+
+    Object.keys(obj1).map((value,index) =>{
+        console.log(value,index);
+    });
+    console.log(obj1,obj2,obj3);
+</script>
+</body>
+</html>

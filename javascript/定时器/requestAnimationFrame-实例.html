@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            width: 200px;
+            height: 200px;
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<div class="item"></div>
+<script>
+    var item = document.getElementsByClassName('item')[0];
+    var animationFrame = null;
+    var change = function () {
+        var width = window.getComputedStyle(item, null).width;
+        width = +width.split('px')[0] + 1;
+        item.style.width = width + 'px';
+        if(width >= 400){
+            window.cancelAnimationFrame(animationFrame);
+            return;
+        }
+        animationFrame = window.requestAnimationFrame(change);
+    };
+    change();
+</script>
+</body>
+</html>

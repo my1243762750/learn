@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.walk = function () {
+            console.log(this.name + "走路" + this.age);
+        };
+    }
+
+    Person.prototype = {
+        eat: function () {
+            console.log("吃饭");
+        }
+    };
+
+    function Student(name, age) {
+        Person.apply(this, [name, age]);
+    }
+
+    Student.prototype = {
+        goToSchool: function () {
+            console.log("上学");
+        }
+    };
+
+    // 方式1
+    //    Student.prototype = Person.prototype;
+    //    Student.prototype.constructor = Student;
+    //    Student.prototype.name = "zhangsan";
+    //    console.log(Student.prototype, Person.prototype);
+    // 缺点：对子对象属性的改变，父对象的属性也会跟着改变
+
+    // 方式2 利用一个中间json，防止子对父的影响
+    //        var F = {};
+    //        Student.prototype = F;
+    //        F.__proto__ = Person.prototype;
+    //        Student.prototype.constructor = Student;
+    //        Student.prototype.name = "zhangsan";
+    //        console.log(Student.prototype,F, Person.prototype);
+    //        console.log(new Student().eat());
+
+    // 方式3 利用一个中间函数，防止子对父的影响
+    //    function F() {
+    //    }
+    //    Student.prototype = new F();
+    //    F.prototype = Person.prototype;
+    //    Student.prototype.constructor = Student;
+    //    Student.prototype.name = "zhangsan";
+    //    console.log(Student.prototype, Person.prototype);
+    //    var student = new Student();
+    //    console.log(student.goToSchool());
+    //
+
+    // 方式4 Object.create(Object)就是方式3前四行代码效果
+    //            Student.prototype = Object.create(Person.prototype);
+    //            Student.prototype.constructor = Student;
+    //            Student.prototype.name = "zhangsan";
+    //            console.log(Student.prototype, Person.prototype);
+    //            var student = new Student("zhangsan",19);
+    //            console.log(student.name,student.age);
+    //            console.log(student.goToSchool());
+
+
+    // 方式5
+    //        var copyStudentPrototype = mendDeepCopy(Student.prototype);
+    //        Student.prototype = new Person();
+    //        Student.prototype.constructor = Student;
+    //        for (var key in copyStudentPrototype) {
+    //            Student.prototype[key] = copyStudentPrototype[key];
+    //        }
+    //    Student.prototype.id = "001";
+    //    Student.prototype.name = "zhangsan";
+    //    Student.prototype.age = "19";
+    //    console.log(Student.prototype, Person.prototype);
+    //            var student2 = new Student('小明',19);
+    //            console.log(student2);
+    //            console.log('*************');
+    //        student.goToSchool();
+    //        student.walk();
+    // 私有属性
+    //    console.log(student.id);
+    //    console.log(student.name);
+    //    console.log(student.age);
+    //    console.log(student.walk());
+    //    console.log("");
+    // 公共属性
+    //    console.log(student.eat());
+
+
+    //    var student = new Student("学生", 18, "女");
+    //    student.eat = function () {
+    //        console.log(this.sex + "吃饭");
+    //    };
+    //    student.walk();
+    //    student.eat();
+    //        console.log(student instanceof Person);
+
+    //        function mendDeepCopy(originObj, copyObj) {
+    //            copyObj = originObj && originObj.constructor === Array ? [] : {};// 确定要复制的对象copyObj的类型
+    //            if (originObj && typeof originObj === "object") {
+    //                for (var key in originObj) {
+    //                    copyObj[key] = mendDeepCopy(originObj[key]);
+    //                }
+    //            } else {
+    //                copyObj = originObj;
+    //            }
+    //            return copyObj;
+    //        }
+
+//    function extend(son, parent) {
+//        var _mendDeepCopy = function (originObj, copyObj) {
+//            copyObj = originObj && originObj.constructor === Array ? [] : {};
+//            if (originObj && typeof originObj === 'object') {
+//                for (var key in originObj) {
+//                    copyObj[key] = _mendDeepCopy(originObj[key]);
+//                }
+//            } else {
+//                copyObj = originObj;
+//            }
+//            return copyObj;
+//        };
+//        var _copySon = _mendDeepCopy(son.prototype);
+//        son.prototype = new parent();
+//        son.prototype.constructor = son;
+//        for (var key in _copySon) {
+//            son.prototype[key] = _copySon[key];
+//        }
+//        return son;
+//    }
+
+//    var student = extend(Student, Person);
+//    var stu = new student('张三', '89');
+//    console.log(stu, stu.name, stu.age);
+//    stu.walk();
+//    stu.eat();
+//    stu.goToSchool();
+    
+    
+    // 放大模式
+    var parent = {};
+    var parent = (function (mod) {
+        mod.m1 = function () {
+            
+        };
+        return mod;
+    })(parent);
+//    console.log(parent,son);
+</script>
+</body>
+</html>

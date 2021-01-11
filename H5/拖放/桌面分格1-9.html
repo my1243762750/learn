@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /*background-color: #fff;*/
+        }
+
+        #warp {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #warp .row-item {
+            display: flex;
+        }
+
+        #warp .col-item {
+            display: flex;
+            /*background-color: #ccc;*/
+        }
+
+        #warp .col-item img {
+            padding: 20px;
+            margin: auto;
+            /*border: solid 1px #ccc;*/
+        }
+
+        #warp .col-item img:hover {
+            border: solid 1px blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<section id="warp">
+</section>
+<script>
+    var screenObj = {
+        fnInit: function () {
+            var dWarp = document.getElementById("warp"),
+                    clientObj = this.fnGetVisualLength();
+            dWarp.style.width = clientObj.clientWidth + "px";
+            dWarp.style.height = clientObj.clientHeight + "px";
+            screenObj.fnCreateModule(dWarp);
+            this.fnScreenChange();
+        },
+        fnScreenChange: function () {
+            var that = this;
+            /*this.fnAddEvent(window,"resize", function () {
+             console.log("hello");
+             that.fnInit();
+             });*/
+            window.onresize = function () {
+                console.log("屏幕大小改变了");
+                that.fnInit();
+            }
+        },
+        fnStart: function (e) {
+            e.dataTransfer.setData("Text", e.target.id);
+        },
+        fnOver: function (e) {
+            e.preventDefault();
+        },
+        fnDrop: function (e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("Text"),
+                    oriEle = document.getElementById(data),
+                    oriEleParent = oriEle.parentNode,
+                    newEle = e.target,
+                    newEleName = newEle.tagName,
+                    newEleChild = newEle.children[0],
+                    newEleParent = newEle.parentNode;
+            // 是img就换成新的，不是img就添加新的
+            if (newEleName.toLocaleUpperCase() === "IMG") {
+                newEleParent.removeChild(newEle);
+                newEleParent.appendChild(oriEle);
+                oriEleParent.appendChild(newEle);
+            } else {
+                newEleChild && newEle.removeChild(newEleChild);
+                newEle.appendChild(oriEle);
+                newEleChild && oriEleParent.appendChild(newEleChild);
+            }
+        },
+        fnGetVisualLength: function () {
+            var clientWidth = 0,//浏览器可视内容宽度
+                    clientHeight = 0;//浏览器所有内容高度
+
+            if (document.compatMode === "CSS1Compat") {//strict mode
+                clientWidth = document.documentElement.clientWidth;
+                clientHeight = document.documentElement.clientHeight;
+            } else if (document.compatMode === "BackCompat") {//quirks mode
+                clientWidth = document.body.clientWidth;
+                clientHeight = document.body.clientHeight;
+            } else {
+                console.log("无法获取浏览器尺寸");
+            }
+            return {
+                clientWidth: clientWidth,
+                clientHeight: clientHeight
+            }
+        },
+        fnCreateModule: function (dom) {
+            var aRowList = [],
+                    aColList = [],
+                    clientObj = this.fnGetVisualLength(),
+//                    nColSpace = 40,
+                    nColContentW = 200,
+                    nColContentH = 200,
+                    nColMargin = 1,
+                    nRolMargin = 40,
+                    nRowSize = Math.floor(clientObj.clientHeight / (nColContentH + nColMargin * 2)),
+                    nColSize = Math.floor(clientObj.clientWidth / (nColContentW + nRolMargin * 2)),
+//                    nColPadding = (clientObj.clientWidth - (nColContentW + nColMargin * 2) * nColSize) / (nColSize * 2),
+                    dFirstCol = null,
+                    dColList = null,
+                    dImgList = null,
+
+                    width = (clientObj.clientWidth) / nColSize,
+                    height = clientObj.clientHeight / nRowSize;
+            console.log(nColSize);
+            for (var i = 0; i < nRowSize; i++) {
+                for (var j = 0; j < nColSize; j++) {
+                    aColList.push('<div class="col-item" id="colItem" style="' +
+                            'margin: 0 ' + nColMargin + 'px;' +
+                            'width: ' + width + 'px;' +
+                            '"></div>');
+                }
+                aRowList.push('<div class="row-item" style="' +
+                        'margin-bottom: ' + nRolMargin + 'px;' +
+                        'height:' + height + 'px;' +
+                        '">' + aColList.join('') + '</div>');
+                aColList = [];
+            }
+            dom.innerHTML = aRowList.join('');
+            dFirstCol = document.getElementsByClassName("col-item");
+            dFirstCol[0].innerHTML = '<img class="col-item-img" id="colItemImg0" src="images/lock.png" alt="lock" width="100" height="100">';
+            dFirstCol[1].innerHTML = '<img class="col-item-img" id="colItemImg1" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[2].innerHTML = '<img class="col-item-img" id="colItemImg2" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[3].innerHTML = '<img class="col-item-img" id="colItemImg3" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[4].innerHTML = '<img class="col-item-img" id="colItemImg4" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[5].innerHTML = '<img class="col-item-img" id="colItemImg5" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[6].innerHTML = '<img class="col-item-img" id="colItemImg6" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[7].innerHTML = '<img class="col-item-img" id="colItemImg7" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[8].innerHTML = '<img class="col-item-img" id="colItemImg8" src="images/house.png" alt="house" width="100" height="100">';
+            dFirstCol[9].innerHTML = '<img class="col-item-img" id="colItemImg9" src="images/house.png" alt="house" width="100" height="100">';
+            // 添加事件
+            dColList = document.getElementsByClassName("col-item");
+            dImgList = document.getElementsByClassName("col-item-img");
+            for (var k = 0, colListLth = dColList.length; k < colListLth; k++) {
+                this.fnAddEvent(dColList[k], "dragover", function (event) {
+                    screenObj.fnOver(event);
+                });
+                this.fnAddEvent(dColList[k], "drop", function (event) {
+                    screenObj.fnDrop(event);
+                });
+            }
+            for (var m = 0, imgListLth = dImgList.length; m < imgListLth; m++) {
+                this.fnAddEvent(dImgList[m], "dragstart", function (event) {
+                    screenObj.fnStart(event);
+                });
+            }
+        },
+        fnAddEvent: function (elem, event, fn) {
+            if (event.addEventListener) {
+                elem.addEventListener(event, fn);
+            } else if (event.attachEvent) {
+                elem.attachEvent('on' + event, fn);
+            } else {
+                elem['on' + event] = fn;
+            }
+        }
+    };
+
+    screenObj.fnInit();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //节点
+    function Node(element, left, right) {
+        this.element = element;
+        this.left = left;
+        this.right = right;
+    }
+
+    //二叉树
+    function BST() {
+        this.root = null;
+
+        //插入节点
+        this.insert = function (num) {
+            let temp = this.root;
+            let node = new Node(num, null, null);
+            if (!this.root) {
+                this.root = node;
+                return;
+            }
+            while (temp) {
+                if (num > temp.element) {
+                    if (temp.right === null) {
+                        temp.right = node;
+                        return;
+                    } else {
+                        temp = temp.right
+                    }
+                } else {
+                    if (temp.left === null) {
+                        temp.left = node;
+                        return;
+                    } else {
+                        temp = temp.left
+                    }
+                }
+            }
+        }
+
+        //先序遍历
+        this.preOrderTraversal = function (node) {
+            if (node) {
+                console.log(node.element);
+                this.preOrderTraversal(node.left);
+                this.preOrderTraversal(node.right);
+            }
+        }
+
+        //中序遍历
+        this.inOrderTraversal = function (node) {
+            if (node) {
+                this.inOrderTraversal(node.left);
+                console.log(node.element);
+                this.inOrderTraversal(node.right);
+            }
+        }
+
+        //后序遍历
+        this.postOrderTraversal = function (node) {
+            if (node) {
+                this.postOrderTraversal(node.left);
+                this.postOrderTraversal(node.right);
+                console.log(node.element);
+            }
+        }
+    }
+
+    let bst = new BST();
+    // bst.insert(45);
+    // bst.insert(16);
+    // bst.insert(22);
+    // bst.insert(99);
+    // bst.insert(3);
+    // bst.insert(21);
+    // bst.insert(15);
+
+    // bst.insert(26);
+    // bst.insert(24);
+    // bst.insert(28);
+    // bst.insert(27);
+
+    bst.insert(1);
+    bst.insert(2);
+    bst.insert(3);
+    bst.insert(5);
+    bst.insert(4);
+
+    console.log(bst.root)
+
+    bst.preOrderTraversal(bst.root);
+    console.log('-----');//23 16 3 22 45 99
+    bst.inOrderTraversal(bst.root);
+    console.log('-----');// 3 16 22 23 45 99
+    bst.postOrderTraversal(bst.root);
+    console.log('-----');//3 22 16 99 45 23
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>原始类型 typeof来检测</h4>
+    <ul>
+        <li>typeof x为undefined  有(定义了，但为undefined、未定义)</li>
+        <li>typeof x为number     有(数字、NaN)</li>
+        <li>typeof x为object     有({},[],null)</li>
+        <li>typeof x为string     有(字符串)</li>
+        <li>typeof x为boolean    有(true/false)</li>
+        <li>typeof x为function   有(函数)</li>
+    </ul>
+</section>
+<section>
+    <h4>封装类型 constructor来检测</h4>
+    <ul>
+        <li>x.constructor 为Number   有(数字、NaN)</li>
+        <li>x.constructor 为String   有(字符串)</li>
+        <li>x.constructor 为Boolean  有(true/false)</li>
+        <li>x.constructor 为Object   有({})</li>
+        <li>x.constructor 为Array    有([])</li>
+        <li>x.constructor 为Function 有(function(){})</li>
+    </ul>
+</section>
+<section>
+    <h4>判断是否为某个构造函数的实例 instanceof来检测</h4>
+</section>
+</body>
+</html>

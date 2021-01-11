@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //深度复制
+    let obj = {
+        name: '张三',
+        age: 19
+    };
+
+    let obj2 = {};
+    Object.assign(obj2, obj);
+    obj.sex = '男';
+    console.log(obj2);
+</script>
+</body>
+</html>

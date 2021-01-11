@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="example"></div>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script type="text/babel">
+    let Child = React.createClass({
+        getInitialState: function () {
+            return {
+                isEdit: false
+            }
+        },
+        edit: function () {
+            this.setState({
+                isEdit: !this.state.isEdit
+            });
+            console.log('编辑');
+        },
+        save: function () {
+            console.log(this.refs.saveText.value);
+            console.log(this.props);
+            this.setState({
+                isEdit: !this.state.isEdit
+            });
+            this.props.value = this.refs.saveText.value;
+            console.log('保存');
+        },
+        delete: function () {
+            console.log('删除');
+        },
+        editComponent: function () {
+            return (
+                <div>
+                    <div>{this.props.value}</div>
+                    <button onClick={this.edit}>编辑</button>
+                    <button onClick={this.delete}>删除</button>
+                </div>
+            );
+        },
+        saveComponent: function () {
+            return (
+                <div>
+                    <textarea cols="30" rows="10" ref="saveText">{this.props.value}</textarea>
+                    <button onClick={this.save}>保存</button>
+                    <button onClick={this.delete}>删除</button>
+                </div>
+            );
+        },
+        getComponent: function () {
+            if(this.state.isEdit){
+                return this.saveComponent();
+            }else{
+                return this.editComponent();
+            }
+        },
+        render: function () {
+            return (
+               <div>
+                   {this.getComponent()}
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <div>
+            <Child value="this is Component1"/>
+            <Child value="this is Component2"/>
+            <Child value="this is Component3"/>
+        </div>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

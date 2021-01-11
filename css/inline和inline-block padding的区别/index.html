@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            margin: 400px auto;
+        }
+
+        .item-container{
+            background-color: palevioletred;
+        }
+
+        .item{
+            border: solid 2px red;
+            padding: 40px;
+        }
+
+        .item1{
+            border-color: lawngreen;
+        }
+
+        .item2{
+            display: inline-block;
+        }
+
+        .line{
+            display: block;
+            height: 0;
+            border-bottom: solid 1px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<section class="container">
+    <div class="item-container">
+        <span class="item item1">inline</span>
+        <span class="line"></span>
+    </div>
+    <div class="item-container">
+        <span class="item item2">inline-block</span>
+        <span class="line"></span>
+    </div>
+</section>
+<section>
+    <ul>
+        <li>inline 的padding-bottom和padding-top 会超出父元素</li>
+        <li>inline-block 的padding-bottom和padding-top 不会超出父元素</li>
+    </ul>
+</section>
+</body>
+</html>

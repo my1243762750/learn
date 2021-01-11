@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        .test{
+            padding: 10px;
+            /* user-select: none text all element*/
+            /* IE6-9不支持该属性 支持标签属性onselectstart="return false"*/
+            /* Opera12.5不支持该属性 支持标签属性 unselectable="on"*/
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #eee;
+        }
+
+        .margin-top-10{
+            margin-top: 10px;
+        }
+
+        .basic-input{
+            border: solid 1px #ddd;
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .basic-input:hover{
+            border-color: paleturquoise;
+        }
+    </style>
+</head>
+<body>
+<!--oncontextmenu 禁止右键；oncopy 禁止复制-->
+<div class="test margin-top-10" onselectstart="return false" oncontextmenu="return false" oncopy="return false">
+    选不到我
+</div>
+<!--onpaste禁止粘贴；oncut 禁止剪贴-->
+<input class="basic-input margin-top-10" type="text" onpaste="return false" oncut="return false" value="禁止粘贴，禁止剪贴">
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container">
+
+</div>
+<script>
+    (function (window) {
+        function Drag(el) {
+            this.el = el;
+            this.offsetX = '';
+            this.offsetY = '';
+        }
+
+        Drag.prototype.mouseDown = function () {
+            var _this = this;
+            this.el.onmousedown = function (event) {
+                event = event || window.event;
+                _this.offsetX = event.offsetX;
+                _this.offsetY = event.offsetY;
+                _this.el.onmousemove = _this.mouseMove.bind(_this);
+            }
+        };
+
+        Drag.prototype.mouseUp = function () {
+            var _this = this;
+            this.el.onmouseup = function () {
+                _this.el.onmousemove = null;
+            };
+        };
+
+        Drag.prototype.mouseMove = function (event) {
+            event = event || window.event;
+            var x = event.clientX - this.offsetX;
+            var y = event.clientY - this.offsetY;
+            this.el.style.left = x + 'px';
+            this.el.style.top = y + 'px';
+        };
+
+        Drag.prototype.init = function(){
+            this.mouseDown();
+            this.mouseUp();
+        };
+
+        window.drag = {
+            init: function (el) {
+                var drag = new Drag(el);
+                drag.init();
+            }
+        };
+    })(window);
+
+    drag.init(document.getElementById('container'));
+</script>
+</body>
+</html>

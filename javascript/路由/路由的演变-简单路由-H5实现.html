@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>例子(点击下面的连接)</h4>
+    <ul>
+        <li><a href="A">A</a></li>
+        <li><a href="B">B</a></li>
+        <li><a href="C">C</a></li>
+    </ul>
+    <div id="testContainer"></div>
+</section>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    //-----主要的方法和事件-----
+    //h5 方法 window.history.pushState(state, ~title, ~href);
+    //h5 方法 window.history.replaceState( state, ~title, ~href);
+    //参数：state：存储一个对象，可以添加相关信息，可以使用 history.state 读取其中的内容。
+    //title：历史记录的标题（目前浏览器不支持）。
+    //url：创建的历史记录的链接。进行历史记录操作时会跳转到该链接。
+    //h5 history.state
+    //h5 事件 window.onpopstate
+    //history.go和history.back 会触发onpopstate事件；pushState和replaceState不会触发onpopstate事件
+    //-----实现步骤-----
+    //1. 拦截a标签的默认跳转动作。
+    //2. 使用Ajax请求新页面。
+    //3. 将返回的Html替换到页面中。
+    //4. 使用HTML5的History API或者Url的Hash修改Url。
+    //-----缺点-----
+    //刷新页面 页面就会丢;只要刷新就会请求服务器，然而服务器上根本没有这个资源
+    function Router() {
+        this.routes = {};
+        //注册路由
+        this.route = function (url, callback) {
+            this.routes[url] = callback || function () {
+            };
+        };
+        //url变化，调用相应的方法
+        this.refresh = function () {
+            let path = window.location.pathname;
+            for(let key in this.routes){
+                let reg = new RegExp(key,'g');
+                reg.test(path) && this.routes[key]();
+            }
+            console.log(path);
+        };
+        //监听url变化(前进/后退)
+        this.init = function () {
+            let _this = this;
+            window.addEventListener('load', this.refresh.bind(this));
+            window.addEventListener('popstate', this.refresh.bind(this));
+            $('a').on('click', function (event) {
+                event.preventDefault();
+                let path = $(this).attr('href');
+                //改变当前的url
+                window.history.pushState('', '', path);
+                //调用相应的方法
+                _this.refresh();
+            });
+        };
+        //监听路由(可以是url的变化,也可以是hash的变化)
+        //这里用url的变化
+        //对于前进/后退，用监听url变化的方式实现，对于点击的事件，自己判断实现，且改变当前的url
+    }
+
+    let router = new Router();
+    let testContainer = document.getElementById('testContainer');
+
+    router.init();
+    router.route('/', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/A', function () {
+        testContainer.innerHTML = 'A'
+    });
+    router.route('/B', function () {
+        testContainer.innerHTML = 'B'
+    });
+    router.route('/C', function () {
+        testContainer.innerHTML = 'C'
+    });
+
+</script>
+</body>
+</html>

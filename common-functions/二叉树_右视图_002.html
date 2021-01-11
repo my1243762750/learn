@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var rightSideView = function(root) {
+        let bst = new BST();
+        let res = [];
+        // root.forEach((item) => {
+        //     if (item) {
+        //         bst.insert(item);
+        //     }
+        // })
+        for (let i = 0;i < root.length;i++) {
+            let item = root[i];
+            if (item) {
+                bst.insert(item);
+            }
+        }
+        let getRes = function (node) {
+            if (node) {
+                res.push(node.element);
+                getRes(node.right)
+            }
+            return node;
+        }
+        console.log('bst.root', bst.root);
+        getRes(bst.root);
+        return res;
+    };
+
+    //节点
+    function Node(element, left, right) {
+        this.element = element;
+        this.left = left;
+        this.right = right;
+    }
+
+    function BST() {
+        this.root = null;
+
+        //插入节点
+        this.insert = function (num) {
+            let temp = this.root;
+            let node = new Node(num, null, null);
+            if (!this.root) {
+                this.root = node;
+                return;
+            }
+            while (temp) {
+                if (num > temp.element) {
+                    if (temp.right === null) {
+                        temp.right = node;
+                        return;
+                    } else {
+                        temp = temp.right
+                    }
+                } else {
+                    if (temp.left === null) {
+                        temp.left = node;
+                        return;
+                    } else {
+                        temp = temp.left
+                    }
+                }
+            }
+        }
+    }
+
+    var res = rightSideView([1,2,3,null,5,null,4]);
+    console.log('res', res);
+</script>
+</body>
+</html>

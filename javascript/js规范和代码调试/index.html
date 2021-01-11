@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h2>js规范</h2>
+    <span>详情请见：</span>
+    <a href="http://www.css88.com/archives/5366">js规范</a>
+</section>
+<hr>
+<section>
+    <h2>js代码调试</h2>
+    <span>详情请见：</span>
+    <a href="http://www.open-open.com/lib/view/open1384785324165.html">js代码调试</a>
+</section>
+<hr>
+<section>
+    <h2>变量的命名</h2>
+    <table>
+        <tbody>
+        <tr>
+            <td>类型</td>
+            <td>前缀</td>
+            <td>示例</td>
+        </tr>
+        <tr>
+            <td>数组</td>
+            <td>a</td>
+            <td>aValues</td>
+        </tr>
+        <tr>
+            <td>布尔型</td>
+            <td>b</td>
+            <td>bFound</td>
+        </tr>
+        <tr>
+            <td>浮点型</td>
+            <td>f</td>
+            <td>fValue</td>
+        </tr>
+        <tr>
+            <td>函数</td>
+            <td>fn</td>
+            <td>fnMethod</td>
+        </tr>
+        <tr>
+            <td>整型</td>
+            <td>i</td>
+            <td>iValue</td>
+        </tr>
+        <tr>
+            <td>对象</td>
+            <td>o</td>
+            <td>oType</td>
+        </tr>
+        <tr>
+            <td>正则表达式</td>
+            <td>re</td>
+            <td>rePattern</td>
+        </tr>
+        <tr>
+            <td>字符串</td>
+            <td>s</td>
+            <td>sValue</td>
+        </tr>
+        <tr>
+            <td>变形（任何类型）</td>
+            <td>v</td>
+            <td>vValue</td>
+        </tr>
+        </tbody>
+    </table>
+    <span>更多详情:</span><a href="http://www.php100.com/html/webkaifa/javascript/2012/0616/10550.html">网易前端JavaScript编码规范</a>
+</section>
+<script>
+    (function () {
+        //第一步：引入存在的类。引入support类
+        var Support = window.Support;
+
+        //$是网易邮箱基础库“base”的引用稍后会介绍
+        //第二步：定义类。可以认为返回了一个类定义 function(){}，并在window下定义一个Image类
+        var Image = $.createClass("Image");
+
+        //可以认为是jQuery的extend方法
+
+        //第三步：定义类属性/方法定义
+        $.Object.extend(Image, {
+            _language: null,   //内部属性
+            getSize: fImageGetSize
+        });
+        //第四步：定义实例属性/方法定义
+        $.Object.extend(Image.prototype, {
+            name: null,
+            url: null,
+            ext: null,
+            width: 0,
+            height: 0,
+            setName: fImageSetName,
+            getName: fImageGetName,
+            init: fImageInit
+        });
+        //第五步：方法实现
+
+        function fImageGetSize(nWidth, nHeight) {
+            return nWidth * nHeight;
+        }
+
+        function fImageSetName(sName) {
+            var oImage = this;
+            oImage.name = sName;
+        }
+
+        function fImageGetName() {
+            var oImage = this;
+            return oImage.name;
+        }
+
+        function fImageInit(sUrl) {
+            var oImage = this;
+            oImage.url = sUrl;
+            oImage.ext = Support.getExt(sUrl);
+            oImage.width = Support.getWidth(sUrl);
+            oImage.height = Support.getHeight(sUrl);
+        }
+
+    })();
+</script>
+</body>
+</html>

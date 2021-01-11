@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .progress-bar {
+            display: inline-block;
+            border: solid 1px red;
+            width: 0;
+        }
+
+        .progress-bar-change {
+            animation: progress-bar-change .5s ease-in-out,progress-bar-disappear .5s ease .5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes progress-bar-change {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes progress-bar-disappear {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<span class="progress-bar" id="progressBar"></span><br>
+<img class="img" src="img/img1.png" alt="">
+<img class="img" src="img/img2.jpg" alt="">
+<img class="img" src="img/img3.png" alt="">
+<img class="img" src="img/img4.png" alt="">
+<img class="img" src="img/img5.png" alt="">
+<img class="img" src="img/img6.png" alt="">
+<img class="img" src="img/img7.png" alt="">
+<img class="img" src="img/img8.png" alt="">
+<section>
+    <ul>
+        <li>动画怎么消失 (通过控制透明度，使其消失)</li>
+        <li>图片加载，无法一张一张更新进度  (不用一张一张更新进度，只需要在每个接口的回调里面让进度条100%)</li>
+    </ul>
+</section>
+<script>
+    var itemArr = document.getElementsByClassName('img');
+    var progressBar = document.getElementById('progressBar');
+    var itemArrLength = itemArr.length;
+    for (var i = 0, item = {}; i < itemArrLength; i++) {
+        item = itemArr[i];
+        addEvent(item, 'load', function () {
+            var attrClass = progressBar.getAttribute('class');
+            progressBar.setAttribute('class', attrClass + ' progress-bar-change');
+        });
+    }
+
+    /**
+     * js添加事件
+     * @param el 事件触发对象
+     * @param type 事件
+     * @param handler 处理函数
+     * @param useCapture 冒泡或捕获
+     */
+    function addEvent(el, type, handler, useCapture) {
+        if (el.addEventListener) {
+            el.addEventListener(type, handler, useCapture);
+        } else if (el.attachEvent) {
+            // el.attachEvent('on' + type, handler);
+            // ie没有捕获阶段，但有冒泡，而且是默认的；回调函数中的this指向window，apply是改变回调函数this指向，指向调用者
+            el.attachEvent('on' + type, function () {
+                handler.apply(el);
+            });
+        } else {
+            el['on' + type] = handler;
+        }
+    }
+</script>
+</body>
+</html>

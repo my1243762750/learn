@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>在created方法中获取数据性能略微高一点</li>
+    </ul>
+</section>
+<section id="app">
+    {{name}}<br>
+<!--    {{age}}-->
+</section>
+<script src="lib/vue.min-2.4.0.js"></script>
+<script>
+    let vue = new Vue({
+        el: '#app',
+        created() {
+            console.log('=====created=====')
+        },
+        mounted() {
+            console.log('=====mounted=====')
+            this.$set(this, 'age', '123');
+            console.log(this.age);
+        },
+        data() {
+            return {
+                name: 'zhangsan',
+            }
+        },
+        methods: {
+            say() {
+                console.log('hello world')
+            }
+        }
+    });
+</script>
+</body>
+</html>

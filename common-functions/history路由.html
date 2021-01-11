@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu {
+            display: flex;
+        }
+
+        .menu .menu-item {
+            width: 100px;
+            text-align: center;
+            border: solid 1px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <div class="menu-item" id="home" >home</div>
+    <div class="menu-item" id="shop" >shop</div>
+    <div class="menu-item" id="me" >me</div>
+</div>
+<div class="content" id="content">home</div>
+<script>
+    class Router {
+        constructor() {
+            this.routes = {};
+            this.init();
+        }
+
+        init() {
+            let _this = this;
+            window.addEventListener('popstate', function (event) {
+                let state = event.state;
+                _this.routes[state.route]();
+            })
+        }
+
+        addRoute(name, fn) {
+            this.routes[name] = fn || function () {};
+        }
+
+        push(name) {
+            console.log(name, this.routes, this.routes[name]);
+            history.pushState({route: name}, null, name)
+            this.routes[name] && this.routes[name]();
+        }
+    }
+
+    var router = new Router();
+    router.addRoute('/home', function() {
+        let content = document.getElementById('content');
+        content.innerHTML = 'home';
+    })
+    router.addRoute('/shop', function() {
+        let content = document.getElementById('content');
+        content.innerHTML = 'shop';
+    })
+    router.addRoute('/me', function() {
+        let content = document.getElementById('content');
+        content.innerHTML = 'me';
+    })
+    let home = document.getElementById('home');
+    let shop = document.getElementById('shop');
+    let me = document.getElementById('me');
+    home.addEventListener('click', function() {
+        router.push('/home');
+    })
+    shop.addEventListener('click', function() {
+        router.push('/shop');
+    })
+    me.addEventListener('click', function() {
+        router.push('/me');
+    })
+</script>
+</body>
+</html>

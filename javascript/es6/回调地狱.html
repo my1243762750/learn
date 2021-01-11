@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>promise</h4>
+    <ul>
+        <li>resolve</li>
+        <li>reject</li>
+        <li>then</li>
+    </ul>
+</section>
+<script src="../../jquery/lib/jquery-1.9.1.min.js"></script>
+<script>
+    $(function () {
+        //有可能有这样的需求,回调有很多层的时候；回调地狱就是，回调的函数太多了，远比这里的多很多
+        $.ajax({
+            url: 'http://localhost:8082/A',
+            success: function (res) {
+                $.ajax({
+                    url: 'http://localhost:8082/B?name=' + res.name,
+                    success: function (res) {
+                        $.ajax({
+                            url: 'http://localhost:8082/C?name='+res.name,
+                            success: function (res) {
+                                console.log('ccccc');
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

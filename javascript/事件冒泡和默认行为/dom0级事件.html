@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认行为</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<section>
+    <h3>例子</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <button class="btn btn-default" onclick="test()">方式一</button>
+        </li>
+        <li class="list-group-item">
+            <button class="btn btn-default" id="test">方式二</button>
+        </li>
+    </ul>
+    <h3>结论</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            第一种方式:直接在html标签上的事件
+        </li>
+        <li class="list-group-item">
+            第一种方式:js当中，添加事件,如：onclick
+        </li>
+    </ul>
+</section>
+<script>
+    // dom0级事件：方式一
+    function test(){
+        console.log('hello world');
+    }
+
+    // dom0级事件：方式二
+    var test2 = document.getElementById('test');
+    test2.onclick = function () {
+        console.log('hello world');
+    }
+</script>
+</body>
+</html>

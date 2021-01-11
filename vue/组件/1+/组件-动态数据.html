@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<div id="app">
+    <h3>动态数据</h3>
+    <section>
+        <h3>例子</h3>
+        <child></child>
+    </section>
+    <section class="sr-only">
+        <h3>模板</h3>
+        <template id="template1">
+            <button class="btn btn-default" @click="say();">click me!</button>
+            <ul>
+                <!--vue.min-2.4.0.js版本就不能这样用了-->
+                <li v-for="item in fruits">{{item}}</li>
+            </ul>
+        </template>
+    </section>
+</div>
+<script src="../../lib/vue.min-1.0.2.js"></script>
+<script>
+    Vue.component('child',{
+        data: function () {
+            return {
+                fruits: ['apple','orange','watermelon']
+            }
+        },
+        methods: {
+            say(){
+                console.log('hello');
+            }
+        },
+        template: '#template1'
+    });
+    new Vue({
+        el: "#app"
+    });
+</script>
+</body>
+</html>

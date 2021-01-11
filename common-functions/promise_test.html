@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var p2 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'two');
+    });
+    var p1 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'one');
+    });
+    var p3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'three');
+    });
+    var p4 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'four');
+    });
+    var p5 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'five');
+    });
+
+    p1.then((res) => {
+        console.log(res);
+    });
+    p2.then((res) => {
+        console.log(res);
+    });
+    p3.then((res) => {
+        console.log(res);
+    });
+
+</script>
+</body>
+</html>

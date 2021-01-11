@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="example"></div>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script src="../jquery/lib/jquery-1.9.1.min.js"></script>
+<script type="text/babel">
+    let HelloMessage = React.createClass({
+        getInitialState: function () {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        componentDidMount: function () {
+            $.get('https://api.github.com/users/octocat/gists', function (result) {
+                let _result = result || [];
+                this.setState({
+                    msg: _result[0].url
+                });
+            }.bind(this));
+        },
+        //ajax请求成功后会再次调用render方法
+        render: function () {
+            console.log(this.state.msg);
+            return <h1>{this.state.msg}</h1>;
+        }
+    });
+    ReactDOM.render(
+        <HelloMessage/>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // fetch请求数据
+    fetch('http://localhost:8082/D?name=张三')
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch(function (err) {
+            console.log(err);
+        });
+</script>
+</body>
+</html>

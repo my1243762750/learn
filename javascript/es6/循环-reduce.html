@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 没有初始值和返回值 遍历从第二项开始
+    let arr = [1, 2, 3];
+    let reduceResult = arr.reduce((prev, cur, index, array) => {
+        console.log(prev, cur, index, array);
+    });
+    console.log(reduceResult);
+    console.log('reduceResult **********');
+
+    // 有初始值，没有返回值 遍历从第一项开始
+    let reduceResult2 = arr.reduce((prev, cur, index, array) => {
+        console.log(prev, cur, index, array);
+    }, 0);
+    console.log(reduceResult2);
+    console.log('reduceResult2 **********');
+
+    // 有返回值和初始值
+    let reduceResult3 = arr.reduce((prev, cur, index, array) => {
+        console.log(prev, cur, index, array);
+        return prev + cur;
+    }, 0);
+    console.log(reduceResult3);
+    console.log('reduceResult3 **********');
+</script>
+</body>
+</html>

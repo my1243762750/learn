@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<section>
+    <h3>class</h3>
+    <ul>
+        <li>1[dataA,dataB](每一个的value，就是class类名)</li>
+        <li>2{'classA':dataA,'classB': dataB}(dataA,dataB往往是true/false)</li>
+        <li>3json = {'classA':dataA,'classB': dataB}</li>
+    </ul>
+</section>
+<section>
+    <h3>style</h3>
+    <ul>
+        <li>1[dataA,dataB](每一个的value，就是一个对象 如{backgroundColor: 'peru'})</li>
+        <li>2{'styleA':dataA,'styleB': dataB}(dataA,dataB往往是具体属性 如color，background-color)</li>
+        <li>3json = {'styleA':dataA,'styleB': dataB}</li>
+    </ul>
+</section>
+<section>
+    <h3>v-bind和v-model的区别</h3>
+    <ul>
+        <li>v-bind也支持数据绑定，不过是单项的绑定。通常来说，标签的属性都是固定的，v-bind是用来扩展属性的，可以动态改变的</li>
+        <li>v-model支持数据绑定，它是双向数据绑定。v-model只能用在表单控件上。</li>
+        <li><a href="http://blog.csdn.net/likeuzi/article/details/70237813">更多详情</a></li>
+    </ul>
+</section>
+<section>
+    <h3>track-by</h3>
+    <ul>
+        <li>在没有使用track-by的情况下,无论值是否被修改，都会重新渲染dom元素</li>
+        <li><a href="http://cnodejs.org/topic/5811769c1a9a7d990953119e">更多详情</a></li>
+        <li><a href="http://www.cnblogs.com/btgyoyo/p/6212462.html">更多详情</a></li>
+    </ul>
+</section>
+</body>
+</html>

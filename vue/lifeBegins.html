@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>在使用keep-alive之后activated才会生效</li>
+        <li>在使用keep-alive之后，第一次才会走beforeCreate,created,beforeMount,mounted;第二次就不会走了</li>
+    </ul>
+</section>
+<section>
+    <h4>$router.go()和$router.back()</h4>
+    <ul>
+        <li>$router.go()会刷新页面，$router.back()不会刷新页面</li>
+        <li>$router.go(number|url) 可以接参数</li>
+        <li>$router.back() 不接参数</li>
+    </ul>
+</section>
+<section id="app">
+    {{name}}
+    <span id="test" ref="test" style="display: none;">123</span>
+</section>
+<script src="lib/vue.min-2.4.0.js"></script>
+<script>
+    let vue = new Vue({
+        // el: '#app',
+        beforeCreate() {
+            console.log('=====beforeCreate=====', this, this.$options)
+            console.log(this.$refs, this.$refs['test'], this.name, this.$el)
+        },
+        created() {
+            console.log('=====created=====')
+            console.log(this.$refs, this.$refs['test'], this.name, this.$el)
+        },
+        beforeMount() {
+            console.log('=====beforeMount=====')
+            console.log(this.$refs, this.$refs['test'], this.name, this.$el)
+        },
+        mounted() {
+            console.log('=====mounted=====')
+            console.log(this.$refs, this.$refs['test'], this.name, this.$el)
+        },
+        // template:"<h4>{{'template 中的 msg:'+this.name}}</h4>",
+        // render(h){
+        //     return h('h4', "这是render 方法渲染出来的")
+        // },
+        data() {
+            return {
+                name: 'zhangsan',
+                age: 19
+            }
+        },
+        methods: {
+            say() {
+                console.log('hello world')
+            }
+        }
+    });
+</script>
+</body>
+</html>

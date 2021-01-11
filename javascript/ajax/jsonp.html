@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>jsonp原理</h4>
+    <ul>
+        <li>浏览器的同源策略 只是阻止了xhr的请求跨域，没有阻止src方式的跨越</li>
+        <li>利用src方式请求服务器</li>
+        <li>服务端调用客户端方法，并传递参数;但是服务端不知道客户端有哪些方法，客户端请求资源的时候，就要告诉服务器可以调用的方法</li>
+        <li>这种方式也需要服务器的配合</li>
+        <li>由于跨域原理本质就是利用的src请求的服务器，所以它只能支持get方法</li>
+    </ul>
+</section>
+<script>
+    function test(result){
+        console.log(result);
+    }
+</script>
+<!--这种方式加载之后，让其会返回test({name:'zhangsan'})，相当于调用了test函数，这样result不就拿到了吗;-->
+<script src="某个服务器地址?fnName='test'"></script>
+
+</body>
+</html>

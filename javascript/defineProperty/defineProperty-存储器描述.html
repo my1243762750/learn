@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let school = {
+        name: '育才中学'
+    };
+    let resultValue = '';
+    Object.defineProperty(school, 'name', {
+        get: () => {
+            console.log('调用get方法');
+            return resultValue;
+        },
+        set: (value) => {
+            console.log(value,'调用set方法',this);
+            resultValue = value;
+        },
+        enumerable: false,//属性是否可以遍历,默认为false
+        configurable: false//是否可以再次设置以上属性,默认为false
+    });
+    school.name = '南开中学';
+    console.log(school);
+
+    //set/get原理
+    //school.name = '南开中学' 会调用set
+    //school.name 会调用get
+</script>
+</body>
+</html>

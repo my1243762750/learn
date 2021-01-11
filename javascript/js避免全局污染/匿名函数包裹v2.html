@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li>匿名函数包裹</li>
+        <li>优点：避免了全局变量污染</li>
+        <li>缺点：没有解决模块之间的依赖</li>
+    </ul>
+</section>
+<script>
+    (function (window) {
+        var name = '';
+        var age = '';
+        function say(){
+            console.log('hello world');
+        }
+    })(window);
+</script>
+</body>
+</html>

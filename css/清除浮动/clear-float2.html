@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动</title>
+    <style>
+        .parent{
+            background-color: red;
+            overflow: auto;
+            zoom: 1;
+        }
+
+        .item{
+            width: 200px;
+            height: 200px;
+        }
+
+        .item1{
+            float: left;
+            background-color: orange;
+        }
+
+        .item2{
+            float: right;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h1>清除浮动，确切的说是清除浮动带来的负面影响</h1>
+    <div class="parent">
+        <div class="item item1"></div>
+        <div class="item item2"></div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认行为</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<section>
+    <h3>例子</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <button class="btn btn-default" id="otherTest">otherTest!</button>
+        </li>
+        <li class="list-group-item">
+            <button class="btn btn-default" id="ieTest">ieTest!</button>
+        </li>
+    </ul>
+    <h3>结论</h3>
+    <ul class="list-group">
+        <li class="list-group-item">
+            js中，通过addEventListener 绑定事件;removeEventListener 移除事件
+        </li>
+        <li class="list-group-item">
+            js中，通过attachEvent 绑定事件
+        </li>
+        <li class="list-group-item">
+            addEventListener，有三个参数，第一个时事件，第二个回调函数，第三个为ture，就是事件冒泡，否则，捕获。
+        </li>
+        <li class="list-group-item">
+            addEventListener，IE8及以下不支持;
+        </li>
+        <li class="list-group-item">
+            attachEvent，兼容IE8及以下,但只支持冒泡;detachEvent 移除事件
+        </li>
+    </ul>
+</section>
+<script>
+    var otherTest = document.getElementById('otherTest');
+    var ieTest = document.getElementById('ieTest');
+    otherTest.addEventListener('click', function () {
+        console.log('hello world');
+    },true);
+    ieTest.attachEvent('onclick', function () {
+        console.log('hello world');
+    });
+</script>
+</body>
+</html>

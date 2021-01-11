@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js定义类的三种方式</title>
+</head>
+<body>
+<section>
+    <h1>问题</h1>
+    <ul>
+        <li>new 函数和直接调用函数的区别</li>
+        <li>Function和Object的区别</li>
+        <li></li>
+    </ul>
+</section>
+<script>
+    /*// 构造函数法
+     function Cat() {
+     this.name = "大毛";
+     }
+     Cat.prototype.age = "12";//不可取
+     Cat.prototype.makeSound = function () {
+     alert("喵喵喵");
+     };
+     var cat1 = new Cat();
+     console.log(cat1);
+     console.log(cat1.name, cat1.age);
+     console.log(cat1.__proto__.name);
+     console.log(cat1.__proto__.age);
+     alert(cat1.makeSound());
+     alert(cat1.__proto__.makeSound());*/
+
+    /* // Object.create()法
+     var Cat = {
+     name: "大毛",
+     makeSound: function () {
+     alert("喵喵喵");
+     }
+     };
+     // 老式浏览器加如下代码
+     if (!Object.create) {
+     Object.create = function (o) {
+     function F() {}
+     F.prototype = o;
+     return new F();
+     };
+     }
+     var cat1 = Object.create(Cat);
+     alert(cat1.name);
+     cat1.makeSound();*/
+
+    // 极简主义法
+    var Cat = {
+        createNew: function () {
+            var cat = {};
+            cat.name = "大毛";
+            cat.makeSound = function () {
+                alert("喵喵喵");
+            };
+            return cat;
+        }
+    };
+    var cat1 = Cat.createNew();
+    cat1.makeSound();
+    alert(cat1 instanceof Cat);//致命缺点
+
+    // 方法1 对象直接量
+    var obj1 = {
+        v1: "",
+        get_v1: function () {
+            return this.v1;
+        },
+        set_v1: function (v) {
+            this.v1 = v;
+        }
+    };
+
+    // 方法2 定义函数对象
+    var Obj = function () {
+        var v1 = "";
+        this.get_v1 = function () {
+            return this.v1;
+        };
+        this.set_v1 = function (v) {
+            this.v1 = v;
+        }
+    };
+
+    // 方法3 原型继承
+    var Obj3 = new Function();
+    Obj3.prototype = {
+        v1: "",
+        get_v1: function () {
+            return this.v1;
+        },
+        set_v1: function (v) {
+            this.v1 = v;
+        }
+    };
+
+    // 方法4 工厂模式
+    function loadObj() {
+        var tmp = new Object();
+        tmp.v1 = "";
+        tmp.get_v1 = function () {
+            return tmp.v1;
+        };
+        tmp.set_v1 = function (v) {
+            tmp.v1 = v;
+        };
+        return tmp;
+    }
+
+    obj1.set_v1('hello1');
+    alert(obj1.get_v1());
+
+    var obj2 = new Obj();
+    obj2.set_v1('hello2');
+    alert(obj2.get_v1());
+
+    var obj3 = new Obj();
+    obj3.set_v1('hello3');
+    alert(obj3.get_v1());
+
+    var obj4 = new loadObj();
+    obj4.set_v1('hello4');
+    alert(obj4.get_v1());
+
+    alert(obj1);
+    alert(obj2);
+    alert(obj3);
+    alert(obj4);
+</script>
+</body>
+</html>

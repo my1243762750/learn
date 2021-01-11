@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    class EasyHttp{
+        // 添加数据
+        postData(url,data) {
+            return new Promise((resolve) => {
+                fetch(url,{
+                    method:'POST',
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then((res) => res.json())
+                    .then((data) => resolve(data))
+                    .catch((err) => console.log('请求失败',err));
+            });
+        }
+        // 修改数据
+        putData(url,data){
+            return new Promise((resolve) => {
+                fetch(url,{
+                    method: 'PUT',
+                    body: JSON.stringify(data)
+                })
+                    .then((res) => res.json(res))
+                    .then((data) => resolve(data))
+                    .catch(() => console.log('请求失败',err));
+            });
+        }
+        // 删除数据
+        deleteData(){
+            return new Promise(() => {
+                fetch(url,{
+                    method: 'DELETE',
+                    body: JSON.stringify(data)
+                })
+                    .then(() => console.log('删除成功'))
+                    .catch(() => console.log('删除失败'));
+            });
+        }
+        // 获取数据
+        getData(url) {
+            return new Promise((resolve) => {
+                fetch(url)
+                    .then((res) => res.json())
+                    .then((data) => resolve(data))
+                    .catch((err) => console.log('请求失败',err));
+            });
+        }
+    }
+
+
+
+
+    // 调用数据
+    const easyHttp = new EasyHttp();
+    // console.log(easyHttp)
+    // easyHttp.getData('http://localhost:8082/D?name=张三')
+    //     .then((result) => {
+    //         console.log('获取到数据',result);
+    //     });
+
+    // 调用获取数据
+    let data = {
+        name: 'meiyang',
+        age: 27
+    };
+    easyHttp.postData('http://localhost:8082/user',data)
+        .then((result) => {
+            console.log('获取到数据',result);
+        });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min-3.3.7.css">
+</head>
+<body>
+<div id="app">
+    <h3>全局组件</h3>
+    <my></my>
+</div>
+<section class="sr-only">
+    <template id="template1">
+        <strong>{{msg}}</strong>
+    </template>
+</section>
+<script src="../../lib/vue.min-2.4.0.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        components: {
+            my: {
+                data: function () {
+                  return{
+                      msg: 'hello world ni hao'
+                  }
+                },
+                template: '#template1'
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>
+        2ie10 不识别 行内元素 margin-top
+        3ie10 不识别 在行内样式里面 添加flex-basis
+        4ie10 行内元素 如果需要设置宽度，一定要加display:inline-block (img 可以设置高度)
+        5ie10 不识别 flex: 50%;
+        6（elment组件）el-steps 需要重写，因为他写的是行内样式
+        6.1（elment组件）el-dialog 需要重写，ie10获取不要el-dialog的高度
+        7ie10 图片不写宽高，就会按照图片本来的大小显示
+        7ie10 图片用100%替代auto
+        8设置align-self的元素不是是行内元素
+    </p>
+</body>
+</html>

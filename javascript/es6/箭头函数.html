@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>箭头函数中的this</h4>
+    <ul>
+        <li>箭头函数没有自己的this,它的this是继承而来的</li>
+        <li>箭头函数的this，是定义它时，所处的对象（宿主对象）</li>
+        <li>匿名函数没有宿主对象，所以它的this是window（非严格模式，严格模式是undefined）</li>
+    </ul>
+</section>
+<section>
+    <h4>箭头函数 没有arguments对象</h4>
+</section>
+<script>
+    // 基本形式
+    let getInfo = (name) => name;
+    // 默认参数
+    let getInfo2 = (name = '张三') => name;
+    // 不能获取arguments
+    let getInfo3 = (name = '张三') => {
+        console.log(arguments);
+    };
+    // getInfo3();
+    // 剩余参数
+    let getInfo4 = (...arg) => {
+        console.log(arg);
+    };
+    getInfo4('张三',19,'男','china');
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="map" style="border: solid 1px red; width: 500px;height: 300px;"></div>
+<input type="button" value="截图" onclick="takeScreenshot()">
+<script src="../../../jquery/lib/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.bootcss.com/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.9&key=0adfdab1e3e92564dc3bd90d54919199&plugin=AMap.TruckDriving"></script>
+<script type="text/javascript">
+    function takeScreenshot() {
+        console.log('test');
+        html2canvas(document.getElementById('map'), {
+            onrendered: function(canvas) {
+                console.log('canvas', canvas)
+                document.body.appendChild(canvas);
+            },
+            width: 1000,
+            height: 600,
+        });
+    }
+
+    var map = new AMap.Map('map', {
+        center:[117.000923,36.675807],
+        zoom:11
+    });
+</script>
+</body>
+</html>

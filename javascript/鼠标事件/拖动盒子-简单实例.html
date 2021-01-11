@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="container">
+
+</div>
+<script>
+    var drag = {
+        el: document.getElementById('container'),
+        offsetX: '',
+        offsetY: '',
+        mouseDown: function () {
+            drag.el.onmousedown = function (event) {
+                event = event || window.event;
+                drag.offsetX = event.offsetX;
+                drag.offsetY = event.offsetY;
+                drag.el.onmousemove = drag.mouseMove;
+            }
+        },
+        mouseUp: function () {
+            drag.el.onmouseup = function () {
+                drag.el.onmousemove = null;
+            }
+        },
+        mouseMove: function (event) {
+            event = event || window.event;
+            var x = event.clientX - drag.offsetX;
+            var y = event.clientY - drag.offsetY;
+            drag.el.style.left = x + 'px';
+            drag.el.style.top = y + 'px';
+        },
+        start: function () {
+            drag.mouseDown();
+            drag.mouseUp();
+        }
+    };
+    drag.start();
+</script>
+</body>
+</html>

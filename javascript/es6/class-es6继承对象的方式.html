@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 人
+    class People {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+            this.talk = () => {
+                console.log('hello world');
+            }
+        }
+    }
+
+    // 男人
+    class Man extends People {
+        constructor(name,age,sex) {
+            super(name,age);
+            this.sex = sex;
+        }
+        play(){
+            console.log('打游戏');
+        }
+
+    }
+
+    let man = new Man('张三',19,'男');
+    console.log(man);
+    man.talk();
+    man.play();
+</script>
+</body>
+</html>

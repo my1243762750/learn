@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 文件名称验证 不能包含\/:*?"<>|中的任意字符
+    var reg1 = /[||<|>|"|?|*|:|/|\\]/g
+    // 文件名中不能包含\/:*?"<>|#&中的任意字符,首尾不能有空字符(空格、制表符、换页符等空白字符的其中任意一个),文件名尾不能为.号（华润附件上传验证）
+    var reg2 = /^\s+|[&|#|||<|>|"|?|*|:|/|\\|\s]+|[\s|.]+$/g
+    // 数字
+    function isNumber(val) {
+        if (val === 0) {
+            return true
+        } else if (val) {
+            if (typeof val === 'object') {
+                return false
+            } else if (val.toFixed) {
+                return true
+            } else {
+                return /^(-?\d+)(\.\d+)?$/.test(val)
+            }
+        } else {
+            return false
+        }
+    }
+
+    console.log(isNumber(11111111111111111111111111))
+    console.log(isNumber(null))
+    console.log(isNumber(undefined))
+    console.log(isNumber(''))
+    console.log(isNumber(function () {}))
+    console.log(isNumber([]))
+    console.log(isNumber('123'))
+    console.log(isNumber([1]))
+    console.log(isNumber(false))
+    console.log(isNumber(true))
+    console.log(isNumber(1))
+    console.log(isNumber('aaaa'))
+    console.log(isNumber('aaa1a'))
+    console.log(isNumber('0'))
+</script>
+</body>
+</html>

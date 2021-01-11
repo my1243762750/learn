@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>echarts 总结</h4>
+    <ul>
+        <li>使用比较简单 一个容器+配置参数即可</li>
+        <li>常用的几个参数项 title legend xAxis yAxis grid series;</li>
+        <li><a href="https://github.com/ecomfe/echarts/tree/master/map/js">相关js</a></li>
+    </ul>
+</section>
+<div class="main" id="main" style="width: 600px;height: 400px;"></div>
+<script src="js/echarts.min.js"></script>
+<script src="js/china.js"></script>
+<script>
+    let myChart = echarts.init(document.getElementById("main"));
+    let option = {
+        title: {},
+        legend: {},
+        xAxis: {},
+        yAxis: {},
+        grid: {},
+        series: []
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let school = {
+        name: [2,3,4]
+    };
+    let result = '';
+    Object.defineProperty(school, 'name', {
+        get: function(){
+            console.log('调用get方法');
+            return result;
+        },
+        set: function (value) {
+            console.log('set收到的参数' + '\t' + value);
+            console.log('调用set方法');
+            result = value;
+        },
+        enumerable: false,//属性是否可以遍历,默认为false
+        configurable: false//是否可以再次设置以上属性,默认为false
+    });
+    school.name = '南开中学';
+    console.log(school, school.name);
+</script>
+</body>
+</html>

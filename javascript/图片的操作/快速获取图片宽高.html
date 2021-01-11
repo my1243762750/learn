@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li><a href="http://blog.csdn.net/wuchengzhi82/article/details/21466445">快速获取图片的宽高</a></li>
+    </ul>
+</section>
+<script>
+    // 获取图片的宽高
+    // (function (window) {
+    //     var getImgAttr = function (url, callback) {
+    //         var image = new Image()
+    //         image.src = url
+    //         if (image.complete) {
+    //             callback(image)
+    //             return
+    //         }
+    //         image.onload = function () {
+    //             image.onload = null
+    //             callback(image)
+    //         }
+    //     }
+    //
+    //     getImgAttr('./img/test.png', function (image) {
+    //         console.log(image.width, image.height)
+    //     })
+    // })(window)
+
+    // 快速获取图片的宽高
+    (function (window) {
+        var getImgAttr = function (url, callback) {
+            var image = new Image()
+            image.src = url
+            var timer = setInterval(function () {
+                if (image.width || image.height) {
+                    clearInterval(timer)
+                    callback(image)
+                }
+            }, 50)
+        }
+
+        getImgAttr('./img/test.png', function (image) {
+            console.log('完成')
+            console.log(image.width, image.height)
+            console.log('完成')
+        })
+    })(window)
+</script>
+</body>
+</html>

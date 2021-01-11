@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: sans-serif,Comfortaa, 微软雅黑, 宋体;
+            /*background-color: navajowhite;*/
+            /*background: linear-gradient(45deg, #71BA51, #00B16A);*/
+            /*background: url(img/login_background.jpg) no-repeat;*/
+            background-color: palegoldenrod;
+            background-size: cover;
+            /*background-position: 50% 0%;*/
+            /*background: -webkit-linear-gradient(135deg, #8b61ab 0, #CD9B9B 70%, #fff);*/
+            /*width: 500px;*/
+            /*background-repeat: no-repeat;*/
+            /*float: left;*/
+            opacity: 0.9;
+        }
+
+        .my-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            resize: both; /*用于设置了所有除overflow为visible的元素*/
+            border: solid 1px black;
+            border-radius: 10px;
+            background-color: silver;
+        }
+
+        .user-img-warp {
+            margin-bottom: -50px;
+        }
+
+        .user-info {
+            border-top: solid 1px;
+            border-bottom: solid 1px;
+        }
+
+        .login-warp {
+            padding: 10px;
+            border-bottom: solid 1px;
+        }
+
+        .more-info {
+            padding: 30px;
+        }
+
+        /* 超小设备（手机，小于 768px） */
+        @media (max-width: 768px) {
+            /*body{
+                background: url(img/768.jpg);
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }*/
+            .my-container {
+                width: 60%;
+                height: 410px;
+            }
+
+            .system-name {
+                font-size: 18px;
+            }
+
+            .user-img-warp {
+                margin-bottom: -30px;
+            }
+
+            .user-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .user-info {
+                padding: 40px 30px 10px 30px;
+            }
+
+            .face-login, .fingerprint-login {
+                width: 38px;
+                height: 38px;
+            }
+
+            .login-warp {
+                padding: 6px;
+            }
+
+            .more-info {
+                padding: 10px;
+            }
+        }
+
+        /* 小型设备（平板电脑，768px 起） */
+        @media (min-width: 768px) {
+            /*body{
+                background: url(img/768.jpg);
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }*/
+            /*.my-container {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 280px;
+                height: 410px;
+                resize: both; !*用于设置了所有除overflow为visible的元素*!
+                !*overflow:hidden;*!
+                border: solid 1px black;
+                border-radius: 10px;
+                background-color: silver;
+            }*/
+
+            .my-container{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 280px;
+                height: 410px;
+                border: solid 1px black;
+                border-radius: 10px;
+            }
+
+            .system-name {
+                font-size: 18px;
+            }
+
+            .user-img-warp {
+                margin-bottom: -30px;
+            }
+
+            .user-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .user-info {
+                padding: 40px 30px 10px 30px;
+            }
+
+            .face-login, .fingerprint-login {
+                width: 38px;
+                height: 38px;
+            }
+
+            .login-warp {
+                padding: 6px;
+            }
+
+            .more-info {
+                padding: 10px;
+            }
+        }
+
+        /* 中型设备（台式电脑，992px 起） */
+        @media (min-width: 992px) {
+            /*body{
+                background: url(img/992.jpg);
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }*/
+            .my-container {
+                width: 320px;
+                height: 470px;
+            }
+
+            .system-name {
+                font-size: 24px;
+            }
+
+            .user-img-warp {
+                margin-bottom: -40px;
+            }
+
+            .user-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .user-info {
+                padding: 50px 40px 15px 40px;
+            }
+
+            .face-login, .fingerprint-login {
+                width: 44px;
+                height: 44px;
+            }
+
+            .login-warp {
+                padding: 8px;
+            }
+
+            .more-info {
+                padding: 20px;
+            }
+        }
+
+        /* 大型设备（大台式电脑，1200px 起） */
+        @media (min-width: 1200px) {
+            body{
+                /*font-family: 微软雅黑, 宋体;*/
+                /*background: url(img/login_background.jpg);
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;*/
+            }
+            .my-container {
+                width: 360px;
+                height: 540px;
+            }
+
+            .system-name {
+                font-size: 30px;
+            }
+
+            .user-img-warp {
+                margin-bottom: -50px;
+            }
+
+            .user-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .user-info {
+                padding: 60px 50px 20px 50px;
+            }
+
+            .face-login, .fingerprint-login {
+                width: 50px;
+                height: 50px;
+            }
+
+            .login-warp {
+                padding: 10px;
+            }
+
+            .more-info {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+<section>
+    <!--<h1>登录</h1>-->
+    <div class="container my-container" id="myContainer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center system-name" style="margin: 10px 0;"><span>三期登录系统</span><span>v1.0</span></div>
+                <div class="text-center user-img-warp">
+                    <img class="img-circle user-img" src="img/head.jpg" alt="" width="100" height="100">
+                </div>
+                <form class="form-horizontal user-info" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                            <input class="form-control" type="text" placeholder="name" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                            </div>
+                            <input class="form-control" type="password" placeholder="password" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-block">登录</button>
+                    </div>
+                </form>
+                <div class="text-center login-warp">
+                    <a href="##"><img class="img-circle face-login" src="img/face.png" alt="face" width="50"
+                                      height="50"></a>
+                    <a href="##"><img class="img-circle fingerprint-login" src="img/fingerprint.png" alt="fingerprint"
+                                      width="50"
+                                      height="50"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center more-info">
+                <a href="##" style="color: #333;"><span class="glyphicon glyphicon-download-alt">附件下载</span></a>
+                <a href="##" style="margin:0 5px;color: #333;"><span class="glyphicon glyphicon-book">操作手册</span></a>
+                <a href="##" style="color: #333;"><span class="glyphicon glyphicon-chevron-down">更新日志</span></a>
+            </div>
+        </div>
+        <div class="text-center" style="padding:10px 30px;border-top: solid 1px #fff;">
+            <span class="glyphicon glyphicon-phone-alt"></span>
+            <span>12345678</span>
+        </div>
+    </div>
+</section>
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var clientWidth = 0,
+            marginLeft,
+            dMyContainer = document.getElementById("myContainer");
+    if (document.compatMode === "CSS1Compat") {//strict mode
+        clientWidth = document.documentElement.clientWidth;
+    } else if (document.compatMode === "BackCompat") {//quirks mode
+        clientWidth = document.body.clientWidth;
+    } else {
+        console.log("无法获取浏览器宽度");
+    }
+
+    if (clientWidth < 768) {
+        dMyContainer.style.margin = "auto";
+    } else if(clientWidth < 1200){
+        marginLeft = clientWidth / 1.618;
+        dMyContainer.style.marginLeft = (marginLeft - 60) + "px";
+    }else {
+        marginLeft = clientWidth / 1.618;
+        dMyContainer.style.marginLeft = marginLeft + "px";
+    }
+
+    window.onresize = function () {
+        if (document.compatMode === "CSS1Compat") {//strict mode
+            clientWidth = document.documentElement.clientWidth;
+        } else if (document.compatMode === "BackCompat") {//quirks mode
+            clientWidth = document.body.clientWidth;
+        } else {
+            console.log("无法获取浏览器宽度");
+        }
+
+        if (clientWidth < 768) {
+            dMyContainer.style.margin = "auto";
+        } else if(clientWidth < 1200){
+            marginLeft = clientWidth / 1.618;
+            dMyContainer.style.marginLeft = (marginLeft - 60) + "px";
+        }else {
+            marginLeft = clientWidth / 1.618;
+            dMyContainer.style.marginLeft = marginLeft + "px";
+        }
+    }
+
+</script>
+</body>
+</html>
