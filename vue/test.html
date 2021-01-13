@@ -5,6 +5,25 @@
     <title>Vue</title>
 </head>
 <body>
+    <p>
+        =====vue源码剖析2资料=====
+https://www.processon.com/view/link/5e830387e4b0a2d87023890a#map
+
+$createElement -> createElement -> _createElement -> resolveAsset -> createComponent
+=> installComponentHooks => componnetVNodeHooks => init
+
+src\core\global-api\assets.js
+	initAssetRegisters()
+	this.options._base.extend(definition)
+	
+src\core\vdom\create-element.js
+	生成虚拟dom 安装钩子
+	createComponent
+
+src\core\vdom\patch.js
+	生成真实dom
+	createComponent
+    </p>
     <div id="demo">
         <h1>Vue组件化机制</h1>
         <comp></comp>
@@ -15,7 +34,22 @@
         template: '<div>I am comp</div>'
     })
     let vue = new Vue({
-        el: '#demo'
+        el: '#demo',
+        beforeCreate() {
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        created() {
+            console.log('=====created=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        beforeMount() {
+            console.log('=====beforeMount=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        mounted() {
+            console.log('=====mounted=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
     });
 </script>
 </body>
