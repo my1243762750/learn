@@ -5,37 +5,17 @@
     <title>Vue</title>
 </head>
 <body>
-<section>
-    <ul>
-        <li>在created方法中获取数据性能略微高一点</li>
-    </ul>
-</section>
-<section id="app">
-    {{name}}<br>
-<!--    {{age}}-->
-</section>
-<script src="lib/vue.min-2.4.0.js"></script>
+    <div id="demo">
+        <h1>Vue组件化机制</h1>
+        <comp></comp>
+    </div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
 <script>
+    Vue.component('comp', {
+        template: '<div>I am comp</div>'
+    })
     let vue = new Vue({
-        el: '#app',
-        created() {
-            console.log('=====created=====')
-        },
-        mounted() {
-            console.log('=====mounted=====')
-            this.$set(this, 'age', '123');
-            console.log(this.age);
-        },
-        data() {
-            return {
-                name: 'zhangsan',
-            }
-        },
-        methods: {
-            say() {
-                console.log('hello world')
-            }
-        }
+        el: '#demo'
     });
 </script>
 </body>
