@@ -380,7 +380,7 @@
     }
 </script>
 
-<style scoped rel="stylesheet/scss" lang="scss">
+<style scoped lang="scss">
 $websiteItemSpace: 10px;
 $websiteItemWidth: 10%;
 $websiteItemHeight: 50px;
