@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 数组解构-基本
+    //    let [a, b, c] = [1, 2, 3];
+    //    console.log(a);
+    //    console.log(b);
+    //    console.log(c);
+    // 数组解构-嵌套
+//    let [a, b, [c, d]] = [1, 2, [3, 4]];
+//    console.log(a);
+//    console.log(b);
+//    console.log(c);
+//    console.log(d);
+
+    // 对象结构
+    let user = {
+        name:'zhangsan',
+        age: 19
+    };
+    let {name:cname,age:cage} = user;
+    let {name,age} = user;
+    console.log(name,age);
+//    console.log(cname);
+//    console.log(cage);
+
+    let get = ({name,age}) => {
+        console.log(`姓名${name},${age}`);
+    }
+//    console.log('zhangsan',10);
+    console.log(get(user));
+</script>
+</body>
+</html>
