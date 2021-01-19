@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let lastWord = 'last word';
+        let keyA = { a: 1 };
+        const a = {
+            ['h' + 'ello']() { },
+            [keyA]: 'valueA',
+            [lastWord]: 'world'
+        }
+
+        // super === this.__proto__
+
+        // let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+        // x // 1
+        // y // 2
+        // z // { a: 3, b: 4 }
+
+        // let obj = { a: { b: 1 } };
+        // let { ...x } = obj;
+        // obj.a.b = 2; // 修改obj里面a属性中键值
+        // x.a.b // 2，影响到了结构出来x的值
+    </script>
+</body>
+
+</html>
