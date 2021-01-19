@@ -142,7 +142,7 @@
 </template>
 
 <script>
-    import menu from '@/assets/menuData/menu.json'
+    // import menu from '@/assets/menuData/menu.json'
     export default {
         name: "website",
         data() {
@@ -201,17 +201,17 @@
                     websiteList = JSON.parse(websiteList) || []
                     websiteList.length && (this.websiteList = websiteList)
                 }
-                console.log('获取到的菜单是', menu)
-                this.websiteList = menu
+                // console.log('获取到的菜单是', menu)
+                // this.websiteList = menu
             },
             // 保存网站(同事保存在localStorage和menu.json)
             saveWebsiteList(list) {
                 window.localStorage.setItem('websiteList', JSON.stringify(list))
                 // const url = 'http://localhost:9001/saveMenu'
-                const url = 'http://172.16.11.55:9001/saveMenu'
-                this.request(url, list, () => {
+                // const url = 'http://172.16.11.55:9001/saveMenu'
+                // this.request(url, list, () => {
 
-                })
+                // })
                 this.$message({
                     type: 'success',
                     message: '保存成功'
