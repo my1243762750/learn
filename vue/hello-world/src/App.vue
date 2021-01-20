@@ -10,21 +10,11 @@
 </template>
 
 <script>
-    import HelloWorld from './components/HelloWorld.vue'
-    import QRCode from './components/QRCode.vue'
-    import VMap from './components/VMap/index1.vue'
-    import saveMap from './components/AMap/saveAMap.vue'
-    import saveImage from './components/saveImage.vue'
     import website from './components/website.vue'
 
     export default {
         name: 'app',
         components: {
-            HelloWorld,
-            QRCode,
-            VMap,
-            saveMap,
-            saveImage,
             website
         }
     }
