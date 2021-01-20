@@ -13,11 +13,7 @@
             <tr>
                 <!--循环列-->
                 <th class="border" v-for="child in list" :key="getKey(child)">
-                    <span>{{ child.label }}</span>
-                    <div v-if="isShowSortable(child.attrs, 'sortable')" class="inline-block pointer">
-                        <span class="arrow-down" :class="{'arrow-active': child.activeArrow === 'down'}" @click="activeToggle(child, 'down')">&#8595;</span>
-                        <span class="arrow-up" :class="{'arrow-active': child.activeArrow === 'up'}" @click="activeToggle(child, 'up')">&#8593;</span>
-                    </div>
+                    <my-table-column :sortable="child.attrs.sortable" :label="child.label" :row="child" @sort="sort"></my-table-column>
                 </th>
             </tr>
             </thead>
@@ -32,7 +28,7 @@
             <tr v-for="item in data" :key="getKey(item)">
                 <!--循环列-->
                 <td class="border" v-for="child in list" :key="getKey(child)">
-                    {{ item[child.attrs.prop] }}
+                    <my-table-column :label="item[child.attrs.prop]"></my-table-column>
                 </td>
             </tr>
             </tbody>
@@ -41,9 +37,12 @@
 </template>
 
 <script>
-    // import MyTableColumn from "./MyTableColumn";
+    import MyTableColumn from "./MyTableColumn";
     export default {
         name: "Table",
+        components: {
+            MyTableColumn
+        },
         props: {
             data: {
                 type: Array,
@@ -58,24 +57,25 @@
             }
         },
         mounted() {
-            console.log(this, this.$refs['hiddenSlot'].childNodes)
+            console.log(this)
             this.initList()
         },
         methods: {
             getKey(item) {
                 return JSON.stringify(item) || Date.now()
             },
-            getRowKeys(item) {
-                return Object.keys(item)
-            },
-            activeToggle(item, arrowText) {
-                this.$set(item, 'activeArrow', arrowText)
-            },
-            sort() {
-
-            },
-            isShowSortable(obj = {}, key) {
+            isShowSortable(obj, key) {
                 return Object.prototype.hasOwnProperty.call(obj, key)
+            },
+            sort(prop, arrowText) {
+                this.data = this.data.sort((item1, item2) => {
+                    if (arrowText === 'down') {
+                        return new Date(item1[prop]).getTime() - new Date(item2[prop]).getTime()
+                    } else {
+                        return new Date(item2[prop]).getTime() - new Date(item1[prop]).getTime()
+                    }
+                })
+                console.log('排序', this.data)
             },
             initList() {
                 this.list = []
@@ -84,7 +84,7 @@
                     this.list.push({
                         id: i + 1,
                         label: item.label,
-                        attrs: item.$attrs
+                        attrs: Object.assign({}, item.$attrs, item.$props)
                     })
                 }
             }
