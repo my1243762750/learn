@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<div id="app">
+    <p>{{counter}}</p>
+    <comp></comp>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+<script>
+    Vue.component('comp', {
+        template: '<div>hello world</div>'
+    })
+    let vue = new Vue({
+        el: '#app',
+        data() {
+            return {
+                count: 0
+            }
+        }
+    }).$mount('#app');
+</script>
+</body>
+</html>

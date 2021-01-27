@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>vue3初始化流程</h4>
+    <ul>
+        <li>createApp  (packages\runtime-dom\src\index.ts)</li>
+        <li>ensureRenderer (packages\runtime-dom\src\index.ts)</li>
+        <li>createRenderer (packages\runtime-dom\src\index.ts)</li>
+        <li>baseCreateRenderer {render, hydrate, createApp: createAppAPI} (packages\runtime-dom\src\index.ts)</li>
+        <li>createAppAPI => createApp (packages\runtime-core\src\apiCreateApp.ts)</li>
+        <li>createApp => app {use, mixin, component, directive, mount, unmount, provide} (packages\runtime-core\src\apiCreateApp.ts)</li>
+        <li>mount ['保存innerHTML到template'] (packages\runtime-dom\src\index.ts)</li>
+        <li>mount ['产生根vnode， 并且把template放到vnode.type里面'] (packages\runtime-core\src\apiCreateApp.ts)</li>
+        <li>render (packages\runtime-core\src\renderer.ts)</li>
+        <li>patch (packages\runtime-core\src\renderer.ts)</li>
+        <li>processComponent (packages\runtime-core\src\renderer.ts)</li>
+        <li>mountComponent ['instance', 'setupComponent', 'setupRenderEffect'] (packages\runtime-core\src\renderer.ts)</li>
+        <li>setupComponent (packages\runtime-core\src\component.ts)</li>
+        <li>setupStatefulComponent (packages\runtime-core\src\component.ts)</li>
+        <li>finishComponentSetup => Component.render (packages\runtime-core\src\component.ts)</li>
+        <li>setupRenderEffect (packages\runtime-core\src\renderer.ts)</li>
+        <li>renderComponentRoot => vnode (packages\runtime-core\src\componentRenderUtils.ts)</li>
+        <li>patch (packages\runtime-core\src\renderer.ts)</li>
+    </ul>
+</section>
+</body>
+</html>
