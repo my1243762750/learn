@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>domain-name</title>
+</head>
+<body>
+<article>
+    <h3>域名的常识</h3>
+    <p>
+        <span>.com ---商业公司 ； .org ---组织、协会等 ；</span><br>
+        <span>.net ---网络服务 ； .edu ---教育机构 ；</span><br>
+        <span>.gov ---政府部门 ； .mil ---军事领域 ；</span><br>
+        <span>.arts---艺术机构 ； .firm---商业公司 ；</span><br>
+        <span>.info---提供信息的机构； .nom ---个人或个体 ；</span><br>
+        <span>.rec ---消遣机构 ； .store--商业销售机构 ；</span><br>
+        <span>.web ---与WWW相关的机构。
+        由于国际域名资源有限，各个国家、地区在域名最后加上了国家标识段，由此形成了各个国家、地区自己的国内域名。
+        国别的最高层域名：</span><br>
+        <span>.cn ---中国； .au ---澳大利亚 ； .jp ---日本等。
+        通常，我们又有国内域名和国际域名的说法。其区别在于域名后面是否加有："CN" 。</span><br>
+        </p>
+</article>
+<hr>
+<article>
+    <h3>域名的规则</h3>
+    <p>
+        比如您注册的域名是abc.com,那么他是由一个字符串加一个域名尾，中间用.号隔开。
+        这就是一个顶级域名，如果在顶级域名前在由.隔开加上不同的字符，比如bbs.abc.com,那么我们就说bbs是顶级域名abc.com的一个主机名，bbs.abc.com就是一个二级域名。
+        如果我们继续扩展该域名的主机名，设置主机名为bbs.at,那么就可以建立一个三级域名：bbs.at.abc.com，
+        当然也可以建立四级域名bbs.at.go.abc.com，
+        五级域名bbs.at.go.home.abc.com……，
+        依次类推，可以建立无限级别的域名，我们统称这些域名为顶级域名abc.com的子域名。
+    </p>
+</article>
+<hr>
+<article>
+    <h3>注册域名的网站</h3>
+    <ul>
+        <li>万网</li>
+        <li>阿里云</li>
+        <li>新网</li>
+    </ul>
+</article>
+<hr>
+<article>
+    <h3>公司内网映射外网的工具</h3>
+    <ul>
+        <li>nat123</li>
+        <li>花生壳</li>
+        <li>金万维</li>
+        <li><a href="http://blog.csdn.net/avi9111/article/details/52432001">花生壳和nat123映射区别</a></li>
+    </ul>
+</article>
+<hr>
+<hr>
+<hr>
+<hr>
+<article>
+    <h3>域的概念</h3>
+    <p>
+        域(Domain)是Windows网络中独立运行的单位，域之间相互访问则需要建立信任关系(即Trust Relation)。信任关系是连接在域与域之间的桥梁。当一个域与其他域建立了信任关系后，2个域之间不但可以按需要相互进行管理，还可以跨网分配文件和打印机等设备资源，使不同的域之间实现网络资源的共享与管理。
+    </p>
+</article>
+<hr>
+<article>
+    <h3>同源策略</h3>
+    <p>
+        由NetScape提出的著名的安全策略，同源策略的含义是：限制了一个源中加载文本或脚本与来自其它源中资源的交互方式，说白了就是不允许不同源(域)之间的资源交互；但是，同源策略限制的不同源之间的交互主要针对的是XMLHttpRequest请求，并没有限制html一些标签的属性如src，href等请求；于是乎跨域请求就能够做到了。
+    </p>
+</article>
+<hr>
+<article>
+    <h3>跨域原理和实现方式种类</h3>
+    <p>
+        所有支持javaScript的浏览器都使用同源策略，所以浏览器是不允许跨域访问的；但由于同源策略针对的是XMLHttpRequest请求，并没有限制src，href，所以我们可以利用src，href等属性实现跨域请求；于是乎像jsonp，iframe，location.hash，window.name的跨域的方式就出来了，另外CORS和html5的postMessage也可以实现跨域；
+    </p>
+</article>
+<hr>
+<article>
+    <h3>跨域请求更多详情--如何跨域请求</h3>
+    <dl>
+        <dd><a href="http://blog.csdn.net/joyhen/article/details/21631833">前端解决跨域问题的8种方案（最新最全）</a></dd>
+        <dd><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解</a></dd>
+    </dl>
+</article>
+<hr>
+</body>
+</html>
