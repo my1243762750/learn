@@ -10,6 +10,9 @@
     </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
 <script>
+    console.log('Vue.prototype', Vue.prototype)
+    console.log('Object.keys', Object.keys(Vue))
+    console.log('Object.getOwnPropertyNames', Object.getOwnPropertyNames(Vue))
     let vue = new Vue({
         el: '#demo',
         beforeCreate() {
@@ -28,6 +31,7 @@
             console.log('=====beforeCreate=====', this, this.$options)
         },
     });
+    console.log(vue)
 </script>
 </body>
 </html>
