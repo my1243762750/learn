@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        console.log('this is', this)
+        // return false
+    }
+
+    Person.prototype.say = function() {
+        console.log('hello world')
+    }
+
+    let person1 = new Person('zhangsan', 19)
+    console.log(person1)
+    /**
+     * new干了什么？
+     * 1如果是基本类型就创建一个对象，并且返回；如果是引用类型就返回引用类型
+     * 2对象的原型指向Person.prototype
+     * 3改变Person里面this的指向
+     */
+
+    // 手动实现new，由于new是关键字，我们通过函数模拟
+    function myNew() {
+        let obj = {}
+        let [fn, ...params] = [...arguments]
+        obj.__proto__ = fn.prototype
+        fn.apply(obj, params)
+        return obj
+    }
+
+    let person2 = myNew(Person, 'zhangsan', 19, 20)
+    console.log(person2)
+
+</script>
+</body>
+</html>
