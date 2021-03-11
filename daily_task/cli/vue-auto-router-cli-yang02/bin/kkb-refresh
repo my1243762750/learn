@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+
+// log-symbols, 各种日志级别的彩色符号
+const symbols = require("log-symbols");
+
+// chalk 这个包是为了使输出不再单调,添加文字背景什么的,改变字体颜色什么的
+const chalk = require("chalk");
+const fs = require("fs");
+const handlebars = require("handlebars");
+
+
+// 读取views里面的页面内容, template模板需要
+// kkb refresh 在哪个文件夹执行，就获取当前文件夹下的src
+const list = fs.readdirSync("./src/views")
+			   .filter(v => v !== 'Home.vue')
+			   .map(v => ({
+							'name': v.replace('.vue', '').toLowerCase(),
+							'file': v
+				 }));
+console.log("list>>>", list);
+
+/*
+ 编译模板文件
+ data： 数据定义
+ filePath：目标文件路径
+ templatePath: 模板文件路径
+*/
+function compile(data, filePath, templatePath){
+	if(fs.existsSync(templatePath)){
+		// 读取模板文件
+		const source = fs.readFileSync(templatePath).toString();
+		// 通过hbs编译模板文件
+		const result = handlebars.compile(source)(data);
+		// 写入文件
+		fs.writeFileSync(filePath, result);
+
+		console.log(symbols.success, chalk.green(`${filePath} 创建成功!`));
+	}
+};
+
+
+// 进入项目执行 kkb refresh
+program.action( ()=>{
+	console.log(`refresh命令执行......`);
+	
+	// 生成路由定义
+	compile({list}, './src/router.js', './template/router.js.hbs');
+	// 生成菜单
+	compile({list}, './src/App.vue', './template/App.vue.hbs');
+});
+
+program.parse(process.argv);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+{
+  "_from": "vue-auto-router-cli-yang",
+  "_id": "vue-auto-router-cli-yang@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha1-JGrWWvadOXnEC60Lb9Mix41HbYw=",
+  "_location": "/vue-auto-router-cli-yang",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "vue-auto-router-cli-yang",
+    "name": "vue-auto-router-cli-yang",
+    "escapedName": "vue-auto-router-cli-yang",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vue-auto-router-cli-yang/download/vue-auto-router-cli-yang-1.0.6.tgz",
+  "_shasum": "246ad65af69d3979c40bad0b6fd322c78d476d8c",
+  "_spec": "vue-auto-router-cli-yang",
+  "_where": "C:\\Users\\jamei\\IdeaProjects\\learn\\daily_task\\test-cli",
+  "author": {
+    "name": "james.yang"
+  },
+  "bin": {
+    "kkb": "bin/kkb"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "clear": "^0.1.0",
+    "commander": "^4.0.1",
+    "download-git-repo": "^3.0.2",
+    "figlet": "^1.5.0",
+    "handlebars": "^4.7.6",
+    "log-symbols": "^3.0.0",
+    "open": "^7.3.1",
+    "ora": "^4.0.3"
+  },
+  "deprecated": false,
+  "description": "脚手架 -- 通过 download-git-repo 下载vue模板vue-template 以及根据views文件夹的文件自动更新路由信息和app.vue",
+  "keywords": [
+    "脚手架",
+    "CLI",
+    "VUE",
+    "前端工程化",
+    "download-git-repo"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "vue-auto-router-cli-yang",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.6"
+}

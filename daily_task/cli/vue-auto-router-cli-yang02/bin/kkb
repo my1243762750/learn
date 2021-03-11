@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+// 指定脚本解释器为node, node环境下运行
+// npm link 将npm 模块链接到全局，这样就能在需要的文件夹运⾏
+
+const program = require("commander");
+
+program.version(require('../package').version, '-v, --version')
+       .option('-p, --peppers', 'Add peppers')
+       .command('init <name>', 'init project')
+       .command('refresh', 'refresh routers ...')
+
+
+     
+/*
+  // [ 'E:\\node\\新建文件夹\\node.exe',
+  // 'E:\\node\\新建文件夹\\node_modules\\vue-auto-router-cli-yang\\bin\\kkb' ]    
+
+  process.argv[0] —— Node.js进程所在的绝对路径
+  process.argv[1] —— 为当前执行的JavaScript文件路径
+  剩余的元素为其他命令行参数
+*/
+// console.log(process.argv);
+program.parse(process.argv);      
+
+
+if (program.peppers) console.log('peppers>>>>>');
+
+
+/*
+       执行kkb:
+              Options:
+                     -v, --version  output the version number
+                     -p, --peppers  Add peppers
+                     -h, --help     output usage information
+
+              Commands:
+                     init <name>    init project
+                     refresh        refresh routers ...
+                     help [cmd]     display help for [cmd]
+*/

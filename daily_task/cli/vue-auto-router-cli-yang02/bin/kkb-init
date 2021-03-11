@@ -1,0 +1,72 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const { clone } = require("../lib/download.js");
+const { promisify } = require('util');
+
+// 酷炫的文字工具
+const figlet = promisify(require('figlet'));
+// 清除控制台
+const clear = require('clear');
+// 终端字符串美化
+const chalk = require('chalk');
+const open = require('open');
+
+const log = content => console.log(chalk.green(content));
+
+const spawn = async (...args) => {
+  // 子进程
+  const { spawn } = require('child_process');
+
+  return new Promise(resolve => {
+      const proc = spawn(...args);
+      // 子进程成功失败的流导入到主进程的流中
+      proc.stdout.pipe(process.stdout);
+      proc.stderr.pipe(process.stderr);
+      // 执行完成
+      proc.on('close', () => {
+          resolve();
+      });
+  })
+};
+
+
+program.action(async name => {
+  name = name.args[0];
+  
+  clear();
+  // 打印欢迎画面
+  const data = await figlet('KKB Welcome');
+  log(data);
+  // 创建项目
+  log(`🚀创建项目: ` + name);
+
+  // 克隆代码
+  await clone('github:yangxinquan0902/vue-template', name);
+
+  log('安装依赖');
+
+  // 解决问题：[Error: spawn ENOENT]
+  let comd = process.platform === "win32" ? "cnpm.cmd" : "cnpm";
+  let comd2 = process.platform === "win32" ? "npm.cmd" : "npm";
+  // child_process.spawn(command[, args][, options])
+  await spawn(comd, ['install'], { cwd: `./${name}` }); // 命令行自动进入./aa文件夹，执行 cnpm i
+
+  log(`
+    👌安装完成：
+    To get Start:
+    ===========================
+        cd ${name}
+        npm run serve
+    ===========================
+  `);
+  
+  log('打开浏览器');
+  
+  open('http://localhost:8080');
+  await spawn(comd2, ['run', 'serve'], { cwd: `./${name}` });
+
+});
+
+// 解析命令行参数
+program.parse(process.argv); 

@@ -8,6 +8,9 @@ program.command('init <name>')
     /*.action(name => {
         console.log('init ' + name)
     })*/
+program.command("refresh")
+    .description('refresh router..')
+    .action(require('../lib/refresh'))
 program.parse(process.argv)
 console.log('cli', process.argv)
 
