@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = {}
+Object.defineProperty(obj, 'name', {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: 'zhangsan'
+})
+    console.log('obj.name', obj.name)
+    obj.name = 'lisi'
+    console.log('obj.name', obj.name)
+    delete obj.name
+    console.log('obj.name', obj.name)
+    for(const key in obj){
+        console.log(key)
+
+    }
+</script>
+</body>
+</html>

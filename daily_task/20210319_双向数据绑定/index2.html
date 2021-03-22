@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div">a</div>
+<input id="input" value="a" type="text">
+<script>
+    // 对象{}, 数组[], 基本类型
+    // 响应式对象
+    function observeObj(obj, key, val) {
+        Object.defineProperty(obj, key, {
+            set(_val) {
+                if (_val !== val) {
+                    val = _val
+                }
+                console.log('set', val)
+            },
+            get() {
+                console.log('get')
+                return val
+            }
+        })
+    }
+
+    // 响应式数组
+    function observeArray(array) {
+        const arr = ['pop', 'unshift', 'push', 'shift', 'splice', 'sort', 'reverse']
+        arr.forEach((key) => {
+            array[key] = function (...args) {
+                Array.prototype[key].apply(array, args)
+                // todo
+                console.log(`调用${key},`, ...args)
+            }
+        })
+    }
+
+    // 响应式数组+对象
+    function observe(params) {
+        const type = Object.prototype.toString.call(params)
+        if (type === '[object Object]') {
+            for (const key in params) {
+                observeObj(params, key, params[key])
+            }
+        } else if (type === '[object Array]') {
+            observeArray(params)
+        }
+    }
+
+    // 测试observe
+    let arr = []
+    let obj = {
+        name: 'zhangsan',
+        child: {
+            name: 'zhangyi'
+        }
+    }
+    observe(arr)
+    observe(obj)
+    arr.push(1)
+    obj.name = 'lisi'
+    obj.name
+    // 不支持子元素改变
+    obj.child.name = 'zhangyiyi'
+</script>
+</body>
+</html>
