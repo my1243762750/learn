@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const func = (function () {
+        let a = 0
+        return function(){
+            return ++a
+        }
+    })()
+    console.log(func())
+    console.log(func())
+    console.log(func())
+</script>
+</body>
+</html>

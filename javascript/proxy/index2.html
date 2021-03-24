@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function observe(params) {
+        return new Proxy(params, {
+            get(target, property) {
+                console.log('get', target, property)
+                return target[property]
+            },
+            set(target, property, value) {
+                console.log('set', target, property, value)
+                target[property] = value
+                return true
+            },
+            deleteProperty(target, property) {
+                console.log('delete',target, property)
+            }
+        })
+    }
+    // let obj = {
+    //     children: []
+    // }
+    // let resObj = observe(obj)
+    // resObj.name = 'zhangsan'
+    // resObj.name
+    // delete resObj.name
+    // obj.children.push(1)
+
+    // let arr = []
+    // let resArr = observe(arr)
+    // resArr.push(1)
+
+    // let obj2 = {
+    //     list: []
+    // }
+    // let resObj2 = observe(obj2)
+    // console.log(resObj2, resObj2.list)
+    // resObj2.list.push(1)
+</script>
+</body>
+</html>
