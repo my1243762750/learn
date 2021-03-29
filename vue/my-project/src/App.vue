@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!--指令-->
-    <button :key="key" v-debounce="add">click me!</button>
-<!--    <button v-debounce="add('item1')">click me!</button>-->
+    <p v-html="test"></p>   <!-- 点击后有弹框 -->
+    <p v-html="sanitizeHTML(test)"></p>   <!-- 点击后有弹框 -->
+    <p v-html="$xss(test)"></p> <!-- click事件被过滤，点击无效果 -->
   </div>
 </template>
 
@@ -11,13 +11,15 @@ export default {
   name: 'App',
   data() {
     return {
-      key: 0
+      test: `<a onclick='alert("xss攻击")'>链接</a>`
     }
   },
   methods: {
-    add(params) {
-      this.key++
-      console.log('add', params)
+    sanitizeHTML(str) {
+      let temp = document.createElement("div");
+      temp.textContent = str;
+      // console.log(temp.innerHTML)
+      return temp.innerHTML;
     }
   }
 }

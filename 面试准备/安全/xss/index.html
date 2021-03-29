@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="input">
+<button id="btn">click</button>
+<div id="div">
+</div>
+<script>
+    let input = document.getElementById('input');
+    let btn = document.getElementById('btn');
+    let div = document.getElementById('div');
+    if (btn.addEventListener) {
+        btn.addEventListener('click', function() {
+            console.log(input.value)
+            // div.innerHTML = input.value;
+            div.textContent = input.value;
+        })
+    } else {
+        btn.attachEvent('onclick', function() {
+            console.log(input.value)
+            // div.innerHTML = input.value;
+        })
+    }
+
+    var sanitizeHTML = function(str) {
+        var temp = document.createElement("div");
+        temp.textContent = str;
+        return temp.innerHTML;
+    };
+    // div.innerHTML = "<img src=x onerror=\"alert(document.cookie)\">";
+
+    div.innerHTML =  sanitizeHTML("<img src=x onerror=\"alert(document.cookie)\">");
+</script>
+</body>
+</html>
