@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 普通递归
+    function factorial1(n) {
+        if (n === 1) {
+            return 1;
+        }
+        return n * factorial1(n - 1);
+    }
+
+    // 尾递归
+    function factorial2(n, total) {
+        if (n === 1) {
+            total = total || n;
+            return total;
+        }
+        return factorial2(n - 1, total ? n * total : n);
+    }
+
+    console.log(factorial1(2, ));
+    console.log(factorial2(2, ));
+</script>
+</body>
+</html>
