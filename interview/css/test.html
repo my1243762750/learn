@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html{
+            font-size: 62.5%;
+            /*font-size: 1%;*/
+        }
+
+        .item1{
+            width: 10em;
+            height: 10em;
+            background-color: palegoldenrod;
+            font-size: 1rem;
+        }
+        .item2{
+            width: 192em;
+            /*width: 136.6em;*/
+            height: 10em;
+            background-color: palegreen;
+            font-size: 10px;
+        }
+        .item3{
+            font-size: 12px;
+        }
+        .item4{
+            /*width: 1920px;*/
+            width: 1366px;
+            height: 100px;
+            background-color: palegreen;
+            font-size: 14px;
+        }
+        .item5{
+            width: 100px;
+            height: 100px;
+            background-color: palegoldenrod;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item1">hello world1</div>
+    <div class="item2">hello world2</div>
+    <div class="item3">hello world3</div>
+    <div class="item4">hello world4</div>
+    <div class="item5">hello world5</div>
+    <div>1em = 16px 不好计算，想变成 1em = 10px，于是在html中设置font-size: 62.5% </div>
+    <div>rem 能自适应？</div>
+    <div>1920 -> 62.5%</div>
+    <div>1366 -> 1366 / 1920 * 62.5% = 44.46%</div>
+    <div>px2rem</div>
+</div>
+</body>
+</html>

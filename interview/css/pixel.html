@@ -102,10 +102,13 @@
         <li>分辨率1366 *  768, DRP = 1, 1px = 1设备独立像素(1366 /  768)</li>
         <li>分辨率1920 * 1080, DRP = 1, 1px = 1设备独立像素(1920 / 1080)</li>
         <li>结论：要适配无需考虑屏幕尺寸，要考虑屏幕分辨率(window.screen.width * window.devicePixelRatio = 分辨率宽)</li>
+        <li>什么是自适应，什么是响应式</li>
         <li>如何适配</li>
         <li>使用(rem,em,vw,%)都可以适配, 不过一般使用(rem, vw)</li>
-        <li>使用px就只能媒体查询布局</li>
-        <li>使用px如何转换成rem, vw</li>
+        <li>rem只能自适应字体大小，不能自适应元素的长宽</li>
+        <li>使用vw才可以自适应布局</li>
+        <li>使用postcss-px-to-viewport 将px 转换成视宽</li>
+        <li>使用postcss-px2vw          将px 转换成视宽</li>
     </ul>
 </section>
 <script>
