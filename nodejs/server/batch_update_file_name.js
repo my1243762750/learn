@@ -19,7 +19,7 @@ const getFileSuffix =  (fileName, splitChar) => {
 }
 
 // 2. 定义目录
-const dirName = ``;
+const dirName = `C:\\Users\\95\\Desktop\\我的文件\\实训\\oracle\\hello\\新建文件夹 (3)`;
 // 3. 读取与改写
 let files = getFileNames(dirName);
 files.forEach((item, i) => {
