@@ -1,29 +1,35 @@
-/**
- * Created by Shinelon on 2017/7/12.
- */
+var fs = require('fs');
 var express = require('express');
-var formidable = require('express-formidable');
+var multer  = require('multer');
 var app = express();
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './my-uploads')
+    },
+    filename: function (req, file, cb) {
+        console.log('file', file);
+        cb(null, file.originalname);
+    }
+})
+var upload = multer({ storage: storage });
 
-//
-app.use(formidable());
-
-//设置跨域访问
-app.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
+// 单文件上传
+app.post('/api/upload', upload.single('file'), function(req, res, next){
+    console.log('收到请求', req.file);
+    res.send({ret_code: '0'});
 });
 
-app.post('/file', function (req, res) {
-    console.log(req.fields);
-    console.log(req.files);
-    // console.log(req.url, req.params, req.query, req.body);
-    // console.log(req.query.userName, req.query.password);
-    res.send('添加成功');
+// 多文件上传
+app.post('/api/mulupload', upload.array('file', 10), function(req, res, next){
+    console.log('收到请求', req.file);
+    res.send({ret_code: '0'});
 });
 
-var server = app.listen(8084, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+app.get('/form', function(req, res, next){
+    var form = fs.readFileSync('./index.html', {encoding: 'utf8'});
+    res.send(form);
 });
+
+
+
+app.listen(3000);
