@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 测试
+    let obj = {
+        name: 'zhangsan',
+        age: 19
+    }
+    let arr = []
+    arr.push(obj)
+    obj.name = 'lisi'
+    console.log(arr);
+
+    // 其他测试
+    let permissionList = [
+        {
+            id: 1,
+            name: 'zhangsan',
+            age: 49,
+            pid: null
+        },
+        {
+            id: 2,
+            name: 'zhangsansan',
+            age: 19,
+            pid: 1
+        },
+        {
+            id: 3,
+            name: 'lisi',
+            age: 49,
+            pid: null
+        }
+    ]
+    let newArr = []
+    let newObj = {}
+    permissionList.forEach((item) => {
+        let {pid, id} = item
+        newObj[id] = item
+        if (pid) {
+            newObj[pid].child = item
+        } else {
+            newArr.push(item)
+        }
+    })
+</script>
+</body>
+</html>

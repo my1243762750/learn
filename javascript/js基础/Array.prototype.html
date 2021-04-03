@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>Array.prototype</h4>
+    <ul>
+        <li>不能被解构</li>
+        <li>不能被循环</li>
+        <li>可以用getOwnPropertyNames获取</li>
+    </ul>
+</section>
+<script>
+    // Array.prototype不能被解构
+    const [concat] = Array.prototype
+    console.log(concat)
+
+    // Array.prototype不能被循环
+    Array.prototype.forEach((item) => {
+        console.log('forEach',item)
+    })
+
+    // 可以用getOwnPropertyNames获取
+    console.log(Object.getOwnPropertyNames(Array.prototype))
+    let arr = [pop, unshift, push, shift, splice, sort, reverse] = Object.getOwnPropertyNames(Array.prototype)
+    arr[0] = null
+    console.log(arr)
+    console.log(Array.prototype)
+</script>
+</body>
+</html>

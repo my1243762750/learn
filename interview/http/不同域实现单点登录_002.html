@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.addEventListener('message', function(event) {
+        localStorage.setItem('token', event.data);
+    })
+</script>
+</body>
+</html>

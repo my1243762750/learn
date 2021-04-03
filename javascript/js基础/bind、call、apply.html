@@ -26,7 +26,7 @@
 </seciton>
 <a href="http://www.jb51.net/article/64397.htm">浅谈javascript中call()、apply()、bind()的用法</a>
 <script>
-    //call或apply判断对象类型
+    // call或apply判断对象类型
     console.log(Object.prototype.toString.call({}));
     console.log(Object.prototype.toString.call([]));
     console.log(Object.prototype.toString.call(1));
@@ -34,7 +34,7 @@
     console.log(Object.prototype.toString.call(undefined));
     console.log(Object.prototype.toString.call(''));
     console.log(Object.prototype.toString.call(false));
-    //call或apply让arguments拥有数组功能
+    // call或apply让arguments拥有数组功能
     test(1,2);
     function test(){
         console.log(arguments,Object.prototype.toString.call(arguments));
@@ -44,8 +44,43 @@
         // arguments.push(3);
         console.log(arguments);
     }
-    //apply让数组拥有求最值功能
+    // apply让数组拥有求最值功能
     console.log(Math.max.apply(null,[1,2,5]));
+</script>
+<script>
+    // bind 用法
+    console.log('=====')
+    let obj = {}
+    function sum(a, b) {
+        console.log(this, a, b, a + b)
+    }
+
+    // 前面参数满了，后面不再接受参数了， 下面几个的结果是一样的
+    sum.bind(obj, 10, 20)()
+    sum.bind(obj, 10, 20)(10)
+    sum.bind(obj, 10)(20)
+    sum.bind(obj)(10,20)
+    sum(10, 20)
+
+    // 普通函数的bind来源于哪里， 是属于Function.prototype
+    console.log(sum, Object.keys(sum), Object.getOwnPropertyNames(sum))
+    console.log(sum.prototype, sum.__proto__, Object.keys(sum.__proto__), Object.getOwnPropertyNames(sum.__proto__))
+
+    // 手写bind方法，在Function.prototype里面添加myBind方法
+    Function.prototype.myBind = function () {
+        let _arguments = [...arguments];
+        const fn = this;
+        return function () {
+            fn.call(...[..._arguments, ...arguments])
+        }
+    }
+
+    console.log('=====myBind=====')
+    sum.myBind(obj, 10, 20)()
+    sum.myBind(obj, 10, 20)(10)
+    sum.myBind(obj, 10)(20)
+    sum.myBind(obj)(10,20)
+    sum(10, 20)
 </script>
 </body>
 </html>

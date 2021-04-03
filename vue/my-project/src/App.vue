@@ -1,43 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <my-table :data="tableData">
-      <my-table-column prop="date" sortable label="日期" width="100"></my-table-column>
-      <my-table-column prop="name" label="姓名" width="100"></my-table-column>
-      <my-table-column prop="address" label="地址" width="100"></my-table-column>
-    </my-table>
+    <p v-html="test"></p>   <!-- 点击后有弹框 -->
+    <p v-html="sanitizeHTML(test)"></p>   <!-- 点击后有弹框 -->
+    <p v-html="$xss(test)"></p> <!-- click事件被过滤，点击无效果 -->
   </div>
 </template>
 
 <script>
-import MyTable from "./components/MyTable";
-import MyTableColumn from "./components/MyTableColumn";
-
 export default {
   name: 'App',
-  components: {
-    MyTable,
-    MyTableColumn
-  },
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      test: `<a onclick='alert("xss攻击")'>链接</a>`
+    }
+  },
+  methods: {
+    sanitizeHTML(str) {
+      let temp = document.createElement("div");
+      temp.textContent = str;
+      // console.log(temp.innerHTML)
+      return temp.innerHTML;
     }
   }
 }

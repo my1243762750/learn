@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=120.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes"/>
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            /*width: 1920px;*/
+            width: 1360px;
+            height: 100px;
+            background-color: palegoldenrod;
+        }
+
+        .container .item1{
+            font-size: 1em;
+        }
+
+        .container .item2{
+            font-size: 12px;
+        }
+
+        .container .item3{
+            font-size: 14px;
+        }
+
+        .container .item4{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item1">hello world1</div>
+    <div class="item2">hello world2</div>
+    <div class="item3">hello world3</div>
+    <div class="item4">hello world4</div>
+</div>
+<section>
+    <h4>px, em, rem, vw(vh), %</h4>
+    <ul>
+        <li>px：绝对单位，页面按精确像素展示</li>
+        <li>em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算，整个页面内1em不是一个固定的值</li>
+        <li>rem：相对单位，可理解为root em, 相对根节点html的字体大小来计算</li>
+        <li>vw(vh)：主要用于页面视口大小布局，在页面布局上更加方便简单</li>
+        <li>%：百分比宽泛的讲是相对于父元素（看下面三条）</li>
+        <li>对于普通定位元素就是我们理解的父元素</li>
+        <li>对于position: absolute;的元素是相对于已定位的父元素</li>
+        <li>对于position: fixed;的元素是相对于 ViewPort（可视窗口）</li>
+    </ul>
+</section>
+<section>
+    <h4>像素</h4>
+    <ul>
+        <li>设备像素比为1:1时，1个CSS像素 = 1个设备独立像素 = 1设备像素</li>
+        <li>设备像素比为2:1时，1个CSS像素 = 1个设备独立像素 = 2设备像素</li>
+        <li>设备像素比为3:1时，1个CSS像素 = 1个设备独立像素 = 3设备像素</li>
+        <li>每英寸像素(PPI) (受屏幕分辨率和尺寸影响)</li>
+        <li>设备像素比(DPR) (受缩放影响，这里的缩放可能是浏览器缩放，也可能是分辨率缩放)</li>
+    </ul>
+</section>
+<section>
+    <h4>设备像素</h4>
+    <ul>
+        <li>设备像素 = 物理像素</li>
+        <li>设备像素的单位：pt</li>
+    </ul>
+</section>
+<section>
+    <h4>设备独立像素</h4>
+    <ul>
+        <li>设备独立像素：它是虚拟像素</li>
+        <li>设备独立像素 = (window.screen.width / window.screen.height)</li>
+        <li>window.screen.width(或height) 受屏幕分辨率缩放的影响</li>
+        <li>window.screen.width * window.devicePixelRatio = 分辨率宽</li>
+        <li>window.screen.height * window.devicePixelRatio = 分辨率高</li>
+    </ul>
+</section>
+<section>
+    <h4>DPR</h4>
+    <ul>
+        <li>DPR = 设备像素 / 设备独立像素</li>
+        <li>可以通过window.devicePixelRatio获取</li>
+    </ul>
+</section>
+<section>
+    <h4>PPI</h4>
+    <ul>
+        <li>每英寸像素</li>
+        <li>
+            <img src="./PPI.jpg" alt="PPI">
+        </li>
+    </ul>
+</section>
+<section>
+    <h4>例子</h4>
+    <ul>
+        <li>分辨率1366 *  768, DRP = 1, 1px = 1设备独立像素(1366 /  768)</li>
+        <li>分辨率1920 * 1080, DRP = 1, 1px = 1设备独立像素(1920 / 1080)</li>
+        <li>结论：要适配无需考虑屏幕尺寸，要考虑屏幕分辨率(window.screen.width * window.devicePixelRatio = 分辨率宽)</li>
+        <li>什么是自适应，什么是响应式</li>
+        <li>如何适配</li>
+        <li>使用(rem,em,vw,%)都可以适配, 不过一般使用(rem, vw)</li>
+        <li>rem只能自适应字体大小，不能自适应元素的长宽</li>
+        <li>使用vw才可以自适应布局</li>
+        <li>使用postcss-px-to-viewport 将px 转换成视宽</li>
+        <li>使用postcss-px2vw          将px 转换成视宽</li>
+    </ul>
+</section>
+<script>
+    // 我的电脑14英寸
+    function getPPI(w, h, size) {
+        return Math.pow(Math.pow(w, 2) + Math.pow(h, 2), 0.5) / size
+    }
+
+    // 获取设备独立像素
+    function getDIP() {
+        return window.screen.width / window.screen.height;
+    }
+
+    // 获取设备像素
+    function getDP() {
+        return window.devicePixelRatio * getDIP()
+    }
+
+    // 以1920 * 1080为准
+    function basicUnitWidth(resolutionWidth) {
+        return 1 / 1920 * resolutionWidth;
+    }
+
+    // 以1920 * 1080为准
+    function basicUnitHeight(resolutionHeight) {
+        return 1 / 1080 * resolutionHeight;
+    }
+
+    // 获取屏幕分辨率宽
+    function getResolutionWidth() {
+        return window.screen.width * window.devicePixelRatio;
+    }
+
+    // 获取屏幕分辨率高
+    function getResolutionHeight() {
+        return window.screen.height * window.devicePixelRatio;
+    }
+
+    // 获取屏幕分辨率
+    function getResolution() {
+        return {
+            width: getResolutionWidth(),
+            height: getResolutionHeight()
+        }
+    }
+
+    // console.log(basicUnitWidth(getResolution().width) * 1920);
+    console.log(getResolution().width)
+
+    // 浏览器放大缩小，不会影响screen.width, screen.height
+    // 屏幕分辨率的放大缩小，会影响screen.width, screen.height
+    console.log(window.screen.width, window.screen.height)
+    console.log(getPPI(1920, 1080, 14))
+    console.log(getPPI(1360, 768, 14))
+    console.log(window.devicePixelRatio)
+    console.log('getDIP', getDIP())
+    console.log('getDP', getDP())
+
+</script>
+</body>
+</html>

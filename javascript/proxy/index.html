@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = {}
+    let resObj = new Proxy(obj, {
+        get(target, property) {
+            console.log('get', target, property)
+        },
+        set(target, property, value) {
+            console.log('set', target, property, value)
+        },
+        deleteProperty(target, property) {
+            console.log('delete',target, property)
+
+        },
+        has() {
+            console.log('has', arguments)
+        }
+    })
+    resObj.name = 'zhangsan'
+    resObj.name
+    // delete resObj.name
+    // for (const key in resObj) {
+    //     console.log(resObj[key])
+    // }
+    // 不支持
+    resObj = '123'
+</script>
+</body>
+</html>

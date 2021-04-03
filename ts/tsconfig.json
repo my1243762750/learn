@@ -1,0 +1,40 @@
+{
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules/**/*"
+  ],
+  "compilerOptions": {
+    // 编译成那个版本的js
+    "target": "ES3",
+    // 采用的模块化的方案
+    "module": "system",
+    // 严格检查 取代下面所有选项
+    "strict": true,
+    // 输出的目录
+    "outDir": "./dist",
+    // 输出合并成文件
+    "outFile": "./dist/app.js",
+    // 是否编译.js文件 和checkJs配套使用
+    "allowJs": true,
+    // 是否检查js语法
+    "checkJs": true,
+    // 是否移除注释
+    "removeComments": true,
+    // 是否生成编译文件
+    "noEmit": false,
+    // 有错误不编译
+    "noEmitOnError": true,
+    // 是否启用严格模式
+    "alwaysStrict": true,
+    // 是否不允许隐式any
+    "noImplicitAny": true,
+    // 是否不允许不明确this
+    "noImplicitThis": true,
+    // 严格的检查空值
+    "strictNullChecks": true
+  }
+  //  "files": []
+
+}

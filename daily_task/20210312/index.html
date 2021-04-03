@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>今日任务</h4>
+    <ul>
+        <li>babel</li>
+        <li>webpack</li>
+        <li>mysql</li>
+    </ul>
+</section>
+<section>
+    <h4>babel</h4>
+    <ul>
+        <li>
+            <div>@babel/polyfill （@babel/polyfill = core/js/stable + regenerator-runtime/runtime）</div>
+            <div>babel7废弃了@babel/babel-polyfill 转而使用core-js和regenerator-runtime</div>
+            <div>模拟一个完成的ES2015+环境，旨在用于应用程序而不是库/工具</div>
+            <div>引入所以未使用的新特性</div>
+            <div>侵入式的引入</div>
+        </li>
+        <li>
+            <div>@babel/babel-runtime</div>
+            <div>模拟一个完成的ES2015+环境</div>
+            <div>按需加载</div>
+            <div>侵入式的引入(不是)</div>
+            <div>不模式实例方法 如：Array.prototype.find</div>
+            <div>需要手动引入</div>
+            <div>配合plugin-transform-runtime使用,就无需手动引入</div>
+            <div>集成了core-js、regenerator、helpers</div>
+        </li>
+        <li>
+            <div>@babel/plugin-transform-runtime</div>
+            <div>分析我们的ast中，是否有引用babel-runtime中的垫片，有，就会在当前模块顶部插入我们需要的垫片</div>
+            <div>把帮助类方法从每次使用前定义改为统一require，精简代码</div>
+        </li>
+        <li>
+            <div>@babel/preset-env</div>
+            <div>将基于你的实际浏览器及运行环境，自动的确定babel插件及polyfill</div>
+            <div>babel-preset-env表现的同babel-preset-latest一样(或者可以说同babel-preset-es2015, babel-preset-es2016, and babel-preset-es2017结合到一起，表现的一致)。</div>
+            <div>useBuiltIns执行是否需要引入polyfill</div>
+        </li>
+        <li>
+            <div>core-js</div>
+            <div>转换一些内置类 (Promise, Symbols等等) 和静态方法 (Array.from 等)。绝大部分转换是这里做的</div>
+            <div>如：require('./modules/es6.string.trim')</div>
+            <div>如：require('./modules/es6.string.includes'</div>
+            <div>如：require('./modules/es7.array.includes')</div>
+            <div>如：require('./modules/es6.promise')</div>
+        </li>
+        <li>
+            <div>helpers</div>
+            <div>精简代码</div>
+        </li>
+        <li>
+            <div>regenerator-runtime/runtime</div>
+            <div>主要是给generator/async做支持的插件</div>
+        </li>
+        <li>@babel/babel-cli 可以使用命令行执行babel</li>
+        <li>@babel/babel-core babel的核心包</li>
+        <li>@babel/babel-node 在node环境使用需要这个（@babel/babel-node = @babel/polyfill + @babel/register）</li>
+        <li>@babel/register 改写require命令，为其加载的文件进行转码，不对当前文件转码</li>
+        <li>@vue/cli-plugin-babel/preset</li>
+        <li>babel-loader 使用webpack时作为一个loader在代码混淆之前进行代码转换</li>
+        <li><a href="https://zhuanlan.zhihu.com/p/43249121">babel更多详情</a></li>
+    </ul>
+</section>
+<section>
+    <h4>babel</h4>
+    <ul>
+        <li>
+            <div>presets 和 plugins区别</div>
+            <div><a href="https://www.cnblogs.com/dapengFly/p/9876915.html">相关链接</a></div>
+        </li>
+        <li>
+            <div>@babel/babel-polyfill到底转换什么</div>
+            <div>polyfill在代码中的作用主要是用已经存在的语法和api实现一些浏览器还没有实现的api，对浏览器的一些缺陷做一些修补</div>
+        </li>
+        <li>core-js怎么使用</li>
+    </ul>
+</section>
+<section>
+    <h4>other</h4>
+    <ul>
+        <li>babel.config.js > .babelrc</li>
+        <li>package.json 和 .babelrc互相排斥</li>
+        <li>babel.config.js 和 package.json同时出现，则合并两则选项作为最后配置</li>
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div">a</div>
+<input id="input" value="a" type="text">
+<script>
+    let div = document.getElementById('div');
+    let input = document.getElementById('input');
+    document.addEventListener('input', function (e) {
+        console.log(e, e.target.value);
+        div.innerHTML = input.value
+    })
+    // let obj = {}
+    // Object.defineProperty(obj, 'name', {
+    //     configuable: true,
+    //     enmuable: true,
+    //     writeable: true,
+    //     value: 123
+    // })
+
+    // 对象{}, 数组[], 基本类型
+    // 对象
+    function observe(obj, key, val) {
+        Object.defineProperty(obj, key, {
+            set(_val) {
+                if (_val !== val) {
+                    val = _val
+                }
+                console.log('set', val)
+            },
+            get() {
+                console.log('get')
+                return val
+            }
+        })
+    }
+
+    // 测试
+    // let obj = {
+    //     name: 'zhangsan'
+    // }
+    // for (const key in obj) {
+    //     observe(obj, key, obj[key])
+    // }
+    // obj.name = 'lisi'
+    // obj.name
+
+    // 数组observe
+    function observeArray(array) {
+        const arr = ['pop', 'unshift', 'push', 'shift', 'splice', 'sort', 'reverse']
+        arr.forEach((key) => {
+            array[key] = function (...args) {
+                Array.prototype[key].apply(array, args)
+                // todo
+                console.log(`调用${key},`, ...args)
+            }
+        })
+    }
+
+    // 测试observeArray
+    // let arr = []
+    // observeArray(arr)
+    // arr.push(1)
+    // arr.splice(0, 1)
+    // console.log(arr, arr.length)
+
+    // 0.1
+    // 0.1 * 2 = 0.2 0
+    // 0.2 * 2 = 0.4 0
+    // 0.4 * 2 = 0.8 0
+    // 0.8 * 2 = 1.6 1
+    // 0.6 * 2 = 1.2 1
+    // 0.2 * 2 = 0.4 0
+    // 0.4 * 2 = 0.8 0
+    // 0.8 * 2 = 1.6 1
+
+    // 0.2
+    // 0.2 * 2 = 0.4 0
+    // 0.4 * 2 = 0.8 0
+    // 0.8 * 2 = 1.6 1
+    // 0.6 * 2 = 1.2 1
+    // 0.2 * 2 = 0.4 0
+    // 0.4 * 2 = 0.8 0
+    // 0.8 * 2 = 1.6 1
+
+    // bignumber.js
+    // Math.js
+    // BigDecimal.js
+    // let a = 100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000
+    // let b = 100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000100000000
+    // console.log(a * b)
+    // console.log(a + b)
+</script>
+</body>
+</html>

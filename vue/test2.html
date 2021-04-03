@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+    <div id="demo">
+        <h1>Vue组件化机制</h1>
+    </div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+<script>
+    console.log('Vue.prototype', Vue.prototype)
+    console.log('Object.keys', Object.keys(Vue))
+    console.log('Object.getOwnPropertyNames', Object.getOwnPropertyNames(Vue))
+    let vue = new Vue({
+        el: '#demo',
+        beforeCreate() {
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        created() {
+            console.log('=====created=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        beforeMount() {
+            console.log('=====beforeMount=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+        mounted() {
+            console.log('=====mounted=====')
+            console.log('=====beforeCreate=====', this, this.$options)
+        },
+    });
+    console.log(vue)
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>arguments</h4>
+    <ul>
+        <li>arguments 可以被...展开</li>
+        <li>arguments 可以用for of遍历</li>
+        <li>arguments 不可以用forEach遍历</li>
+        <li>arguments 不可被slice截取</li>
+        <li>arguments 不是数组</li>
+    </ul>
+</section>
+<script>
+    function sum(a, b) {
+        console.log(a, b);
+        console.log(arguments, arguments.length)
+        // arguments是数组？
+        console.log(Object.prototype.toString.call(arguments))
+        for (let item of arguments) {
+            console.log(item)
+        }
+        console.log(arguments.forEach, [].forEach)
+        console.log(...arguments)
+        console.log([...arguments].slice(1))
+    }
+
+    sum(1,2)
+</script>
+</body>
+</html>

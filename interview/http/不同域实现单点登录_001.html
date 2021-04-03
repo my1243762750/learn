@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let token = 'token';
+    let iframe = document.createElement('iframe');
+    iframe.src = 'http://localhost:63342/learn/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/http/%E4%B8%8D%E5%90%8C%E5%9F%9F%E5%AE%9E%E7%8E%B0%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95_002.html?_ijt=ef0la4b1t6gv06d4d7i4go9mio';
+    document.body.appendChild(iframe);
+    setTimeout(function() {
+        iframe.contentWindow.postMessage(token, 'http://localhost:63342');
+    }, 4000)
+    setTimeout(function() {
+        iframe.remove();
+    }, 6000);
+</script>
+</body>
+</html>

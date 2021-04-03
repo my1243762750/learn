@@ -30,5 +30,42 @@
 <section>
     <h4>判断是否为某个构造函数的实例 instanceof来检测</h4>
 </section>
+<script>
+    // typeof 能检测基本类型，但是对于对象，数组，null的检测结果都为obejct
+    typeof 1 // 'number'
+    typeof '1' // 'string'
+    typeof undefined // 'undefined'
+    typeof true // 'boolean'
+    typeof Symbol() // 'symbol'
+    typeof null // 'object'
+    typeof [] // 'object'
+    typeof {} // 'object'
+    typeof console // 'object'
+    typeof console.log // 'function'
+
+    // instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上
+    let Car = function() {}
+    let benz = new Car()
+    benz instanceof Car // true
+    let car = new String('xxx')
+    car instanceof String // true
+    let str = 'xxx'
+    str instanceof String // false
+
+    // 下面的方式可以检测出准确的类型
+    Object.prototype.toString({})       // "[object Object]"
+    Object.prototype.toString.call({})  // 同上结果，加上call也ok
+    Object.prototype.toString.call(1)    // "[object Number]"
+    Object.prototype.toString.call('1')  // "[object String]"
+    Object.prototype.toString.call(true)  // "[object Boolean]"
+    Object.prototype.toString.call(function(){})  // "[object Function]"
+    Object.prototype.toString.call(null)   //"[object Null]"
+    Object.prototype.toString.call(undefined) //"[object Undefined]"
+    Object.prototype.toString.call(/123/g)    //"[object RegExp]"
+    Object.prototype.toString.call(new Date()) //"[object Date]"
+    Object.prototype.toString.call([])       //"[object Array]"
+    Object.prototype.toString.call(document)  //"[object HTMLDocument]"
+    Object.prototype.toString.call(window)   //"[object Window]"
+</script>
 </body>
 </html>

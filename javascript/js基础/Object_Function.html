@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Object Object.prototype
+    // Function Function.prototype
+    // new Object
+    // new Function
+    // new Person
+    // {}
+    let obj3 = new Object()
+    let obj4 = new Function()
+    function Person() {
+
+    }
+    let obj5 = new Person()
+    let obj6 = {}
+    console.log(Object.constructor === Function)
+    console.log(Function.prototype.__proto__ === Object.prototype)
+    console.log(obj3.__proto__ === Object.prototype, obj3.constructor === Object)
+    console.log(obj4.__proto__ === Function.prototype, obj4.constructor === Function)
+    console.log(obj5.__proto__ === Person.prototype, obj5.constructor === Person, obj5.__proto__.__proto__ === Object.prototype, Person.__proto__ === Function.prototype)
+    console.log(obj6.__proto__ === Object.prototype, obj6.constructor === Object)
+</script>
+</body>
+</html>

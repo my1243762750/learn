@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = [1,2,3, [1,2,3, [1,2,3]]]
+    // // 变成
+    // let b = [1,2,3,1,2,3,1,2,3]
+    function flat(arr = [], result = []) {
+        arr.forEach((item) => {
+            if (Object.prototype.toString.call(item) === '[object Array]') {
+                result = [...result, ...flat(item)];
+            } else {
+                result.push(item);
+            }
+        })
+        return result;
+    }
+
+    console.log(flat(a))
+
+    var num = 2.19 + (3.45+1.51+1.53+1.55+2.83+3.95+3.93+3.92+3.96+3.93+3.96+3.93+4.17+4.11+4.17+4.17+4.23+4.86+4.83+4.83+4.83+5.31+5.28+5.37+5.34+5.88+6.09+6.36) * 2;
+    console.log(num)
+</script>
+</body>
+</html>

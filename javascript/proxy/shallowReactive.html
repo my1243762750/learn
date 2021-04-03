@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function shallowReactive(params) {
+        const handler = {
+            get(target, property) {
+                console.log('get', target, property)
+                return target[property]
+            },
+            set(target, property, value) {
+                console.log('set', target, property, value)
+                target[property] = value
+                return true
+            },
+            deleteProperty(target, property) {
+                console.log('delete',target, property)
+            }
+        }
+        return new Proxy(params, handler)
+    }
+    let obj = {
+        age: 10,
+        children: [],
+        other: {
+            name: 'lisi'
+        }
+    }
+    let resObj = shallowReactive(obj)
+    // 添加属性
+    resObj.name = 'zhangsan'
+    // 修改属性
+    resObj.age = 20
+    // 访问属性
+    resObj.name
+    // 删除属性
+    delete resObj.name
+    // 对象本生的改变监听不到
+    resObj = null
+    // 深层次的内容无法监听，proxy是浅监听
+    obj.children.push(1)
+    obj.other.name = 'lisiyi'
+</script>
+</body>
+</html>
