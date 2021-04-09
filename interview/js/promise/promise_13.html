@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const timeout = ms => new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+
+    const ajax1 = () => timeout(2000).then(() => {
+        console.log('1');
+        return 1;
+    });
+
+    const ajax2 = () => timeout(1000).then(() => {
+        console.log('2');
+        return 2;
+    });
+
+    const ajax3 = () => timeout(2000).then(() => {
+        console.log('3');
+        return 3;
+    });
+
+    const mergePromise = ajaxArray => {
+        // 在这里实现你的代码
+        let data = [];
+        let exe = function (ajaxArray, index, resolve, reject) {
+            let promise = ajaxArray[index]();
+            promise.then((val) => {
+                data.push(val);
+                if (ajaxArray[index + 1]) {
+                    exe(ajaxArray, index + 1, resolve, reject);
+                }
+                if (data.length === ajaxArray.length) {
+                    resolve(data);
+                }
+            })
+        }
+        return new Promise((resolve, reject) => {
+            exe(ajaxArray, 0, resolve, reject);
+        })
+    };
+
+    mergePromise([ajax1, ajax2, ajax3]).then(data => {
+        console.log('done');
+        console.log(data); // data 为 [1, 2, 3]
+    });
+</script>
+</body>
+</html>

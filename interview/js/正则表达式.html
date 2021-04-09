@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var source = `<template>
+  <div :class="{'has-logo':showLogo}">
+    <logo v-if="true" :collapse="isCollapse" />
+    <el-scrollbar wrap-class="scrollbar-wrapper">
+      <el-menu
+        :default-active="activeMenu"
+        :collapse="isCollapse"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :unique-opened="false"
+        :active-text-color="variables.menuActiveText"
+        :collapse-transition="false"
+        mode="vertical"
+      >
+        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+      </el-menu>
+    </el-scrollbar>
+    <div style="width: 500px;height: 100px;font-size: 1vw;"></div>
+  </div>
+</template>
+<style></style>
+`
+    const defaultProps = {
+        viewportWidth: 1920,      // 视窗的宽度，对应的是我们设计稿的宽度，一般是1920
+        viewportHeight: 1080,     // 视窗的宽度，对应的是我们设计稿的宽度，一般是1080
+        unitPrecision: 3,		      //单位转换后保留的精度
+        viewportUnit: "vw",		    // 希望使用的视口单位
+        fontViewportUnit: "vw",		//字体使用的视口单位
+    }
+
+    const template = /<template>([\s\S]+)<\/template>/gi
+    const ZPXRegExp = /(\d+)px/ig
+    // const ZPXRegExp = /(\d+)px/
+    // let pxGlobalRegExp = new RegExp(ZPXRegExp.source, 'ig')
+    // console.log(typeof ZPXRegExp.source)
+    // console.log(template.test(source))
+    // console.log(source.match(template)[0])
+    console.log(ZPXRegExp.test(source))
+    console.log(source.replace(ZPXRegExp, pxReplace))
+
+    function pxReplace($0, $1) {
+        console.log($0, $1)
+        if (!$1) return
+        return getViewWidth($1, defaultProps)
+    }
+
+    function getViewWidth(width, defaultProps) {
+        const { viewportUnit, viewportWidth, unitPrecision } = defaultProps
+        const _width = (width / viewportWidth).toFixed(unitPrecision)
+        return _width + viewportUnit
+    }
+
+    function getViewHeight(height, defaultProps) {
+        const { viewportUnit, viewportHeight, unitPrecision } = defaultProps
+        const _height = (height / viewportHeight).toFixed(unitPrecision)
+        return _height + viewportUnit
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <ul>
+        <li><a href="http://www.cnblogs.com/rt0d/archive/2011/04/17/2018646.html">图片预加载</a></li>
+    </ul>
+</section>
+<script>
+    // 图片预加载
+    window.onload = function () {
+        preLoadImage('./img/test.png', function (image) {
+            console.log(image.width, image.height);
+        })
+
+        preloadImages([{
+            url: './img/test.png',
+            callback: function(img){
+                console.log(img.width,img.height);
+            }
+        },{
+            url: './img/test2.png',
+            callback: function(img){
+                console.log(img.width,img.height);
+            }
+        }]);
+    };
+
+    function preLoadImage(url, callback) {
+        var img = new Image();
+        img.onload = function () {
+            // 解决动态图会多次触发onload
+            img.onload = null
+            callback(img);
+        }
+        img.src = url;
+    }
+
+    function preloadImages(images) {
+        images.forEach(function(item) {
+            preLoadImage(item.url, item.callback);
+        })
+    }
+</script>
+</body>
+</html>

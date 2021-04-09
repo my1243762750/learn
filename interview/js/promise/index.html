@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>微任务有哪些，去实现他们</h4>
+    <ul>
+        <li>宏任务(task)包括：script(整体代码), setTimeout, setInterval, setImmediate(nodejs), I/O, UI rendering, xhr回调，事件回调</li>
+        <li>微任务(microtask)包括： Promise.then catch finally, process.nextTick(node.js), Object.observe(被弃用), MutationObserver</li>
+    </ul>
+</section>
+<script src="./promise.js"></script>
+<script>
+    let promise = new MyPromise((resolve, reject) => {
+        console.log(a);
+        resolve(1);
+    });
+    console.log(promise)
+</script>
+</body>
+</html>
