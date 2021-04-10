@@ -106,9 +106,29 @@
         <li>如何适配</li>
         <li>使用(rem,em,vw,%)都可以适配, 不过一般使用(rem, vw)</li>
         <li>rem只能自适应字体大小，不能自适应元素的长宽</li>
-        <li>使用vw才可以自适应布局</li>
+        <li>对于浏览器来说，字体最小12px，要使用rem自适应字体，使用vw自适应出字体以外的其他元素</li>
         <li>使用postcss-px-to-viewport 将px 转换成视宽</li>
         <li>使用postcss-px2vw          将px 转换成视宽</li>
+    </ul>
+</section>
+<section>
+    <h4>例子2</h4>
+    <ul>
+        <li>对于字体来说，浏览器最小就要显示12px大小。</li>
+        <li>UI出设计的时候，要考虑如果是1920*1080的字体为12px的时候，1366*768是否要小于12px</li>
+        <li>如果PC项目已经使用px，有以下两种方式处理可以响应式</li>
+        <li>A:字体转rem，其他转vw(vh)</li>
+        <li>B:全部转vw(vh)，涉及字体的样式需要微调</li>
+        <li>移动端需要移动端的设计，不推荐使用pc的像素，尺寸</li>
+    </ul>
+</section>
+<section>
+    <h4>postcss-px-to-viewport</h4>
+    <ul>
+        <li>不转换行内样式？</li>
+        <li></li>
+        <li>如何处理字体？</li>
+        <li>如果真需要转换字体，就必须使用rem。将字体全部设置成rem，而且要监听屏幕改变重新设置font-size</li>
     </ul>
 </section>
 <script>

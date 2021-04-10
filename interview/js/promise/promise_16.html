@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href="https://juejin.cn/post/6945319439772434469">promise</a></li>
+</ul>
+<section>
+    Promise（暂且成为A）返回Promise（暂且称为B）的时候，A需要等待B的状态转换，因此原生Promise似乎是多用了一个tick将A的状态bind到B上，关键在这步，多了一个tick，接下来一个tick是等待B的执行结果，所以总共需要等待2个tick。但是似乎Promise A+并没有对这个规范做要求，所以会出现你这个结果，另外如果用async/await的话似乎也不会出现这个问题
+</section>
+<script src="promise.js"></script>
+<script>
+    Promise.resolve().then(() => {
+        console.log(0);
+        return Promise.resolve(4);
+    }).then((res) => {
+        console.log(res);
+    });
+    Promise.resolve().then(() => {
+        console.log(1);
+    }).then(() => {
+        console.log(2);
+    }).then(() => {
+        console.log(3);
+    }).then(() => {
+        console.log(5);
+    }).then(() => {
+        console.log(6);
+    });
+
+    /*let promise0 = Promise.resolve().then(() => {
+        console.log(0);
+        return Promise.resolve(4);
+    });
+
+    let promise4 = promise0.then((res) => {
+        console.log(res);
+    });*/
+
+    let promise0 = Promise.resolve().then(() => {
+        console.log(0);
+        return 4;
+    });
+
+    let promisex = promise0.then((res) => {
+        console.log('x');
+        return res;
+    });
+
+    let promisex1 = promisex.then((res) => {
+        return res;
+    });
+
+    let promise4 = promisex1.then((res) => {
+        console.log(res);
+    });
+
+    let promise1 = Promise.resolve().then(() => {
+        console.log(1);
+    });
+
+    let promise2 = promise1.then(() => {
+        console.log(2);
+    })
+
+    let promise3 = promise2.then(() => {
+        console.log(3);
+    })
+
+    let promise5 = promise3.then(() => {
+        console.log(5);
+    })
+
+    let promise6 = promise5.then(() => {
+        console.log(6);
+    })
+
+    console.log('promise0', promise0);
+    console.log('promise4', promise4);
+    console.log('promise1', promise1);
+    console.log('promise2', promise2);
+    console.log('promise3', promise3);
+    console.log('promise5', promise5);
+    console.log('promise6', promise6);
+
+    // let arr = ['fn0', 'fn4', 'fn1', 'fn2', 'fn3', 'fn5', 'fn6'];
+    // let arr = ['fn0', 'fn1', 'fn4', 'fn2', 'fn3', 'fn5', 'fn6'];
+    let arr = ['fn0', 'fn1', 'fn4', 'fn2', 'fn3', 'fn5', 'fn6'];
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function exe() {
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(green())
+            }, 1000)
+        }).then(() => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(yellow())
+                }, 1000)
+            })
+        }).then(() => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(red())
+                }, 1000)
+            })
+        })
+    }
+
+    exe();
+    setInterval(() => {
+        exe();
+    }, 3000)
+
+    function red(){
+        console.log('red');
+    }
+    function green(){
+        console.log('green');
+    }
+    function yellow(){
+        console.log('yellow');
+    }
+</script>
+</body>
+</html>

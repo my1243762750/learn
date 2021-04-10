@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*body{
+            float: left;
+        }*/
+
+        .container{
+            display: inline-block;
+            background-color: paleturquoise;
+        }
+
+        .item{
+            display: inline-block;
+            /*float: left;*/
+        }
+
+        .item1{
+            float: left;
+            background-color: palegreen;
+        }
+
+        .item2{
+            float: right;
+            background-color: palegoldenrod;
+            /*margin-left: 100px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item item1">hello</div>
+    <div class="item item2">hello</div>
+</div>
+<!--<p class="item item1">hello</p>
+<p class="item item2">hello</p>-->
+<!--<section>
+    <h4>BFC(block formatting content)块级格式化上下文</h4>
+    <ul class="item item1">
+        <li>形成BFC条件</li>
+        <li>根元素，即HTML元素</li>
+        <li>浮动元素：float值为left、right</li>
+        <li>overflow值不为 visible，为 auto、scroll、hidden</li>
+        <li>display的值为inline-block、inltable-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid</li>
+        <li>position的值为absolute或fixed</li>
+    </ul>
+    <ul class="item item2">
+        <li>BFC特性</li>
+        <li>垂直方向排列</li>
+        <li>margin发生重叠(不形成BFC,普通的div,section,p都可以形成)</li>
+        <li>子元素和父元素，左边重叠</li>
+        <li>不和浮动元素重叠</li>
+        <li>bfc高度，浮动子元素参与计算</li>
+        <li>bfc独立，不受外界影响</li>
+    </ul>
+</section>-->
+</body>
+</html>

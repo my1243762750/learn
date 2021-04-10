@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let promise = new Promise((resolve, reject) => {
+        console.log(a);
+        resolve(1);
+    });
+    promise.then(() => {
+        console.log(a)
+    }, () => {
+
+    }).finally((res) => {
+        console.log('finally', res)
+    }).catch(() => {
+        return 11
+    })
+    console.log(promise)
+</script>
+</body>
+</html>
