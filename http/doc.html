@@ -84,8 +84,34 @@
         <li>Last-Modified:返回文件最新的修改时间</li>
     </ul>
 </article>
+<section>
+    <h4>回答请求头和响应头的有哪些，从以下几个方面回答</h4>
+    <ul>
+        <li>缓存涉及的几个属性</li>
+        <li>请求方法和参数涉及的几个属性</li>
+    </ul>
+</section>
+<section>
+    <h4>get 和 post 的content-type</h4>
+    <ul>
+        <li>get  的请求头没有 content-type</li>
+        <li>post 的请求头有  content-type: application/json                  提交json数据，而且需要序列化,JSON.stringify({})</li>
+        <li>post 的请求头有  content-type: application/x-www.form-urlencoded 提交表单，参数是{user:1234,pwd:1234},最终提交服务器的是user=1234&pwd=1234</li>
+        <li>post 的请求头有  content-type: multipart/form-data               提交视频或文件，如果是表单提交，form的enctype属性必须指定为multipart/form-data</li>
+        <li>post 的请求头有  content-type: text/xml</li>
+    </ul>
+    <ul>
+        <li>get 请求头</li>
+        <li>Accept: application/json, text/plain, */*</li>
+        <li>Accept-Encoding: gzip, deflate, br</li>
+        <li>Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</li>
+        <li>get 响应头</li>
+        <li>content-type: application/json;charset=UTF-8</li>
+        <li>Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</li>
+    </ul>
+</section>
 <article>
-    <h2>涉及缓存的几个属性</h2>
+    <h2>缓存涉及的几个属性</h2>
     <ul>
         <li>http1.0:Expires(缓存过期时间，绝对时间)、Pragma(是否缓存) (这两个属性在请求头)</li>
         <li>http1.1:Cache-Control(是否缓存，和过期时间，相对时间) (这个属性在响应头或请求头)</li>

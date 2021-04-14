@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h4>File Blob ArrayBuffer FormData FileReader</h4>
+    <ul>
+        <li>File Blob ArrayBuffer 是数据</li>
+        <li>FileReader            是工具</li>
+        <li>FormData              是数据应用场景</li>
+    </ul>
+</section>
+<script>
+    // Blob + URL使用场景 文件下载
+    const data = ''; // 获取后端的数据
+    const contentType = ''; // 获取后端的数据类型
+    const blob = new Blob(data, {
+        type: contentType
+    })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.click()
+    window.URL.revokeObjectURL(url)
+
+    // FormData 使用场景 文件上传（以二进制的方式）
+    const file = {} // 用户上传的文件对象
+    const formData = new FormData()
+    formData.append('file', file, file.name)
+
+    // FileReader 使用场景 文件上传（以base64的方式）
+    const file = {} // 用户上传的文件对象
+    let reader = new FileReader();
+    reader.readAsDataURL(file)
+</script>
+</body>
+</html>
