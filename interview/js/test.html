@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(arrA, arrB) {
+        let i = 0;
+        let countA = 0;
+        let countB = 0;
+        let objB = {};
+        arrB.forEach((item, index) => {
+            objB[item] = index + '';
+        });
+        while (i < arrA.length) {
+            if (arrA[i] === arrB[i]) {
+                countA++;
+            } else if(objB[arrA[i]]) {
+                countB++;
+            }
+            i++;
+        }
+        return `${countA}A${countB}B`;
+    }
+
+    console.log(test([100,200,304,5], [1,2,3,34]));
+
+    function Test() {
+        this.a = 'zhangsna';
+        return function () {};
+    }
+
+    const t = new Test();
+    console.log(t, t.a);
+    console.log({} instanceof Object);
+    console.log(function() {} instanceof Object);
+    console.log([] instanceof Object);
+</script>
+</body>
+</html>
