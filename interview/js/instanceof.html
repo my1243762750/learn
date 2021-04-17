@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 实现instanceof
+    function myInstanceof(obj1, obj2) {
+        while(obj1) {
+            if (obj1.__proto__ === obj2.prototype) {
+                return true;
+            }
+            obj1 = obj1.__proto__;
+        }
+        return false;
+    }
+
+    console.log({} instanceof Object);
+    console.log([] instanceof Object);
+    console.log(function(){} instanceof Object);
+    console.log(myInstanceof({}, Object));
+    console.log(myInstanceof([], Object));
+    console.log(myInstanceof(function(){}, Object));
+</script>
+</body>
+</html>
