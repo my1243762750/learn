@@ -96,7 +96,7 @@
     <ul>
         <li>get  的请求头没有 content-type</li>
         <li>post 的请求头有  content-type: application/json                  提交json数据，而且需要序列化,JSON.stringify({})</li>
-        <li>post 的请求头有  content-type: application/x-www.form-urlencoded 提交表单，参数是{user:1234,pwd:1234},最终提交服务器的是user=1234&pwd=1234</li>
+        <li>post 的请求头有  content-type: application/x-www-form-urlencoded 提交表单，参数是{user:1234,pwd:1234},最终提交服务器的是user=1234&pwd=1234</li>
         <li>post 的请求头有  content-type: multipart/form-data               提交视频或文件，如果是表单提交，form的enctype属性必须指定为multipart/form-data</li>
         <li>post 的请求头有  content-type: text/xml</li>
     </ul>

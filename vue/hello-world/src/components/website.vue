@@ -8,7 +8,7 @@
             </div>
             <section class="website-list-container"
                      v-for="(item, index) in [websiteList[0]]"
-                     :key="item.typeCode"
+                     :key="index"
                      style="padding:0 8px;">
                 <div class="website-type-header">
                     <h4>{{ item.typeName }}</h4>
@@ -57,49 +57,51 @@
         <div class="body" :style="{'margin-top': bodyMarginTop}">
             <section class="website-list-container"
                      v-for="(item, index) in websiteList"
-                     v-if="index > 0"
-                     :key="item.typeCode">
-                <div class="website-type-header">
-                    <h4>{{ item.typeName }}</h4>
-                    <div>
-                        <el-button type="primary" class="margin-left-10" @click="deleteWebsiteType(index)">
-                            <i class="el-icon-delete"></i>
-                        </el-button>
-                        <el-button type="primary" class="margin-left-10" @click="openWebsiteTypeDialog('编辑', item, index)">
-                            <i class="el-icon-edit"></i>
-                        </el-button>
-                        <el-button type="primary" class="margin-left-10" @click="openWebsiteDialog(item, 'add')">
-                            <i class="el-icon-plus"></i>
-                        </el-button>
+                     :key="index">
+                <div v-if="index > 0">
+                    <div class="website-type-header">
+                        <h4>{{ item.typeName }}</h4>
+                        <div>
+                            <el-button type="primary" class="margin-left-10" @click="deleteWebsiteType(index)">
+                                <i class="el-icon-delete"></i>
+                            </el-button>
+                            <el-button type="primary" class="margin-left-10" @click="openWebsiteTypeDialog('编辑', item, index)">
+                                <i class="el-icon-edit"></i>
+                            </el-button>
+                            <el-button type="primary" class="margin-left-10" @click="openWebsiteDialog(item, 'add')">
+                                <i class="el-icon-plus"></i>
+                            </el-button>
+                        </div>
                     </div>
+                    <dl class="website-dl"
+                        @drop.prevent="parentDragDrop(item, index)"
+                        @dragover.prevent="parentDragOver">
+                        <dd v-for="(childItem, childIndex) in item.list"
+                            :key="childIndex" draggable="true"
+                            @drop.stop.prevent="dragDrop(item.typeCode, childIndex, index)"
+                            @dragover.stop.prevent="dragOver()"
+                            @dragstart.stop="dragStart(item.typeCode, childIndex, childItem)">
+                            <el-popover
+                                    placement="top"
+                                    width="160"
+                                    trigger="hover"
+                                    v-model="childItem.visible">
+                                <div style="text-align: center; margin: 0">
+                                    <el-button type="primary" size="mini" @click="deleteWebsite(item, childIndex)">
+                                        <i class="el-icon-delete"></i>
+                                    </el-button>
+                                    <el-button type="primary" size="mini" @click="openWebsiteDialog(item, 'update', childItem, childIndex)">
+                                        <i class="el-icon-edit"></i>
+                                    </el-button>
+                                </div>
+                                <div class="website-item-container" slot="reference">
+                                    <a class="website-item" :href="childItem.url" @click.prevent="moveToWebsite(childItem.url)">{{ childItem.title }}</a>
+                                </div>
+                            </el-popover>
+                        </dd>
+                    </dl>
                 </div>
-                <dl class="website-dl"
-                    @drop.prevent="parentDragDrop(item, index)"
-                    @dragover.prevent="parentDragOver">
-                    <dd v-for="(childItem, childIndex) in item.list"
-                        :key="childIndex" draggable="true"
-                        @drop.stop.prevent="dragDrop(item.typeCode, childIndex, index)"
-                        @dragover.stop.prevent="dragOver()"
-                        @dragstart.stop="dragStart(item.typeCode, childIndex, childItem)">
-                        <el-popover
-                                placement="top"
-                                width="160"
-                                trigger="hover"
-                                v-model="childItem.visible">
-                            <div style="text-align: center; margin: 0">
-                                <el-button type="primary" size="mini" @click="deleteWebsite(item, childIndex)">
-                                    <i class="el-icon-delete"></i>
-                                </el-button>
-                                <el-button type="primary" size="mini" @click="openWebsiteDialog(item, 'update', childItem, childIndex)">
-                                    <i class="el-icon-edit"></i>
-                                </el-button>
-                            </div>
-                            <div class="website-item-container" slot="reference">
-                                <a class="website-item" :href="childItem.url" @click.prevent="moveToWebsite(childItem.url)">{{ childItem.title }}</a>
-                            </div>
-                        </el-popover>
-                    </dd>
-                </dl>
+
             </section>
         </div>
 
@@ -142,7 +144,7 @@
 </template>
 
 <script>
-    // import menu from '@/assets/menuData/menu.json'
+    import menu from '@/assets/menuData/menu.json'
     export default {
         name: "website",
         data() {
@@ -202,7 +204,7 @@
                     websiteList.length && (this.websiteList = websiteList)
                 }
                 // console.log('获取到的菜单是', menu)
-                // this.websiteList = menu
+                this.websiteList = menu
             },
             // 保存网站(同事保存在localStorage和menu.json)
             saveWebsiteList(list) {
@@ -227,7 +229,6 @@
                 xhr.onload = function () {
                     // 以获取json数据为例
                     var res = JSON.parse(this.responseText);
-                    console.log('返回的结果是')
                     if (res.success) {
                         callback && callback()
                     }
@@ -317,7 +318,6 @@
             // 删除网站
             deleteWebsite(item, index) {
                 item.list.splice(index, 1)
-                console.log('删除网站')
             },
             // 获取随机数
             getRandomNumber() {
@@ -326,7 +326,6 @@
             },
             // 拖动开始
             dragStart(code, index, item) {
-                console.log('拖动开始')
                 this.currentTypeCode = code
                 this.currentIndex = index
                 this.currentWebsite = JSON.parse(JSON.stringify(item))
@@ -358,13 +357,11 @@
                         item.list = list
                     }
                 })
-                console.log('改变后数组是', this.websiteList)
             },
             // 父容器拖动结束
             parentDragOver() {},
             // 父容器放下
             parentDragDrop(item, parentIndex) {
-                console.log('父容器拖动放下')
                 if (parentIndex === 0) {
                     // 是否可以插入网站
                     const isExistWebsite = this.websiteList[0].list.find((item) => {

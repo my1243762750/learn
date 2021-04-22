@@ -67,5 +67,21 @@
             <li>插槽</li>
         </ul>
     </section>
+    <script>
+        var module = {
+            exports: {
+                age: 19
+            }
+        };
+        var exports = module.exports;
+        exports.name = '123';
+        module.exports = null;
+        console.log('hello', exports)
+        // module = {};
+        // console.log(exports, module);
+
+        // exports = null;
+        // console.log(module)
+    </script>
 </body>
 </html>

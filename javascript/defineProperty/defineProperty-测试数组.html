@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = []
+
+    // 响应式
+    function reactive(obj, key, val) {
+        Object.defineProperty(obj, key, {
+            configurable: true,
+            enumerable: true,
+            set(v) {
+                if (val !== v) {
+                    val = v;
+                }
+                console.log('触发set', v);
+            },
+            get() {
+                console.log('触发get', val);
+                return val;
+            }
+        })
+    }
+
+    reactive(obj, 0, 'zhangsan');
+    obj[0] = 'lisi';
+    obj[0]
+</script>
+</body>
+</html>
