@@ -20,7 +20,7 @@ app.post('/api/upload', upload.single('file'), function(req, res, next){
 });
 
 // 多文件上传
-app.post('/api/mulupload', upload.array('file', 10), function(req, res, next){
+app.post('/api/mulupload', upload.array('file', 100), function(req, res, next){
     console.log('收到请求', req.file);
     res.send({ret_code: '0'});
 });
