@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1创建正则表达式的方式
+        // 普通方式
+        const re1 = /\d+/g;
+        // 构造函数方式
+        const re2 = new RegExp("\\d+", "g");
+
+        // 2正则表达式常见方法
+        // 字符串（str）方法：match、matchAll、search、replace、split
+        // 正则对象下（regexp）的方法：test、exec
+
+        // 2.1 str.match(regexp)
+        // 2.1.1 如果 regexp 不带有 g 标记，则它以数组的形式返回第一个匹配项，其中包含分组和属性 index（匹配项的位置）、input（输入字符串，等于 str）
+        // 不是贪婪匹配啊
+        let str = "I love JavaScript and JavaScript";
+        let result = str.match(/Java(Script)/);
+        console.log(result);
+        console.log(result[0]);     // JavaScript（完全匹配）
+        console.log(result[1]);     // Script（第一个分组）
+        console.log(result.length); // 2
+        console.log(result.index);  // 7（匹配位置）
+        console.log(result.input);  // I love JavaScript（源字符串）
+
+        // 2.1.2 如果 regexp 带有 g 标记，则它将所有匹配项的数组作为字符串返回，而不包含分组和其他详细信息
+        let result = str.match(/Java(Script)/g);
+
+console.log( result[0] ); // JavaScript
+console.log( result.length ); // 1
+    </script>
+</body>
+
+</html>
