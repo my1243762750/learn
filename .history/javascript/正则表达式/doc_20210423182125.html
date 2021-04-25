@@ -7,13 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<section>
-    <h4>相关链接</h4>
-    <ul>
-        <li><a href="http://www.jb51.net/article/46374.htm">match和exec区别</a></li>
-        <li><li><a href="http://blog.csdn.net/zaifendou/article/details/5746988/">正则表达式</a></li></li>
-    </ul>
-</section>
+
 <body>
     <script>
         // 1创建正则表达式的方式
@@ -88,8 +82,8 @@
             // Found JavaScript at position 11
             // Found javascript at position 33
         }
-        var str = 'hello world';
-        var regexp = /(?<hello>hello)/;
+        var str = '(hello world';
+        var regexp = /hello/;
         console.log(regexp.exec(str));
 
         // 2.7 regexp.test(str)

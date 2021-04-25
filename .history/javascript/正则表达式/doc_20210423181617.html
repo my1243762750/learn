@@ -7,13 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<section>
-    <h4>相关链接</h4>
-    <ul>
-        <li><a href="http://www.jb51.net/article/46374.htm">match和exec区别</a></li>
-        <li><li><a href="http://blog.csdn.net/zaifendou/article/details/5746988/">正则表达式</a></li></li>
-    </ul>
-</section>
+
 <body>
     <script>
         // 1创建正则表达式的方式
@@ -79,7 +73,7 @@
         // 根据正则表达式是否带有标志 g，它的行为有所不同
         // 如果没有 g，那么 regexp.exec(str) 返回的第一个匹配与 str.match(regexp) 完全相同
         // 如果有标记 g，调用 regexp.exec(str) 会返回第一个匹配项，并将紧随其后的位置保存在属性regexp.lastIndex 中。下一次同样的调用会从位置 regexp.lastIndex 开始搜索，返回下一个匹配项，并将其后的位置保存在 regexp.lastIndex 中
-        var str = 'More about JavaScript at https://javascript.info';
+        var str = '(?<name>)More about JavaScript at https://javascript.info';
         var regexp = /javascript/ig;
         var result;
         console.log('=====2.6=====');
@@ -88,9 +82,6 @@
             // Found JavaScript at position 11
             // Found javascript at position 33
         }
-        var str = 'hello world';
-        var regexp = /(?<hello>hello)/;
-        console.log(regexp.exec(str));
 
         // 2.7 regexp.test(str)
         // 查找匹配项，然后返回 true/false 表示是否存在
