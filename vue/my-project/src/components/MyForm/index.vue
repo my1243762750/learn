@@ -9,7 +9,7 @@
         name: "MyForm",
         provide() {
             return {
-                form: this
+                formInstance: this
             }
         },
         props: {

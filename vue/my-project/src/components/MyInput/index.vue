@@ -7,6 +7,7 @@
 <script>
     export default {
         name: "MyInput",
+        inject: ['formItemInstance'],
         props: {
             type: {
                 type: String,
@@ -20,6 +21,10 @@
         methods: {
             onInput(e) {
                 this.$emit('input', e.target.value);
+
+                if (this.formItemInstance) {
+                  this.formItemInstance.validate();
+                }
             }
         }
     }

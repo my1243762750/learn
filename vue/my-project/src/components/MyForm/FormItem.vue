@@ -1,10 +1,8 @@
 <template>
     <div>
         <label v-if="label">{{label}}</label>
-
         <slot></slot>
-
-        <div v-if="err">{{err}}</div>
+        <div v-if="error">{{error}}</div>
     </div>
 </template>
 
@@ -12,7 +10,12 @@
     import Validator from 'async-validator';
     export default {
         name: "MyFormItem",
-        inject: ['form'],
+        provide(){
+          return {
+            formItemInstance: this
+          }
+        },
+        inject: ['formInstance'],
         props: {
             label: {
                 type: String,
@@ -25,25 +28,29 @@
         },
         data() {
             return {
-                err: ''
+                error: ''
             }
         },
         mounted() {
-            this.form.setFormItemInstance(this);
+            this.formInstance.setFormItemInstance(this);
         },
         methods: {
-            validate() {
-                const rules = this.form.rules[this.prop];
-                const value = this.form.model[this.prop];
-                const validator = new Validator({[this.prop]: rules});
-                return validator.validate(value, (errors) => {
-                    console.log('errors', errors);
-                })
+           validate() {
+              const rules = this.formInstance.rules[this.prop];
+              const value = this.formInstance.form[this.prop];
+              const validator = new Validator({[this.prop]: rules});
+              return validator.validate({[this.prop]: value}, (errors) => {
+                  if (errors) {
+                    this.error = errors[0]?.message;
+                  } else {
+                    this.error = '';
+                  }
+                  console.log('errors', errors);
+              })
             }
         }
     }
 </script>
 
 <style scoped>
-
 </style>

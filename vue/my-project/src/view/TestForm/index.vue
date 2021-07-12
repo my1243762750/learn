@@ -2,10 +2,10 @@
     <div>
         <MyForm ref="form" :form="model" :rules="rules">
             <MyTest>
-                <MyFormItem label="用户名">
+                <MyFormItem label="用户名" prop="username">
                     <MyInput type="text" v-model="model.username" />
                 </MyFormItem>
-                <MyFormItem label="密码">
+                <MyFormItem label="密码" prop="password">
                     <MyInput type="password" v-model="model.password" />
                 </MyFormItem>
             </MyTest>
