@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const initList = [
+        {
+            id: 1,
+            title: 'Shop',
+            open: false,
+            children: [
+                {
+                    id: 2,
+                    title: 'Home',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 3,
+                            title: 'All',
+                            isSelected: false
+                        },
+                        {
+                            id: 4,
+                            title: 'Active Wear1'
+                        },
+                        {
+                            id: 5,
+                            title: 'Active Wear2'
+                        },
+                        {
+                            id: 6,
+                            title: 'Active Wear3'
+                        },
+                        {
+                            id: 7,
+                            title: 'Active Wear4'
+                        },
+                        {
+                            id: 8,
+                            title: 'Active Wear5'
+                        },
+                        {
+                            id: 9,
+                            title: 'Active Wear6'
+                        },
+                        {
+                            id: 10,
+                            title: 'Active Wear7'
+                        },
+                        {
+                            id: 11,
+                            title: 'Active Wear8'
+                        },
+                        {
+                            id: 12,
+                            title: 'Active Wear9'
+                        },
+                        {
+                            id: 13,
+                            title: 'Active Wear10'
+                        }
+                    ]
+                },
+                {
+                    id: 14,
+                    title: 'Kid',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 15,
+                            title: 'All'
+                        },
+                        {
+                            id: 16,
+                            title: 'Active Wear'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 17,
+            title: 'Dine',
+            open: false,
+            children: [
+                {
+                    id: 18,
+                    title: 'Home',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 19,
+                            title: 'All'
+                        },
+                        {
+                            id: 20,
+                            title: 'Active Wear'
+                        }
+                    ]
+                },
+                {
+                    id: 21,
+                    title: 'Kid',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 22,
+                            title: 'All'
+                        },
+                        {
+                            id: 23,
+                            title: 'Active Wear'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 24,
+            title: 'Location',
+            open: false,
+            children: [
+                {
+                    id: 25,
+                    title: 'Home',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 26,
+                            title: 'All'
+                        },
+                        {
+                            id: 27,
+                            title: 'Active Wear'
+                        }
+                    ]
+                },
+                {
+                    id: 28,
+                    title: 'Kid',
+                    open: false,
+                    isLastLevel: true,
+                    children: [
+                        {
+                            id: 29,
+                            title: 'All'
+                        },
+                        {
+                            id: 30,
+                            title: 'Active Wear'
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    const _originList = JSON.parse(JSON.stringify(initList));
+
+    initList[0].children[0].children[1].isSelected = true;
+    console.log(initList);
+    console.log(_originList);
+</script>
+</body>
+</html>

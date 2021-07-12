@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj = {
+        age: 19,
+        get name() {
+            console.log('age', this.age);
+            var name = 'zhangsan';
+            return name;
+        }
+    }
+
+    // Reflect.get(obj, 'name', {'age': 18});
+
+    // 查找数组里面最小的元素值
+
+    const arrs = [1, 2, 3, 4];
+    // ES6 的语法如下
+    const min = Reflect.apply(Math.min, arrs, arrs);
+
+    console.log(min); // 1
+
+    // ES5的语法如下：
+
+    const min2 = Math.min.apply(arrs, arrs);
+    console.log(min2); // 1
+</script>
+</body>
+</html>

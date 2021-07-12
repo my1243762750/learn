@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas {
+            border: solid 1px;
+        }
+    </style>
+</head>
+<body>
+<canvas class="canvas" id="canvas" width="960" height="960" >
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //圆弧
+    ctx.save();
+    ctx.translate(100, 100);
+    ctx.arc(0,0,100,0, 30*Math.PI/180);
+    ctx.restore();
+    //第一条线
+    ctx.save();
+    ctx.moveTo(100,100);
+    ctx.lineTo(200,100);
+    ctx.restore();
+    //第二条线
+    ctx.save();
+    ctx.translate(100, 100);
+    ctx.moveTo(0,0);
+    ctx.rotate(30*Math.PI/180);
+    ctx.lineTo(100,0);
+
+    ctx.rotate(Math.PI);
+    ctx.stroke();
+    ctx.restore();
+</script>
+</body>
+</html>

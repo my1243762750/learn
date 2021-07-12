@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getTime(start, end) {
+        if (!start || !end) {
+            return;
+        }
+        let distance = new Date(start).getTime() - new Date(end).getTime();
+        distance = Math.abs(distance);
+        let disSecond = (distance / 1000);
+        while (disSecond >= 60) {
+            disSecond = disSecond % 60
+        }
+        let allMinute = (distance / 1000 - disSecond) / 60;
+        let disMinute = allMinute % 60;
+        return {
+            disSecond,
+            disHour: Math.floor(allMinute / 60),
+            disMinute
+        }
+    }
+    console.log(getTime('2020-06-18 14:18:56', '2020-06-18 14:20:57'));
+</script>
+</body>
+</html>

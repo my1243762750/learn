@@ -1,21 +1,15 @@
 <template>
     <div id="app">
-        {{ val }}
-        <my-input :val.sync="val"></my-input>
-        <my-input-model v-model="val"></my-input-model>
-
+        <TestForm />
     </div>
 </template>
 
 <script>
-    import MyInput from "./components/MyInput";
-    import MyInputModel from "./components/MyInput_model";
-
+    import TestForm from './view/TestForm/index'
     export default {
         name: 'App',
         components: {
-            MyInput,
-            MyInputModel
+            TestForm
         },
         data() {
             return {

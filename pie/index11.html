@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        background: #273341;
+    }
+
+    .canvas {
+        border: solid 1px yellow;
+    }
+</style>
+<body>
+<div class="pie">
+    <canvas class="canvas" id="canvas" width="960" height="960"
+            style="width:320px;height:320px;"></canvas>
+</div>
+<!-- canvas的画布宽高（分辨率）是width和height，而style中的宽高是canvas在页面中显示的宽高，画布分辨率越高，绘制出来的图任意缩放也不会出现很大的锯齿 -->
+</body>
+<script>
+    var canvas = document.getElementById('canvas');
+    var r2 = 380, r1 = 480;
+    var ctx = canvas.getContext('2d');
+    if (canvas.getContext) {
+        var smccircle = {
+            x: 480,
+            y: 480,
+            radius: 342
+        }
+
+        //彩色内扇叶
+        ites(0, 45, r2, '#4c17e2');
+        ites(45, 90, r2, '#1777e2');
+        ites(90, 135, r2, '#17cde2');
+        ites(135, 180, r2, '#3fc371');
+        ites(180, 225, r2, '#ffbc3a');
+        ites(225, 270, r2, '#e27217');
+        ites(270, 315, r2, '#e217a1');
+        ites(315, 360, r2, '#b017e2');
+
+        //头像边框
+        drawCircularText(smccircle, '水分', rads(0), rads(45), 'center');
+        // drawCircularText(smccircle, '蛋白质', rads(58), rads(78), 'center');
+        // drawCircularText(smccircle, '内脏脂肪', rads(98), rads(127), 'center');
+        // drawCircularText(smccircle, '骨骼', rads(153), rads(163), 'center');
+        // drawCircularText(smccircle, '基础代谢', rads(188), rads(216), 'center');
+        // drawCircularText(smccircle, 'BMI', rads(241), rads(253), 'center');
+        // drawCircularText(smccircle, '脂肪', rads(287), rads(298), 'center');
+        // drawCircularText(smccircle, '肌肉', rads(333), rads(343), 'center');
+
+        // drawCircularText(smccircle, '水分', rads(18), rads(28), 'center');
+        // drawCircularText(smccircle, '蛋白质', rads(58), rads(78), 'center');
+        // drawCircularText(smccircle, '内脏脂肪', rads(98), rads(127), 'center');
+        // drawCircularText(smccircle, '骨骼', rads(153), rads(163), 'center');
+        // drawCircularText(smccircle, '基础代谢', rads(188), rads(216), 'center');
+        // drawCircularText(smccircle, 'BMI', rads(241), rads(253), 'center');
+        // drawCircularText(smccircle, '脂肪', rads(287), rads(298), 'center');
+        // drawCircularText(smccircle, '肌肉', rads(333), rads(343), 'center');
+    }
+
+    //转换弧度
+    function rads(x) {
+        return Math.PI * x / 180;
+    }
+
+    //圆
+    function ites(a, b, r, color) {
+        ctx.beginPath();
+        ctx.moveTo(480, 480);
+        ctx.arc(480, 480, r, rads(a), rads(b), false);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function drawCircularText(s, string, startAngle, endAngle, lv) {
+        var radius = s.radius,
+            angleDecrement = (startAngle - endAngle) / (string.length - 1),
+            angle = parseFloat(startAngle),
+            index = 0,
+            character;
+
+        ctx.save();
+
+        ctx.fillStyle = 'white';
+        ctx.font = '40px 微软雅黑';
+        ctx.textAlign = lv;
+        ctx.textBaseline = 'middle';
+
+        while (index < string.length) {
+            character = string.charAt(index);
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(s.x + Math.cos(angle) * radius,
+                s.y + Math.sin(angle) * radius);
+            ctx.rotate(Math.PI / 2 + angle);
+
+            ctx.fillText(character, 0, 0);
+           // ctx.strokeText(character, 0, 0);
+
+            angle -= angleDecrement;
+            index++;
+            ctx.restore();
+        }
+        ctx.restore();
+    }
+/*
+    function drawCircularText(s, string, startAngle, endAngle, lv) {
+        var radius = s.radius,
+            angleDecrement = (startAngle - endAngle) / (string.length - 1),
+            angle = parseFloat(startAngle),
+            index = 0,
+            character;
+
+        ctx.save();
+
+        ctx.fillStyle = 'white';
+        ctx.font = '40px 微软雅黑';
+        ctx.textAlign = lv;
+        ctx.textBaseline = 'middle';
+
+        while (index < string.length) {
+            character = string.charAt(index);
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(s.x + Math.cos(angle) * radius,
+                s.y + Math.sin(angle) * radius);
+            ctx.rotate(Math.PI / 2 + angle);
+
+            ctx.fillText(character, 0, 0);
+           // ctx.strokeText(character, 0, 0);
+
+            angle -= angleDecrement;
+            index++;
+            ctx.restore();
+        }
+        ctx.restore();
+    }
+*/
+</script>
+</html>

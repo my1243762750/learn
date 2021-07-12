@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas {
+            border: solid 1px;
+        }
+    </style>
+</head>
+<body>
+<canvas class="canvas" id="canvas" width="960" height="960" >
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //将原点设置100,100位置
+    ctx.translate(100,100);
+    //原点在100,100，则圆心设为0,0 ——> 100,100的位置
+    ctx.arc(0,0,100,30*Math.PI/180,60*Math.PI/180);
+    //save(),restore()是为了防止角度旋转的污染
+    ctx.save();
+    ctx.rotate(30*Math.PI/180);
+    ctx.moveTo(0,0);
+    ctx.lineTo(100,0);
+    ctx.restore();
+    ctx.rotate(60*Math.PI/180);
+    ctx.moveTo(0,0);
+    ctx.lineTo(100,0);
+    ctx.stroke();
+</script>
+</body>
+</html>

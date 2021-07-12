@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas {
+            border: solid 1px;
+        }
+    </style>
+</head>
+<body>
+<canvas class="canvas" id="canvas" width="960" height="960" >
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //将原点设置100,100位置
+    ctx.translate(100,100);
+    //原点在100,100，则圆心设为0,0 ——> 100,100的位置
+    ctx.arc(0,0,100,30*Math.PI/180,60*Math.PI/180);
+    //以圆弧终点为起点画直线，rotate使得直角坐标系旋转了30°
+    ctx.lineTo(0,0);
+    ctx.rotate(30*Math.PI/180);
+    //以0,0为起点画直线
+    ctx.lineTo(100,0);
+    ctx.stroke();
+    // ctx.fill();
+</script>
+</body>
+</html>

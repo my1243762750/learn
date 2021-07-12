@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas {
+            border: solid 1px;
+        }
+    </style>
+</head>
+<body>
+<canvas class="canvas" id="canvas" width="960" height="960" >
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    //定义起点
+    ctx.moveTo(100,100);
+    //以起点为圆心，画一个半径为100的圆弧
+    ctx.arc(100,100,100,30*Math.PI/180, 60*Math.PI/180);
+    ctx.closePath();
+    ctx.stroke();
+</script>
+</body>
+</html>
